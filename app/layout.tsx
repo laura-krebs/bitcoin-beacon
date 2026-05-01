@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
@@ -10,12 +10,15 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  themeColor: "#F7931A",
+};
+
 export const metadata: Metadata = {
   title: "Bitcoin Beacon — Cycle Score",
   description:
     "An educational Bitcoin market cycle tracker. One score, updated daily, with plain-language context.",
   manifest: "/manifest.json",
-  themeColor: "#F7931A",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
