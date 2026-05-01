@@ -1,101 +1,206 @@
-import Image from "next/image";
+import Link from "next/link";
+import { fetchMarketData, getScoreState } from "@/lib/api";
+import LighthouseSVG from "@/components/LighthouseSVG";
+import DisclaimerTooltip from "@/components/DisclaimerTooltip";
 
-export default function Home() {
+export const revalidate = 3600;
+
+function formatPrice(price: number): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(price);
+}
+
+export default async function HomePage() {
+  const data = await fetchMarketData();
+  const { score } = data.cbbi;
+  const state = getScoreState(score);
+
+  const heroHeight = 700;
+  const apexY = 68;
+  const baseY = 680;
+  const scoreY = baseY - (score / 100) * (baseY - apexY);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      {/* HERO */}
+      <section
+        style={{
+          position: "relative",
+          minHeight: `${heroHeight}px`,
+          overflow: "hidden",
+          backgroundColor: "#F7931A",
+        }}
+      >
+        <LighthouseSVG height={heroHeight} />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Top-left overlay */}
+        <div
+          style={{
+            position: "absolute",
+            top: "32px",
+            left: "32px",
+            zIndex: 10,
+          }}
+        >
+          <p style={{ fontSize: "9px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "8px" }}>
+            Where are we in the cycle?
+          </p>
+          <div
+            style={{
+              display: "inline-block",
+              border: "0.5px solid rgba(0,0,0,0.3)",
+              padding: "4px 10px",
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <span style={{ fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              {state.label}
+            </span>
+          </div>
+          <p style={{ marginTop: "6px", fontSize: "9px", color: "rgba(0,0,0,0.45)", letterSpacing: "0.08em", maxWidth: "200px", lineHeight: 1.6 }}>
+            {state.description}
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+
+        {/* Top-right overlay */}
+        <div
+          style={{
+            position: "absolute",
+            top: "32px",
+            right: "32px",
+            zIndex: 10,
+            textAlign: "right",
+          }}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <p style={{ fontSize: "9px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "4px" }}>
+            Updated Daily
+          </p>
+          <p style={{ fontSize: "9px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.18em", textTransform: "uppercase", marginBottom: "8px" }}>
+            9 On-Chain Metrics
+          </p>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", gap: "6px" }}>
+            <p style={{ fontSize: "8px", color: "rgba(0,0,0,0.28)", letterSpacing: "0.1em", textTransform: "uppercase" }}>
+              Not Financial Advice. Educational Purposes Only.
+            </p>
+            <DisclaimerTooltip />
+          </div>
+        </div>
+
+        {/* Score positioned by value */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            top: `${scoreY}px`,
+            zIndex: 10,
+            textAlign: "center",
+          }}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
+          {/* Full-width horizontal marker line */}
+          <div
+            style={{
+              position: "absolute",
+              left: "50vw",
+              transform: "translateX(-50vw)",
+              width: "100vw",
+              top: "50%",
+              height: "0",
+              borderTop: "0.5px solid rgba(0,0,0,0.2)",
+              zIndex: -1,
+            }}
           />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div style={{ fontSize: "118px", fontWeight: 300, letterSpacing: "-0.04em", lineHeight: 1 }}>
+            {score}
+          </div>
+          <div style={{ fontSize: "8.5px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "6px" }}>
+            Cycle Score
+          </div>
+        </div>
+      </section>
+
+      {/* METRICS BAR */}
+      <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.18)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+          {/* BTC Price */}
+          <div style={{ padding: "20px 32px", borderRight: "0.5px solid rgba(0,0,0,0.15)", textAlign: "center" }}>
+            <div style={{ fontSize: "27px", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "6px" }}>
+              {data.btcPrice > 0 ? formatPrice(data.btcPrice) : "—"}
+            </div>
+            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              BTC Price
+            </div>
+          </div>
+
+          {/* CBBI Score */}
+          <div style={{ padding: "20px 32px", borderRight: "0.5px solid rgba(0,0,0,0.15)", textAlign: "center" }}>
+            <div style={{ fontSize: "27px", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "6px" }}>
+              {score}
+            </div>
+            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              CBBI Score
+            </div>
+          </div>
+
+          {/* Fear & Greed */}
+          <div style={{ padding: "20px 32px", textAlign: "center" }}>
+            <div style={{ fontSize: "27px", fontWeight: 300, letterSpacing: "-0.02em", marginBottom: "6px" }}>
+              {data.fearGreed.value}
+            </div>
+            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>
+              Fear & Greed — {data.fearGreed.classification}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM BAR */}
+      <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.15)" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", padding: "0 32px" }}>
+          <Link
+            href="/learn"
+            style={{
+              padding: "14px 0",
+              fontSize: "9px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "#000",
+              textDecoration: "none",
+            }}
+          >
+            What does this mean →
+          </Link>
+          <Link
+            href="/metrics"
+            style={{
+              padding: "14px 0",
+              fontSize: "9px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "#000",
+              textDecoration: "none",
+              textAlign: "center",
+            }}
+          >
+            How it&apos;s calculated →
+          </Link>
+          <div
+            style={{
+              padding: "14px 0",
+              fontSize: "9px",
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: "rgba(0,0,0,0.4)",
+              textAlign: "right",
+            }}
+          >
+            Source: CBBI · CoinGecko · Alternative.me
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
