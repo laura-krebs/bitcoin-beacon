@@ -5,9 +5,9 @@ import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 const NAV_LINKS = [
-  { href: "/learn", label: "LEARN" },
-  { href: "/metrics", label: "METRICS" },
-  { href: "/about", label: "ABOUT" },
+  { href: "/learn", label: "Learn" },
+  { href: "/metrics", label: "Metrics" },
+  { href: "/about", label: "About" },
 ];
 
 const LANGS = [
@@ -18,6 +18,7 @@ const LANGS = [
 
 export default function Nav() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [langOpen, setLangOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
 
@@ -31,109 +32,74 @@ export default function Nav() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [langOpen]);
 
-  return (
-    <nav
-      style={{
-        borderBottom: "0.5px solid rgba(0,0,0,0.15)",
-        position: "sticky",
-        top: 0,
-        zIndex: 50,
-        backgroundColor: "#F7931A",
-      }}
-    >
-      <div
+  if (isHome) {
+    // ── Dark nav (homepage) — matches mockup exactly
+    return (
+      <nav
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "0 48px",
           display: "flex",
-          alignItems: "center",
           justifyContent: "space-between",
-          height: "52px",
+          alignItems: "center",
+          padding: "22px 48px",
+          position: "relative",
+          zIndex: 20,
+          backgroundColor: "#000",
         }}
       >
-        <Link
-          href="/"
-          style={{
-            fontSize: "14px",
-            fontWeight: 600,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "#000",
-            textDecoration: "none",
-          }}
-        >
-          BITCOIN BEACON
+        <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#fff", textDecoration: "none" }}>
+          Bitcoin Beacon
         </Link>
-
-        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          {NAV_LINKS.map(({ href, label }) => {
-            const active = pathname === href;
-            return (
-              <Link
-                key={href}
-                href={href}
-                style={{
-                  fontSize: "12px",
-                  fontWeight: active ? 500 : 400,
-                  letterSpacing: "0.16em",
-                  textTransform: "uppercase",
-                  color: "#000",
-                  textDecoration: "none",
-                  opacity: active ? 1 : 0.5,
-                }}
-              >
-                {label}
-              </Link>
-            );
-          })}
-
-          {/* Language dropdown */}
+        <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
+          {NAV_LINKS.map(({ href, label }) => (
+            <Link key={href} href={href} className="nav-link-dark">{label}</Link>
+          ))}
           <div ref={langRef} style={{ position: "relative" }}>
             <button
               onClick={() => setLangOpen(!langOpen)}
-              style={{
-                fontSize: "12px",
-                fontWeight: 400,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: "#000",
-                opacity: 0.5,
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "inherit",
-                padding: 0,
-              }}
+              className="nav-link-dark"
+              style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}
             >
               EN ▾
             </button>
             {langOpen && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "calc(100% + 10px)",
-                  right: 0,
-                  backgroundColor: "#F7931A",
-                  border: "0.5px solid rgba(0,0,0,0.15)",
-                  minWidth: "130px",
-                  zIndex: 100,
-                }}
-              >
+              <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#111", border: "0.5px solid rgba(255,255,255,0.15)", minWidth: "130px", zIndex: 100 }}>
                 {LANGS.map((lang) => (
-                  <div
-                    key={lang.code}
-                    style={{
-                      padding: "10px 16px",
-                      fontSize: "11px",
-                      letterSpacing: "0.14em",
-                      textTransform: "uppercase",
-                      color: "#000",
-                      opacity: lang.available ? 1 : 0.35,
-                      borderBottom: "0.5px solid rgba(0,0,0,0.08)",
-                      cursor: lang.available ? "pointer" : "default",
-                    }}
-                  >
+                  <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#fff", opacity: lang.available ? 1 : 0.3, borderBottom: "0.5px solid rgba(255,255,255,0.08)", cursor: lang.available ? "pointer" : "default" }}>
+                    {lang.label}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </nav>
+    );
+  }
+
+  // ── Orange nav (all other pages)
+  return (
+    <nav style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px", display: "flex", alignItems: "center", justifyContent: "space-between", height: "52px" }}>
+        <Link href="/" style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
+          BITCOIN BEACON
+        </Link>
+        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+          {NAV_LINKS.map(({ href, label }) => {
+            const active = pathname === href;
+            return (
+              <Link key={href} href={href} style={{ fontSize: "12px", fontWeight: active ? 500 : 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", opacity: active ? 1 : 0.5 }}>
+                {label.toUpperCase()}
+              </Link>
+            );
+          })}
+          <div ref={langRef} style={{ position: "relative" }}>
+            <button onClick={() => setLangOpen(!langOpen)} style={{ fontSize: "12px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", opacity: 0.5, background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
+              EN ▾
+            </button>
+            {langOpen && (
+              <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.5px solid rgba(0,0,0,0.15)", minWidth: "130px", zIndex: 100 }}>
+                {LANGS.map((lang) => (
+                  <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.5px solid rgba(0,0,0,0.08)", cursor: lang.available ? "pointer" : "default" }}>
                     {lang.label}
                   </div>
                 ))}

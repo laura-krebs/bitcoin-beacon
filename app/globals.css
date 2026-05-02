@@ -2,39 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
-html,
-body {
+html, body {
   background-color: #F7931A;
-  color: #000000;
+  color: #000;
   font-family: var(--font-space-grotesk), sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-*:focus-visible {
-  outline: 0.5px solid rgba(0, 0, 0, 0.4);
-  outline-offset: 2px;
-}
+*:focus-visible { outline:0.5px solid rgba(0,0,0,0.4); outline-offset:2px; }
 
-/* Ray pulse on hover */
-@keyframes rayPulse {
-  0%, 100% { opacity: 0.13; }
-  50% { opacity: 0.35; }
-}
-.rays-animated line {
-  animation: rayPulse 2.2s ease-in-out infinite;
-}
+/* ── LIGHTHOUSE ─────────────────────────────── */
+@keyframes rayPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.rays { animation:rayPulse 5s ease-in-out infinite; }
+.ray  { stroke:#fff; stroke-width:0.5; fill:none; opacity:0.22; transition:opacity 0.3s; cursor:default; }
+.ray:hover  { opacity:0.5; }
+.hg   { stroke:#fff; stroke-width:0.5; fill:none; opacity:0.18; transition:opacity 0.3s; cursor:default; }
+.hg:hover   { opacity:0.42; }
+.ln   { stroke:#fff; stroke-width:0.6; fill:none; opacity:0.35; }
+.stem { stroke:#fff; stroke-width:0.6; fill:none; opacity:0.35; }
 
-/* Orange hover on dark background */
-.link-orange-hover {
-  color: rgba(255, 255, 255, 0.85);
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-.link-orange-hover:hover {
-  color: #F7931A;
-}
+/* ── HERO SECTION ────────────────────────────── */
+.hero { position:relative; width:100%; height:660px; overflow:hidden; background:#000; }
+
+/* ── SCORE BLOCK ──────────────────────────────── */
+.score-block { position:absolute; left:50%; transform:translateX(-50%); z-index:12; display:flex; align-items:center; cursor:default; }
+.score-num-wrap { display:flex; flex-direction:column; align-items:center; padding:0 6px; }
+.score-line { height:1.5px; width:140px; background:#fff; transition:background 0.25s; flex-shrink:0; }
+.score-num  { font-size:118px; font-weight:300; letter-spacing:-0.04em; color:#fff; line-height:1; transition:color 0.25s; }
+.score-lbl  { font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#fff; margin-top:2px; transition:color 0.25s; font-family:var(--font-space-grotesk),sans-serif; }
+.score-block:hover .score-num  { color:#F7931A; }
+.score-block:hover .score-lbl  { color:#F7931A; }
+.score-block:hover .score-line { background:#F7931A; }
+
+/* ── STATUS ───────────────────────────────────── */
+.status-wrap { position:absolute; z-index:13; display:flex; flex-direction:column; gap:7px; }
+.status-pill { display:inline-block; border:0.5px solid rgba(255,255,255,0.6); color:#fff; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; font-family:var(--font-space-grotesk),sans-serif; }
+.status-desc { font-size:11px; color:rgba(255,255,255,0.6); max-width:170px; line-height:1.65; font-family:var(--font-space-grotesk),sans-serif; }
+
+/* ── HERO TITLE ───────────────────────────────── */
+.hero-title { position:absolute; top:60px; left:0; right:0; text-align:center; font-size:58px; font-weight:300; letter-spacing:-0.03em; color:#fff; line-height:1.05; z-index:10; pointer-events:none; font-family:var(--font-space-grotesk),sans-serif; }
+
+/* ── NAV (dark homepage) ──────────────────────── */
+.nav-link-dark { font-size:9.5px; font-weight:400; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s; cursor:pointer; }
+.nav-link-dark:hover { color:#F7931A; }
+
+/* ── BOTTOM BARS (dark) ───────────────────────── */
+.ilink { font-size:10px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#fff; text-decoration:none; cursor:pointer; transition:color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
+.ilink:hover { color:#F7931A; }
+
+/* ── FOOTER (dark) ────────────────────────────── */
+.footer-alert { font-size:9px; letter-spacing:0.13em; text-transform:uppercase; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
+.footer-alert:hover { color:#F7931A; }
+.footer-x { opacity:0.35; display:flex; align-items:center; transition:opacity 0.2s; }
+.footer-x:hover { opacity:1; }

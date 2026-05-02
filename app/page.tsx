@@ -4,15 +4,8 @@ import HomepageHero from "@/components/HomepageHero";
 
 export const revalidate = 3600;
 
-const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
-
-function formatPrice(price: number): string {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(price);
+function formatPrice(n: number) {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
 }
 
 export default async function HomePage() {
@@ -20,116 +13,59 @@ export default async function HomePage() {
   const { score } = data.cbbi;
   const state = getScoreState(score);
 
-  const W = "rgba(255,255,255,0.85)";
-  const WM = "rgba(255,255,255,0.45)";
-  const DIV = "0.5px solid rgba(255,255,255,0.1)";
-
   return (
-    <div style={{ backgroundColor: "#000" }}>
+    <div style={{ background: "#000" }}>
       <HomepageHero score={score} state={state} />
 
-      {/* ── METRICS BAR ─────────────────────────────── */}
-      <div style={{ borderTop: DIV }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
-          <div style={{ padding: "22px 0", borderRight: DIV, textAlign: "center" }}>
-            <div style={{ fontSize: "27px", fontWeight: 300, letterSpacing: "-0.02em", color: W, marginBottom: "7px" }}>
-              {data.btcPrice > 0 ? formatPrice(data.btcPrice) : "—"}
-            </div>
-            <div style={{ fontSize: "11px", color: WM, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              BTC Price
-            </div>
+      {/* ── METRICS ROW ─────────────────────────── */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderTop: "0.5px solid rgba(255,255,255,0.12)" }}>
+        <div style={{ padding: "26px 48px", borderRight: "0.5px solid rgba(255,255,255,0.12)" }}>
+          <div style={{ fontSize: "26px", fontWeight: 300, color: "#fff", letterSpacing: "-0.02em", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+            {data.btcPrice > 0 ? formatPrice(data.btcPrice) : "—"}
           </div>
-
-          <div style={{ padding: "22px 0", borderRight: DIV, textAlign: "center" }}>
-            <div style={{ fontSize: "27px", fontWeight: 300, letterSpacing: "-0.02em", color: W, marginBottom: "7px" }}>
-              {score}
-            </div>
-            <div style={{ fontSize: "11px", color: WM, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              CBBI Score
-            </div>
+          <div style={{ fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: "5px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+            BTC Price
           </div>
-
-          <div style={{ padding: "22px 0", textAlign: "center" }}>
-            <div style={{ fontSize: "27px", fontWeight: 300, letterSpacing: "-0.02em", color: W, marginBottom: "7px" }}>
-              {data.fearGreed.value}
-            </div>
-            <div style={{ fontSize: "11px", color: WM, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-              Fear & Greed — {data.fearGreed.classification}
-            </div>
+        </div>
+        <div style={{ padding: "26px 48px", borderRight: "0.5px solid rgba(255,255,255,0.12)" }}>
+          <div style={{ fontSize: "26px", fontWeight: 300, color: "#fff", letterSpacing: "-0.02em", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+            {score}
+          </div>
+          <div style={{ fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: "5px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+            CBBI Score
+          </div>
+        </div>
+        <div style={{ padding: "26px 48px" }}>
+          <div style={{ fontSize: "26px", fontWeight: 300, color: "#fff", letterSpacing: "-0.02em", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+            {data.fearGreed.value} — {data.fearGreed.classification}
+          </div>
+          <div style={{ fontSize: "9px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginTop: "5px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+            Fear & Greed
           </div>
         </div>
       </div>
 
-      {/* ── LINKS + META BAR ────────────────────────── */}
-      <div style={{ borderTop: DIV }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
-          <Link
-            href="/learn"
-            className="link-orange-hover"
-            style={{
-              padding: "15px 0",
-              fontSize: "12px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-            }}
-          >
-            What does this mean →
-          </Link>
-          <Link
-            href="/metrics"
-            className="link-orange-hover"
-            style={{
-              padding: "15px 0",
-              fontSize: "12px",
-              letterSpacing: "0.16em",
-              textTransform: "uppercase",
-              textAlign: "center",
-            }}
-          >
-            How it&apos;s calculated →
-          </Link>
-          <div
-            style={{
-              padding: "15px 0",
-              fontSize: "11px",
-              color: WM,
-              letterSpacing: "0.14em",
-              textTransform: "uppercase",
-              textAlign: "right",
-            }}
-          >
-            Updated daily · 9 on-chain metrics
-          </div>
+      {/* ── INFO ROW ────────────────────────────── */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 48px", borderTop: "0.5px solid rgba(255,255,255,0.1)" }}>
+        <div style={{ display: "flex", gap: "28px" }}>
+          <Link href="/learn" className="ilink">What does this mean →</Link>
+          <Link href="/metrics" className="ilink">How it&apos;s calculated →</Link>
+        </div>
+        <div style={{ display: "flex", gap: "18px" }}>
+          <span style={{ fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Updated daily</span>
+          <span style={{ fontSize: "9px", color: "rgba(255,255,255,0.28)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>·</span>
+          <span style={{ fontSize: "9px", letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>9 on-chain metrics</span>
         </div>
       </div>
 
-      {/* ── DISCLAIMER + SOURCE BAR ─────────────────── */}
-      <div style={{ borderTop: DIV }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", alignItems: "center" }}>
-          <div
-            style={{
-              padding: "13px 0",
-              fontSize: "11px",
-              color: WM,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-            }}
-          >
-            Not financial advice. Educational purposes only.
-          </div>
-          <div
-            style={{
-              padding: "13px 0",
-              fontSize: "11px",
-              color: WM,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              textAlign: "right",
-            }}
-          >
-            Source: CBBI · CoinGecko · Alternative.me
-          </div>
-        </div>
+      {/* ── NFA ROW ─────────────────────────────── */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "11px 48px", borderTop: "0.5px solid rgba(255,255,255,0.08)" }}>
+        <span style={{ fontSize: "8.5px", letterSpacing: "0.13em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+          Not financial advice. Educational purposes only.
+        </span>
+        <span style={{ fontSize: "8.5px", letterSpacing: "0.13em", textTransform: "uppercase", color: "rgba(255,255,255,0.22)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+          Source: CBBI · CoinGecko · Alternative.me
+        </span>
       </div>
     </div>
   );

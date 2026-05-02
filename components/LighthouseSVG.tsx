@@ -1,113 +1,62 @@
-interface LighthouseSVGProps {
-  height?: number;
-  theme?: "light" | "dark";
-  isHovered?: boolean;
-}
-
-export default function LighthouseSVG({
-  height = 700,
-  theme = "light",
-  isHovered = false,
-}: LighthouseSVGProps) {
-  const vbWidth = 800;
-  const vbHeight = 760;
-  const cx = vbWidth / 2; // 400
-
-  const lanternCy = 72;
-  const lanternROuter = 22;
-  const lanternRInner = 9;
-
-  const stroke = theme === "dark" ? "white" : "black";
-
-  // First horizontal band: just below the lantern, within ray zone
-  const towerTopY = lanternCy + lanternROuter + 10; // 104
-  const towerBottomY = vbHeight + 40;             // 800
-  const towerTopHalfW = 16;
-  const towerBottomHalfW = 44;
-  // t = 1/10 → first of 9 bands
-  const bandT = 1 / 10;
-  const bandY = towerTopY + bandT * (towerBottomY - towerTopY);
-  const bandHalfW = towerTopHalfW + bandT * (towerBottomHalfW - towerTopHalfW);
-
-  // Rays: 0=right, 90=down, 270=up (standard math, SVG y-down)
-  const RAYS: [number, number][] = [
-    [0, 260], [15, 150], [30, 120], [45, 105],
-    [60, 130], [75, 160], [90, 200],
-    [105, 160], [120, 130], [135, 105],
-    [150, 120], [165, 150], [180, 260],
-    [195, 120], [210, 90], [225, 55],
-    [240, 60], [255, 68], [270, 80],
-    [285, 68], [300, 60], [315, 55],
-    [330, 90], [345, 120],
-  ];
+// Mockup v3 exact coordinates — with specified modifications:
+// + stem above circle (top → circle)
+// – tower walls removed
+// – all hg lines except y=401 removed
+// – perfectly-vertical downward ray removed
+export default function LighthouseSVG() {
+  const cx = 585.65;
+  const cy = 369.17;
+  const r  = 38;
+  const stemTop = cy - r; // 331.17
 
   return (
     <svg
-      viewBox={`0 0 ${vbWidth} ${vbHeight}`}
-      width="100%"
-      height="100%"
-      preserveAspectRatio="xMidYMin slice"
-      style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
+      className="hero-svg"
+      viewBox="0 0 1200 980"
+      preserveAspectRatio="xMidYMin meet"
+      style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       aria-hidden
     >
-      {/* Stem: vertical line from top of SVG down to the lantern */}
-      <line
-        x1={cx} y1={0}
-        x2={cx} y2={lanternCy - lanternROuter}
-        stroke={stroke} strokeWidth="0.55"
-        opacity={theme === "dark" ? "0.25" : "0.2"}
-      />
+      {/* Stem: from top of SVG down to top of circle */}
+      <line className="stem" x1={cx} y1={0} x2={cx} y2={stemTop} />
+
+      {/* Rays — always pulsing via CSS */}
+      <g className="rays">
+        <line className="ray" x1={cx} y1={cy} x2="590.55" y2="135"/>
+        <line className="ray" x1={cx} y1={cy} x2="638"    y2="145"/>
+        <line className="ray" x1={cx} y1={cy} x2="680"    y2="175"/>
+        <line className="ray" x1={cx} y1={cy} x2="789"    y2="248"/>
+        <line className="ray" x1={cx} y1={cy} x2="857"    y2="314"/>
+        <line className="ray" x1={cx} y1={cy} x2="1100"   y2="369"/>
+        <line className="ray" x1={cx} y1={cy} x2="980"    y2="550"/>
+        <line className="ray" x1={cx} y1={cy} x2="850"    y2="700"/>
+        <line className="ray" x1={cx} y1={cy} x2="700"    y2="980"/>
+        <line className="ray" x1={cx} y1={cy} x2="620"    y2="980"/>
+        {/* x2=585 y2=980 removed — perfectly vertical downward */}
+        <line className="ray" x1={cx} y1={cy} x2="550"    y2="980"/>
+        <line className="ray" x1={cx} y1={cy} x2="470"    y2="980"/>
+        <line className="ray" x1={cx} y1={cy} x2="320"    y2="850"/>
+        <line className="ray" x1={cx} y1={cy} x2="190"    y2="700"/>
+        <line className="ray" x1={cx} y1={cy} x2="80"     y2="550"/>
+        <line className="ray" x1={cx} y1={cy} x2="70"     y2="369"/>
+        <line className="ray" x1={cx} y1={cy} x2="310"    y2="248"/>
+        <line className="ray" x1={cx} y1={cy} x2="378"    y2="175"/>
+        <line className="ray" x1={cx} y1={cy} x2="490"    y2="145"/>
+        <line className="ray" x1={cx} y1={cy} x2="532"    y2="135"/>
+        <line className="ray" x1={cx} y1={cy} x2="558"    y2="132"/>
+        <line className="ray" x1={cx} y1={cy} x2="613"    y2="132"/>
+        <line className="ray" x1={cx} y1={cy} x2="720"    y2="200"/>
+      </g>
+
+      {/* Tower walls — removed per spec */}
+
+      {/* First horizontal guide only (y=401) */}
+      <line className="hg" x1="515" y1="401" x2="657" y2="401"/>
+      {/* hg y=473, 546, 618, 691, 763, 836, 908 — removed per spec */}
 
       {/* Lantern */}
-      <circle
-        cx={cx} cy={lanternCy} r={lanternROuter}
-        fill="none" stroke={stroke} strokeWidth="0.55"
-        opacity={theme === "dark" ? "0.35" : "0.22"}
-      />
-      <circle
-        cx={cx} cy={lanternCy} r={lanternRInner}
-        fill={stroke} opacity={theme === "dark" ? "0.18" : "0.12"}
-      />
-
-      {/* First horizontal band only (near rays) */}
-      <g>
-        <line
-          x1={cx - bandHalfW} y1={bandY}
-          x2={cx + bandHalfW} y2={bandY}
-          stroke={stroke} strokeWidth="0.4"
-          opacity={theme === "dark" ? "0.22" : "0.14"}
-        />
-        <line
-          x1={cx - bandHalfW - 4} y1={bandY}
-          x2={cx - bandHalfW + 4} y2={bandY}
-          stroke={stroke} strokeWidth="0.5"
-          opacity={theme === "dark" ? "0.32" : "0.22"}
-        />
-        <line
-          x1={cx + bandHalfW - 4} y1={bandY}
-          x2={cx + bandHalfW + 4} y2={bandY}
-          stroke={stroke} strokeWidth="0.5"
-          opacity={theme === "dark" ? "0.32" : "0.22"}
-        />
-      </g>
-
-      {/* Light rays — animated when hovered */}
-      <g className={isHovered ? "rays-animated" : ""}>
-        {RAYS.map(([angleDeg, len], i) => {
-          const rad = (angleDeg * Math.PI) / 180;
-          const x2 = cx + Math.cos(rad) * len;
-          const y2 = lanternCy + Math.sin(rad) * len;
-          return (
-            <line
-              key={i}
-              x1={cx} y1={lanternCy}
-              x2={x2} y2={y2}
-              stroke={stroke} strokeWidth="0.4"
-              opacity="0.13"
-            />
-          );
-        })}
-      </g>
+      <circle className="ln" cx={cx} cy={cy} r={r}/>
+      <circle cx={cx} cy={cy} r="3.5" fill="white" opacity="0.4"/>
     </svg>
   );
 }

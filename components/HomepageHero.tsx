@@ -1,157 +1,38 @@
-"use client";
-
-import { useState } from "react";
 import LighthouseSVG from "./LighthouseSVG";
+import type { ScoreState } from "@/lib/api";
 
-interface ScoreState {
-  label: string;
-  description: string;
-}
-
-interface HomepageHeroProps {
+interface Props {
   score: number;
   state: ScoreState;
 }
 
-export default function HomepageHero({ score, state }: HomepageHeroProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
-  const heroHeight = 700;
-  // Vertical range: score=0 → near bottom, score=100 → near top (below title)
-  const apexY = 155;
-  const baseY = 635;
-  const scoreY = baseY - (score / 100) * (baseY - apexY);
-
-  const scoreColor = isHovered ? "#F7931A" : "#ffffff";
-  const lineOpacity = isHovered ? "rgba(247,147,26,0.55)" : "rgba(255,255,255,0.1)";
+export default function HomepageHero({ score, state }: Props) {
+  // Position score block vertically based on score value.
+  // Calibrated so score=38 → top≈391px (matches mockup), score=100 → 190px, score=0 → 520px.
+  const scoreY = Math.max(190, Math.round(520 - (score / 100) * 330));
+  const statusY = scoreY + 18;
 
   return (
-    <section
-      style={{
-        position: "relative",
-        minHeight: `${heroHeight}px`,
-        overflow: "hidden",
-        backgroundColor: "#000",
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <LighthouseSVG height={heroHeight} theme="dark" isHovered={isHovered} />
+    <div className="hero">
+      <LighthouseSVG />
 
-      {/* Title — large, centered, overlays rays */}
-      <div
-        style={{
-          position: "absolute",
-          top: "100px",
-          left: 0,
-          right: 0,
-          textAlign: "center",
-          zIndex: 10,
-          pointerEvents: "none",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "18px",
-            fontWeight: 400,
-            letterSpacing: "0.3em",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.85)",
-          }}
-        >
-          WHERE ARE WE IN THE CYCLE?
-        </span>
+      <div className="hero-title">
+        WHERE ARE WE<br />IN THE CYCLE?
       </div>
 
-      {/* Horizontal marker line at score position */}
-      <div
-        style={{
-          position: "absolute",
-          top: scoreY,
-          left: 0,
-          right: 0,
-          height: 0,
-          borderTop: `0.5px solid ${lineOpacity}`,
-          zIndex: 8,
-          transition: "border-color 0.35s ease",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* Score block + status pill — move together with score */}
-      <div
-        style={{
-          position: "absolute",
-          top: scoreY,
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          zIndex: 10,
-          display: "flex",
-          alignItems: "center",
-          gap: "44px",
-        }}
-      >
-        {/* Score number + label */}
-        <div style={{ textAlign: "center" }}>
-          <div
-            style={{
-              fontSize: "118px",
-              fontWeight: 300,
-              letterSpacing: "-0.04em",
-              lineHeight: 1,
-              color: scoreColor,
-              transition: "color 0.35s ease",
-            }}
-          >
-            {score}
-          </div>
-          <div
-            style={{
-              fontSize: "14px",
-              color: "rgba(255,255,255,0.5)",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginTop: "8px",
-            }}
-          >
-            Cycle Score
-          </div>
+      <div className="score-block" style={{ top: `${scoreY}px` }}>
+        <div className="score-line" />
+        <div className="score-num-wrap">
+          <div className="score-num">{score}</div>
+          <div className="score-lbl">Cycle Score</div>
         </div>
-
-        {/* Status pill + description */}
-        <div style={{ maxWidth: "210px" }}>
-          <div
-            style={{
-              display: "inline-block",
-              border: "0.5px solid rgba(255,255,255,0.35)",
-              padding: "5px 13px",
-              marginBottom: "10px",
-            }}
-          >
-            <span
-              style={{
-                fontSize: "11px",
-                fontWeight: 500,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#fff",
-              }}
-            >
-              {state.label}
-            </span>
-          </div>
-          <p
-            style={{
-              fontSize: "12px",
-              color: "rgba(255,255,255,0.5)",
-              letterSpacing: "0.04em",
-              lineHeight: 1.65,
-            }}
-          >
-            {state.description}
-          </p>
-        </div>
+        <div className="score-line" />
       </div>
-    </section>
+
+      <div className="status-wrap" style={{ top: `${statusY}px`, left: "calc(50% + 175px)" }}>
+        <div className="status-pill">{state.label}</div>
+        <div className="status-desc">{state.description}</div>
+      </div>
+    </div>
   );
 }
