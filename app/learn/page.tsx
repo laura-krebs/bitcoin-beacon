@@ -1,4 +1,4 @@
-const CONTAINER = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
 
 const SECTIONS = [
   {
@@ -18,7 +18,7 @@ Compare that to fiat currencies — printed at will by central banks, expanding 
         </p>
         <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.12)", paddingTop: "16px" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, letterSpacing: "-0.02em" }}>2009</div>
-          <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "6px", opacity: 0.5 }}>Year Bitcoin Launched</div>
+          <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "6px", opacity: 0.45 }}>Year Bitcoin Launched</div>
         </div>
       </div>
     ),
@@ -45,7 +45,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 The score on Bitcoin Beacon is designed to give you a sense of where we currently are in that cycle.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.5 }}>Halving Timeline</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.45 }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
           { year: "2016", label: "2nd Halving", muted: false },
@@ -83,12 +83,12 @@ Example: if you invest $100 every month for 24 months, some months you'll buy at
 DCA is widely considered the most sensible strategy for investing in Bitcoin. This is how serious long-term holders approach it. It removes emotion from the equation.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.5 }}>DCA Example</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.45 }}>DCA Example</div>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               {["Month", "Price", "Sats"].map((h) => (
-                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.5px solid rgba(0,0,0,0.12)", opacity: 0.5 }}>
+                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.5px solid rgba(0,0,0,0.12)", opacity: 0.45 }}>
                   {h}
                 </th>
               ))}
@@ -170,7 +170,7 @@ export default function LearnPage() {
     <>
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
-        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
             Understanding<br />Bitcoin
           </h1>
@@ -182,13 +182,7 @@ export default function LearnPage() {
 
       {/* TABLE OF CONTENTS */}
       <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
-        <div
-          style={{
-            ...CONTAINER,
-            display: "grid",
-            gridTemplateColumns: "repeat(6, 1fr)",
-          }}
-        >
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
           {TOC_ITEMS.map((item, i) => (
             <a
               key={item.num}
@@ -202,7 +196,7 @@ export default function LearnPage() {
                 display: "block",
               }}
             >
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px", opacity: 0.4 }}>{item.num}</div>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px", opacity: 0.38 }}>{item.num}</div>
               <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.4 }}>{item.title}</div>
             </a>
           ))}
@@ -216,19 +210,13 @@ export default function LearnPage() {
           id={`section-${section.num}`}
           style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}
         >
-          <div
-            style={{
-              ...CONTAINER,
-              display: "grid",
-              gridTemplateColumns: "calc(100% / 6) 1fr 260px",
-            }}
-          >
-            {/* Col 1: section number */}
+          <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
+            {/* Col 1: section number + title */}
             <div style={{ borderRight: "0.5px solid rgba(0,0,0,0.12)", padding: "44px 24px 44px 0" }}>
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "10px", opacity: 0.4 }}>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px", opacity: 0.38 }}>
                 {section.num}
               </div>
-              <div style={{ fontSize: "14px", color: "#000", lineHeight: 1.5 }}>
+              <div style={{ fontSize: "18px", fontWeight: 500, color: "#000", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
                 {section.title}
               </div>
             </div>

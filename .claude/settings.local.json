@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(convert --version)",
+      "Bash(rsvg-convert --version)",
+      "Bash(npm install *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(gh auth *)",
+      "Bash(ssh -T git@github.com)",
+      "Bash(ssh-keyscan github.com)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)"
+    ]
+  }
+}

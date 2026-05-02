@@ -2,7 +2,7 @@ import { fetchMarketData, getScoreState } from "@/lib/api";
 
 export const revalidate = 3600;
 
-const CONTAINER = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
 
 const METRICS = [
   {
@@ -107,26 +107,26 @@ export default async function MetricsPage() {
     <>
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
-        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
             9 signals.<br />One score.
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            The CBBI (Colin Talks Crypto Bitcoin Bull Run Index) aggregates nine independent on-chain metrics into a single composite score between 0 and 100. Each metric has historically shown predictive patterns near cycle tops and bottoms. No single metric is definitive — the composite is designed to reduce noise.
+            The CBBI aggregates nine independent on-chain metrics into a single composite score between 0 and 100. Each metric has historically shown predictive patterns near cycle tops and bottoms. No single metric is definitive — the composite is designed to reduce noise.
           </p>
         </div>
       </section>
 
       {/* SCORE SUMMARY BAR */}
       <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
-        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
           <div style={{ padding: "22px 0", borderRight: "0.5px solid rgba(0,0,0,0.12)", paddingRight: "32px" }}>
             <div style={{ fontSize: "27px", fontWeight: 300, marginBottom: "6px" }}>{score}</div>
-            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>Composite Score</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.5 }}>Composite Score</div>
           </div>
           <div style={{ padding: "22px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
             <div style={{ fontSize: "15px", fontWeight: 500, marginBottom: "6px", letterSpacing: "0.06em" }}>{state.label}</div>
-            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>Current Signal</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.5 }}>Current Signal</div>
           </div>
           <div style={{ padding: "22px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
             <div style={{ fontSize: "27px", fontWeight: 300, marginBottom: "6px" }}>
@@ -134,33 +134,27 @@ export default async function MetricsPage() {
                 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice)
                 : "—"}
             </div>
-            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>BTC Price</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.5 }}>BTC Price</div>
           </div>
           <div style={{ padding: "22px 32px" }}>
             <div style={{ fontSize: "15px", fontWeight: 300, marginBottom: "6px" }}>Daily</div>
-            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>Update Frequency</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", opacity: 0.5 }}>Update Frequency</div>
           </div>
         </div>
       </div>
 
       {/* SECTION LABEL */}
       <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.1)" }}>
-        <div style={{ ...CONTAINER, padding: "22px 48px" }}>
-          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.5 }}>
+        <div style={{ ...C, padding: "22px 48px" }}>
+          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.45 }}>
             The 9 Metrics
           </span>
         </div>
       </div>
 
-      {/* METRICS GRID 3×3 */}
+      {/* METRICS GRID 3×3 — left-aligned */}
       <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
-        <div
-          style={{
-            ...CONTAINER,
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-          }}
-        >
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
           {METRICS.map((m, i) => {
             const value = metrics[m.key as keyof typeof metrics];
             const col = i % 3;
@@ -170,6 +164,7 @@ export default async function MetricsPage() {
                 key={m.num}
                 style={{
                   padding: "32px 28px 28px",
+                  textAlign: "left",
                   borderRight: col < 2 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
                   borderBottom: row < 2 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
                 }}
@@ -185,7 +180,7 @@ export default async function MetricsPage() {
                 </p>
                 <SignalBar value={value} />
                 <div style={{ marginTop: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.45 }}>
+                  <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.4 }}>
                     {m.source}
                   </span>
                   <a
@@ -204,8 +199,8 @@ export default async function MetricsPage() {
       </div>
 
       {/* FOOTER DISCLAIMER */}
-      <div style={CONTAINER}>
-        <p style={{ fontSize: "13px", lineHeight: 1.9, color: "#000", maxWidth: "640px", padding: "32px 0", opacity: 0.5 }}>
+      <div style={C}>
+        <p style={{ fontSize: "13px", lineHeight: 1.9, color: "#000", maxWidth: "640px", padding: "32px 0", opacity: 0.45 }}>
           The composite score and individual signals are sourced from CBBI by Colin Talks Crypto and LookIntoBitcoin. None of this constitutes financial advice. Educational and informational purposes only.
         </p>
       </div>

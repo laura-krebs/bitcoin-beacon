@@ -1,11 +1,32 @@
-const CONTAINER = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+
+const CREDITS = [
+  {
+    label: "Data source:",
+    value: "CBBI by Colin Talks Crypto",
+    href: "https://colintalkscrypto.com/cbbi",
+    linkText: "colintalkscrypto.com/cbbi",
+  },
+  {
+    label: "Created and designed by:",
+    value: "@laurakrebs_",
+    href: "https://x.com/laurakrebs_",
+    linkText: "x.com/laurakrebs_",
+  },
+  {
+    label: "Built with:",
+    value: "Claude by Anthropic",
+    href: "https://anthropic.com",
+    linkText: "anthropic.com",
+  },
+];
 
 export default function AboutPage() {
   return (
     <>
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
-        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             Bitcoin education<br />for everyone.
           </h1>
@@ -17,10 +38,10 @@ export default function AboutPage() {
 
       {/* BODY */}
       <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "52px 0" }}>
-        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
-          {/* Left sidebar: section labels */}
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
+          {/* Left sidebar */}
           <div style={{ paddingTop: "4px" }}>
-            {["The problem", "The approach", "The goal"].map((label) => (
+            {["A broken system.", "A better money."].map((label) => (
               <div
                 key={label}
                 style={{
@@ -28,8 +49,9 @@ export default function AboutPage() {
                   color: "#000",
                   letterSpacing: "0.18em",
                   textTransform: "uppercase",
-                  marginBottom: "36px",
+                  marginBottom: "40px",
                   opacity: 0.45,
+                  lineHeight: 1.6,
                 }}
               >
                 {label}
@@ -55,7 +77,7 @@ export default function AboutPage() {
 
       {/* BOTTOM ROW */}
       <section style={{ padding: "44px 0" }}>
-        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }}>
           {/* Disclaimer */}
           <div>
             <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
@@ -66,45 +88,30 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Data source & credits */}
-          <div>
+          {/* Credits — right-aligned, label + value on separate lines */}
+          <div style={{ textAlign: "right" }}>
             <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
               Data Source & Credits
             </div>
-            <div style={{ fontSize: "14px", lineHeight: 2.2, color: "#000" }}>
-              <div>
-                Data source: CBBI by Colin Talks Crypto{" "}
-                <a
-                  href="https://colintalkscrypto.com/cbbi"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#000", textDecoration: "none", borderBottom: "0.5px solid rgba(0,0,0,0.3)" }}
-                >
-                  colintalkscrypto.com/cbbi
-                </a>
-              </div>
-              <div>
-                Created and designed by: @laurakrebs_{" "}
-                <a
-                  href="https://x.com/laurakrebs_"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#000", textDecoration: "none", borderBottom: "0.5px solid rgba(0,0,0,0.3)" }}
-                >
-                  x.com/laurakrebs_
-                </a>
-              </div>
-              <div>
-                Built with: Claude by Anthropic{" "}
-                <a
-                  href="https://anthropic.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#000", textDecoration: "none", borderBottom: "0.5px solid rgba(0,0,0,0.3)" }}
-                >
-                  anthropic.com
-                </a>
-              </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+              {CREDITS.map((c) => (
+                <div key={c.label}>
+                  <div style={{ fontSize: "10px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.45, marginBottom: "3px" }}>
+                    {c.label}
+                  </div>
+                  <div style={{ fontSize: "12px", color: "#000", lineHeight: 1.6 }}>
+                    {c.value}{" "}
+                    <a
+                      href={c.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#000", textDecoration: "none", borderBottom: "0.5px solid rgba(0,0,0,0.3)" }}
+                    >
+                      {c.linkText}
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

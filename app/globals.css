@@ -19,3 +19,22 @@ body {
   outline: 0.5px solid rgba(0, 0, 0, 0.4);
   outline-offset: 2px;
 }
+
+/* Ray pulse on hover */
+@keyframes rayPulse {
+  0%, 100% { opacity: 0.13; }
+  50% { opacity: 0.35; }
+}
+.rays-animated line {
+  animation: rayPulse 2.2s ease-in-out infinite;
+}
+
+/* Orange hover on dark background */
+.link-orange-hover {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.link-orange-hover:hover {
+  color: #F7931A;
+}

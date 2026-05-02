@@ -1,31 +1,35 @@
-export default function LighthouseSVG({ height = 700 }: { height?: number }) {
+interface LighthouseSVGProps {
+  height?: number;
+  theme?: "light" | "dark";
+  isHovered?: boolean;
+}
+
+export default function LighthouseSVG({
+  height = 700,
+  theme = "light",
+  isHovered = false,
+}: LighthouseSVGProps) {
   const vbWidth = 800;
   const vbHeight = 760;
   const cx = vbWidth / 2; // 400
 
-  // Lantern: separate circle at top
   const lanternCy = 72;
   const lanternROuter = 22;
   const lanternRInner = 9;
 
-  // Tower walls: start below the lantern with a visible gap
+  const stroke = theme === "dark" ? "white" : "black";
+
+  // First horizontal band: just below the lantern, within ray zone
   const towerTopY = lanternCy + lanternROuter + 10; // 104
+  const towerBottomY = vbHeight + 40;             // 800
   const towerTopHalfW = 16;
-  const towerBottomY = vbHeight + 40; // bleeds off bottom
   const towerBottomHalfW = 44;
+  // t = 1/10 → first of 9 bands
+  const bandT = 1 / 10;
+  const bandY = towerTopY + bandT * (towerBottomY - towerTopY);
+  const bandHalfW = towerTopHalfW + bandT * (towerBottomHalfW - towerTopHalfW);
 
-  // Horizontal bands inside tower
-  const bandCount = 9;
-  const bands = Array.from({ length: bandCount }, (_, i) => {
-    const t = (i + 1) / (bandCount + 1);
-    const y = towerTopY + t * (towerBottomY - towerTopY);
-    const halfW = towerTopHalfW + t * (towerBottomHalfW - towerTopHalfW);
-    return { y, lx: cx - halfW, rx: cx + halfW };
-  });
-
-  // Rays radiating from lantern in all directions
-  // Angles: 0=right, 90=down (SVG coords), 270=up
-  // Lengths vary by direction (longer horizontal/downward, shorter upward)
+  // Rays: 0=right, 90=down, 270=up (standard math, SVG y-down)
   const RAYS: [number, number][] = [
     [0, 260], [15, 150], [30, 120], [45, 105],
     [60, 130], [75, 160], [90, 200],
@@ -46,52 +50,64 @@ export default function LighthouseSVG({ height = 700 }: { height?: number }) {
       style={{ position: "absolute", inset: 0, pointerEvents: "none" }}
       aria-hidden
     >
-      {/* Tower left wall */}
+      {/* Stem: vertical line from top of SVG down to the lantern */}
       <line
-        x1={cx - towerTopHalfW} y1={towerTopY}
-        x2={cx - towerBottomHalfW} y2={towerBottomY}
-        stroke="black" strokeWidth="0.55" opacity="0.2"
-      />
-      {/* Tower right wall */}
-      <line
-        x1={cx + towerTopHalfW} y1={towerTopY}
-        x2={cx + towerBottomHalfW} y2={towerBottomY}
-        stroke="black" strokeWidth="0.55" opacity="0.2"
-      />
-      {/* Center axis */}
-      <line
-        x1={cx} y1={towerTopY}
-        x2={cx} y2={towerBottomY}
-        stroke="black" strokeWidth="0.4" opacity="0.12"
+        x1={cx} y1={0}
+        x2={cx} y2={lanternCy - lanternROuter}
+        stroke={stroke} strokeWidth="0.55"
+        opacity={theme === "dark" ? "0.25" : "0.2"}
       />
 
-      {/* Horizontal bands inside tower */}
-      {bands.map(({ y, lx, rx }, i) => (
-        <g key={i}>
-          <line x1={lx} y1={y} x2={rx} y2={y} stroke="black" strokeWidth="0.4" opacity="0.14" />
-          <line x1={lx - 4} y1={y} x2={lx + 4} y2={y} stroke="black" strokeWidth="0.5" opacity="0.22" />
-          <line x1={rx - 4} y1={y} x2={rx + 4} y2={y} stroke="black" strokeWidth="0.5" opacity="0.22" />
-        </g>
-      ))}
+      {/* Lantern */}
+      <circle
+        cx={cx} cy={lanternCy} r={lanternROuter}
+        fill="none" stroke={stroke} strokeWidth="0.55"
+        opacity={theme === "dark" ? "0.35" : "0.22"}
+      />
+      <circle
+        cx={cx} cy={lanternCy} r={lanternRInner}
+        fill={stroke} opacity={theme === "dark" ? "0.18" : "0.12"}
+      />
 
-      {/* Lantern (separate element at top, with gap above tower) */}
-      <circle cx={cx} cy={lanternCy} r={lanternROuter} fill="none" stroke="black" strokeWidth="0.55" opacity="0.22" />
-      <circle cx={cx} cy={lanternCy} r={lanternRInner} fill="black" opacity="0.12" />
+      {/* First horizontal band only (near rays) */}
+      <g>
+        <line
+          x1={cx - bandHalfW} y1={bandY}
+          x2={cx + bandHalfW} y2={bandY}
+          stroke={stroke} strokeWidth="0.4"
+          opacity={theme === "dark" ? "0.22" : "0.14"}
+        />
+        <line
+          x1={cx - bandHalfW - 4} y1={bandY}
+          x2={cx - bandHalfW + 4} y2={bandY}
+          stroke={stroke} strokeWidth="0.5"
+          opacity={theme === "dark" ? "0.32" : "0.22"}
+        />
+        <line
+          x1={cx + bandHalfW - 4} y1={bandY}
+          x2={cx + bandHalfW + 4} y2={bandY}
+          stroke={stroke} strokeWidth="0.5"
+          opacity={theme === "dark" ? "0.32" : "0.22"}
+        />
+      </g>
 
-      {/* Light rays radiating in all directions */}
-      {RAYS.map(([angleDeg, len], i) => {
-        const rad = (angleDeg * Math.PI) / 180;
-        const x2 = cx + Math.cos(rad) * len;
-        const y2 = lanternCy + Math.sin(rad) * len;
-        return (
-          <line
-            key={i}
-            x1={cx} y1={lanternCy}
-            x2={x2} y2={y2}
-            stroke="black" strokeWidth="0.4" opacity="0.13"
-          />
-        );
-      })}
+      {/* Light rays — animated when hovered */}
+      <g className={isHovered ? "rays-animated" : ""}>
+        {RAYS.map(([angleDeg, len], i) => {
+          const rad = (angleDeg * Math.PI) / 180;
+          const x2 = cx + Math.cos(rad) * len;
+          const y2 = lanternCy + Math.sin(rad) * len;
+          return (
+            <line
+              key={i}
+              x1={cx} y1={lanternCy}
+              x2={x2} y2={y2}
+              stroke={stroke} strokeWidth="0.4"
+              opacity="0.13"
+            />
+          );
+        })}
+      </g>
     </svg>
   );
 }
