@@ -76,36 +76,34 @@ export default function Nav() {
     );
   }
 
-  // ── Orange nav (all other pages)
+  // ── Orange nav (all other pages) — same size/alignment as homepage
   return (
-    <nav style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 48px", display: "flex", alignItems: "center", justifyContent: "space-between", height: "52px" }}>
-        <Link href="/" style={{ fontSize: "14px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
-          BITCOIN BEACON
-        </Link>
-        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          {NAV_LINKS.map(({ href, label }) => {
-            const active = pathname === href;
-            return (
-              <Link key={href} href={href} style={{ fontSize: "12px", fontWeight: active ? 500 : 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", opacity: active ? 1 : 0.5 }}>
-                {label.toUpperCase()}
-              </Link>
-            );
-          })}
-          <div ref={langRef} style={{ position: "relative" }}>
-            <button onClick={() => setLangOpen(!langOpen)} style={{ fontSize: "12px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", opacity: 0.5, background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
-              EN ▾
-            </button>
-            {langOpen && (
-              <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.5px solid rgba(0,0,0,0.15)", minWidth: "130px", zIndex: 100 }}>
-                {LANGS.map((lang) => (
-                  <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.5px solid rgba(0,0,0,0.08)", cursor: lang.available ? "pointer" : "default" }}>
-                    {lang.label}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+    <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", borderBottom: "0.5px solid rgba(0,0,0,0.15)", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
+      <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
+        Bitcoin Beacon
+      </Link>
+      <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
+        {NAV_LINKS.map(({ href, label }) => {
+          const active = pathname === href;
+          return (
+            <Link key={href} href={href} style={{ fontSize: "9.5px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", opacity: active ? 1 : 0.45 }}>
+              {label}
+            </Link>
+          );
+        })}
+        <div ref={langRef} style={{ position: "relative" }}>
+          <button onClick={() => setLangOpen(!langOpen)} style={{ fontSize: "9.5px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", opacity: 0.45, background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
+            EN ▾
+          </button>
+          {langOpen && (
+            <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.5px solid rgba(0,0,0,0.15)", minWidth: "130px", zIndex: 100 }}>
+              {LANGS.map((lang) => (
+                <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.5px solid rgba(0,0,0,0.08)", cursor: lang.available ? "pointer" : "default" }}>
+                  {lang.label}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </nav>
