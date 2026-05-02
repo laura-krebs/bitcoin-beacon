@@ -1,3 +1,5 @@
+const CONTAINER = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+
 const SECTIONS = [
   {
     num: "01",
@@ -11,12 +13,12 @@ There will only ever be 21 million Bitcoin. It's fixed. New Bitcoin is issued th
 Compare that to fiat currencies — printed at will by central banks, expanding the money supply whenever it suits policy and quietly diluting their value. The fiat system is a constant erosion of purchasing power. That makes Bitcoin the hardest money humanity has ever known — harder than gold, because you can't increase its supply, no matter how high the demand goes. Scarce by design. Borderless by nature.`,
     aside: (
       <div>
-        <p style={{ fontSize: "13px", lineHeight: 1.9, color: "rgba(0,0,0,0.65)", marginBottom: "20px" }}>
+        <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
         <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.12)", paddingTop: "16px" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, letterSpacing: "-0.02em" }}>2009</div>
-          <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "4px" }}>Year Bitcoin Launched</div>
+          <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "6px", opacity: 0.5 }}>Year Bitcoin Launched</div>
         </div>
       </div>
     ),
@@ -28,7 +30,7 @@ Compare that to fiat currencies — printed at will by central banks, expanding 
 
 Why the volatility? Because the world is still waking up to what Bitcoin actually is. As adoption increases — from individuals to institutions to nation-states — liquidity deepens, and volatility gradually compresses. That's already happening, cycle after cycle.`,
     aside: (
-      <p style={{ fontSize: "13px", lineHeight: 1.9, color: "rgba(0,0,0,0.65)" }}>
+      <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000" }}>
         "Every bear market low has been higher than the previous cycle's low. Long-term holders have never lost money holding through a full cycle."
       </p>
     ),
@@ -43,7 +45,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 The score on Bitcoin Beacon is designed to give you a sense of where we currently are in that cycle.`,
     aside: (
       <div>
-        <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px" }}>Halving Timeline</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.5 }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
           { year: "2016", label: "2nd Halving", muted: false },
@@ -56,13 +58,14 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
             style={{
               display: "flex",
               justifyContent: "space-between",
-              padding: "8px 0",
+              alignItems: "baseline",
+              padding: "9px 0",
               borderBottom: "0.5px solid rgba(0,0,0,0.08)",
               opacity: h.muted ? 0.35 : 1,
             }}
           >
-            <span style={{ fontSize: "12px", fontWeight: 300 }}>{h.year}</span>
-            <span style={{ fontSize: "9px", color: "rgba(0,0,0,0.45)", letterSpacing: "0.1em" }}>{h.label}</span>
+            <span style={{ fontSize: "14px", fontWeight: 300 }}>{h.year}</span>
+            <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em" }}>{h.label}</span>
           </div>
         ))}
       </div>
@@ -80,12 +83,12 @@ Example: if you invest $100 every month for 24 months, some months you'll buy at
 DCA is widely considered the most sensible strategy for investing in Bitcoin. This is how serious long-term holders approach it. It removes emotion from the equation.`,
     aside: (
       <div>
-        <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px" }}>DCA Example</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.5 }}>DCA Example</div>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               {["Month", "Price", "Sats"].map((h) => (
-                <th key={h} style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "4px 0", fontWeight: 400, borderBottom: "0.5px solid rgba(0,0,0,0.12)" }}>
+                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.5px solid rgba(0,0,0,0.12)", opacity: 0.5 }}>
                   {h}
                 </th>
               ))}
@@ -99,9 +102,9 @@ DCA is widely considered the most sensible strategy for investing in Bitcoin. Th
               ["Avg", "$59,322", "509,524"],
             ].map(([month, price, sats]) => (
               <tr key={month}>
-                <td style={{ fontSize: "11px", padding: "6px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{month}</td>
-                <td style={{ fontSize: "11px", padding: "6px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)", color: "rgba(0,0,0,0.6)" }}>{price}</td>
-                <td style={{ fontSize: "11px", padding: "6px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)", color: "rgba(0,0,0,0.6)" }}>{sats}</td>
+                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{month}</td>
+                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{price}</td>
+                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{sats}</td>
               </tr>
             ))}
           </tbody>
@@ -120,7 +123,7 @@ None of these metrics are perfect. But combined, they form a clearer picture tha
 
 Think of these metrics as a compass, not a GPS. They won't tell you the exact destination, but they'll keep you from getting lost.`,
     aside: (
-      <p style={{ fontSize: "13px", lineHeight: 1.9, color: "rgba(0,0,0,0.65)" }}>
+      <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000" }}>
         "A risk score is not a price prediction. It reflects historical patterns, not certainty about the future."
       </p>
     ),
@@ -143,9 +146,9 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Self-custody", desc: "Hold your own Bitcoin, take full sovereignty over your money" },
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
         ].map((item) => (
-          <div key={item.label} style={{ marginBottom: "16px" }}>
-            <div style={{ fontSize: "9px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "4px" }}>{item.label}</div>
-            <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.55)", lineHeight: 1.7 }}>{item.desc}</div>
+          <div key={item.label} style={{ marginBottom: "18px" }}>
+            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px" }}>{item.label}</div>
+            <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.7 }}>{item.desc}</div>
           </div>
         ))}
       </div>
@@ -166,85 +169,83 @@ export default function LearnPage() {
   return (
     <>
       {/* PAGE HERO */}
-      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 32px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
+        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
             Understanding<br />Bitcoin
           </h1>
-          <p style={{ fontSize: "13px", lineHeight: 1.9, color: "rgba(0,0,0,0.65)", paddingTop: "8px" }}>
+          <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
             Bitcoin can feel overwhelming at first. This page covers the core concepts. Just the foundations you need to understand what you&apos;re looking at and why it matters.
           </p>
         </div>
       </section>
 
       {/* TABLE OF CONTENTS */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(6, 1fr)",
-          borderBottom: "0.5px solid rgba(0,0,0,0.15)",
-        }}
-      >
-        {TOC_ITEMS.map((item, i) => (
-          <a
-            key={item.num}
-            href={`#section-${item.num}`}
-            style={{
-              padding: "20px 20px",
-              borderRight: i < 5 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
-              textDecoration: "none",
-              display: "block",
-            }}
-          >
-            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", marginBottom: "8px" }}>{item.num}</div>
-            <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.7)", lineHeight: 1.4 }}>{item.title}</div>
-          </a>
-        ))}
+      <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
+        <div
+          style={{
+            ...CONTAINER,
+            display: "grid",
+            gridTemplateColumns: "repeat(6, 1fr)",
+          }}
+        >
+          {TOC_ITEMS.map((item, i) => (
+            <a
+              key={item.num}
+              href={`#section-${item.num}`}
+              style={{
+                padding: "22px 0",
+                paddingRight: "16px",
+                borderRight: i < 5 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
+                paddingLeft: i > 0 ? "16px" : 0,
+                textDecoration: "none",
+                display: "block",
+              }}
+            >
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px", opacity: 0.4 }}>{item.num}</div>
+              <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.4 }}>{item.title}</div>
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* SECTIONS */}
-      {SECTIONS.map((section, i) => (
+      {SECTIONS.map((section) => (
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "calc(100% / 6) 1fr 260px",
-            borderBottom: "0.5px solid rgba(0,0,0,0.15)",
-          }}
+          style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}
         >
-          {/* Col 1: section number */}
           <div
             style={{
-              borderRight: "0.5px solid rgba(0,0,0,0.12)",
-              padding: "40px 24px",
+              ...CONTAINER,
+              display: "grid",
+              gridTemplateColumns: "calc(100% / 6) 1fr 260px",
             }}
           >
-            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "8px" }}>
-              {section.num}
+            {/* Col 1: section number */}
+            <div style={{ borderRight: "0.5px solid rgba(0,0,0,0.12)", padding: "44px 24px 44px 0" }}>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "10px", opacity: 0.4 }}>
+                {section.num}
+              </div>
+              <div style={{ fontSize: "14px", color: "#000", lineHeight: 1.5 }}>
+                {section.title}
+              </div>
             </div>
-            <div style={{ fontSize: "13px", color: "rgba(0,0,0,0.7)", lineHeight: 1.5 }}>
-              {section.title}
+
+            {/* Col 2: body */}
+            <div style={{ padding: "44px 44px" }}>
+              {section.body.split("\n\n").map((para, j) => (
+                <p key={j} style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "18px" }}>
+                  {para.trim()}
+                </p>
+              ))}
             </div>
-          </div>
 
-          {/* Col 2: body */}
-          <div style={{ padding: "40px 40px" }}>
-            {section.body.split("\n\n").map((para, j) => (
-              <p key={j} style={{ fontSize: "13px", lineHeight: 1.9, color: "rgba(0,0,0,0.75)", marginBottom: "16px" }}>
-                {para.trim()}
-              </p>
-            ))}
-          </div>
-
-          {/* Col 3: aside */}
-          <div
-            style={{
-              borderLeft: "0.5px solid rgba(0,0,0,0.12)",
-              padding: "40px 24px",
-            }}
-          >
-            {section.aside}
+            {/* Col 3: aside */}
+            <div style={{ borderLeft: "0.5px solid rgba(0,0,0,0.12)", padding: "44px 0 44px 28px" }}>
+              {section.aside}
+            </div>
           </div>
         </div>
       ))}

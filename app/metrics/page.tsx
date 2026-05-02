@@ -2,6 +2,8 @@ import { fetchMarketData, getScoreState } from "@/lib/api";
 
 export const revalidate = 3600;
 
+const CONTAINER = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+
 const METRICS = [
   {
     num: "01",
@@ -80,28 +82,18 @@ const METRICS = [
 function SignalBar({ value }: { value: number }) {
   const hue = Math.max(0, 120 - value * 1.2);
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "10px" }}>
-      <div
-        style={{
-          width: "100%",
-          height: "2px",
-          background: "rgba(0,0,0,0.08)",
-          position: "relative",
-        }}
-      >
+    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "12px" }}>
+      <div style={{ width: "100%", height: "2px", background: "rgba(0,0,0,0.08)", position: "relative" }}>
         <div
           style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            height: "2px",
+            position: "absolute", left: 0, top: 0, height: "2px",
             width: `${value}%`,
             backgroundColor: `hsl(${hue},70%,35%)`,
             opacity: 0.6,
           }}
         />
       </div>
-      <span style={{ fontSize: "9px", color: "rgba(0,0,0,0.4)", minWidth: "24px" }}>{value}</span>
+      <span style={{ fontSize: "11px", color: "#000", minWidth: "28px" }}>{value}</span>
     </div>
   );
 }
@@ -114,104 +106,106 @@ export default async function MetricsPage() {
   return (
     <>
       {/* PAGE HERO */}
-      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 32px 48px" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
+        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
             9 signals.<br />One score.
           </h1>
-          <div>
-            <p style={{ fontSize: "13px", lineHeight: 1.9, color: "rgba(0,0,0,0.7)" }}>
-              The CBBI (Colin Talks Crypto Bitcoin Bull Run Index) aggregates nine independent on-chain metrics into a single composite score between 0 and 100. Each metric has historically shown predictive patterns near cycle tops and bottoms. No single metric is definitive — the composite is designed to reduce noise.
-            </p>
-          </div>
+          <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+            The CBBI (Colin Talks Crypto Bitcoin Bull Run Index) aggregates nine independent on-chain metrics into a single composite score between 0 and 100. Each metric has historically shown predictive patterns near cycle tops and bottoms. No single metric is definitive — the composite is designed to reduce noise.
+          </p>
         </div>
       </section>
 
       {/* SCORE SUMMARY BAR */}
       <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
-          <div style={{ padding: "20px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
-            <div style={{ fontSize: "27px", fontWeight: 300, marginBottom: "4px" }}>{score}</div>
-            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>Composite Score</div>
+        <div style={{ ...CONTAINER, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+          <div style={{ padding: "22px 0", borderRight: "0.5px solid rgba(0,0,0,0.12)", paddingRight: "32px" }}>
+            <div style={{ fontSize: "27px", fontWeight: 300, marginBottom: "6px" }}>{score}</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>Composite Score</div>
           </div>
-          <div style={{ padding: "20px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
-            <div style={{ fontSize: "13px", fontWeight: 500, marginBottom: "4px", letterSpacing: "0.08em" }}>{state.label}</div>
-            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>Current Signal</div>
+          <div style={{ padding: "22px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
+            <div style={{ fontSize: "15px", fontWeight: 500, marginBottom: "6px", letterSpacing: "0.06em" }}>{state.label}</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>Current Signal</div>
           </div>
-          <div style={{ padding: "20px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
-            <div style={{ fontSize: "27px", fontWeight: 300, marginBottom: "4px" }}>
+          <div style={{ padding: "22px 32px", borderRight: "0.5px solid rgba(0,0,0,0.12)" }}>
+            <div style={{ fontSize: "27px", fontWeight: 300, marginBottom: "6px" }}>
               {data.btcPrice > 0
                 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice)
                 : "—"}
             </div>
-            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>BTC Price</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>BTC Price</div>
           </div>
-          <div style={{ padding: "20px 32px" }}>
-            <div style={{ fontSize: "13px", fontWeight: 300, marginBottom: "4px" }}>Daily</div>
-            <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.2em", textTransform: "uppercase" }}>Update Frequency</div>
+          <div style={{ padding: "22px 32px" }}>
+            <div style={{ fontSize: "15px", fontWeight: 300, marginBottom: "6px" }}>Daily</div>
+            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" }}>Update Frequency</div>
           </div>
         </div>
       </div>
 
       {/* SECTION LABEL */}
-      <div style={{ padding: "24px 32px 16px", borderBottom: "0.5px solid rgba(0,0,0,0.1)" }}>
-        <span style={{ fontSize: "9px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.22em", textTransform: "uppercase" }}>
-          The 9 Metrics
-        </span>
+      <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.1)" }}>
+        <div style={{ ...CONTAINER, padding: "22px 48px" }}>
+          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.5 }}>
+            The 9 Metrics
+          </span>
+        </div>
       </div>
 
       {/* METRICS GRID 3×3 */}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          borderBottom: "0.5px solid rgba(0,0,0,0.15)",
-        }}
-      >
-        {METRICS.map((m, i) => {
-          const value = metrics[m.key as keyof typeof metrics];
-          const col = i % 3;
-          const row = Math.floor(i / 3);
-          return (
-            <div
-              key={m.num}
-              style={{
-                padding: "28px 28px 24px",
-                borderRight: col < 2 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
-                borderBottom: row < 2 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
-              }}
-            >
-              <div style={{ fontSize: "8px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.18em", marginBottom: "8px" }}>
-                {m.num}
+      <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
+        <div
+          style={{
+            ...CONTAINER,
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+          }}
+        >
+          {METRICS.map((m, i) => {
+            const value = metrics[m.key as keyof typeof metrics];
+            const col = i % 3;
+            const row = Math.floor(i / 3);
+            return (
+              <div
+                key={m.num}
+                style={{
+                  padding: "32px 28px 28px",
+                  borderRight: col < 2 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
+                  borderBottom: row < 2 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
+                }}
+              >
+                <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.4 }}>
+                  {m.num}
+                </div>
+                <div style={{ fontSize: "15px", fontWeight: 500, marginBottom: "12px", letterSpacing: "-0.01em" }}>
+                  {m.name}
+                </div>
+                <p style={{ fontSize: "13px", lineHeight: 1.9, color: "#000", marginBottom: "10px" }}>
+                  {m.desc}
+                </p>
+                <SignalBar value={value} />
+                <div style={{ marginTop: "16px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.45 }}>
+                    {m.source}
+                  </span>
+                  <a
+                    href={m.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", textDecoration: "none" }}
+                  >
+                    View chart →
+                  </a>
+                </div>
               </div>
-              <div style={{ fontSize: "13px", fontWeight: 500, marginBottom: "10px", letterSpacing: "-0.01em" }}>
-                {m.name}
-              </div>
-              <p style={{ fontSize: "12px", lineHeight: 1.9, color: "rgba(0,0,0,0.6)", marginBottom: "8px" }}>
-                {m.desc}
-              </p>
-              <SignalBar value={value} />
-              <div style={{ marginTop: "14px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <span style={{ fontSize: "9px", color: "rgba(0,0,0,0.35)", letterSpacing: "0.1em" }}>
-                  {m.source}
-                </span>
-                <a
-                  href={m.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontSize: "9px", color: "rgba(0,0,0,0.45)", letterSpacing: "0.1em", textDecoration: "none" }}
-                >
-                  View chart →
-                </a>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
 
       {/* FOOTER DISCLAIMER */}
-      <div style={{ padding: "28px 32px" }}>
-        <p style={{ fontSize: "11px", lineHeight: 1.9, color: "rgba(0,0,0,0.45)", maxWidth: "640px" }}>
+      <div style={CONTAINER}>
+        <p style={{ fontSize: "13px", lineHeight: 1.9, color: "#000", maxWidth: "640px", padding: "32px 0", opacity: 0.5 }}>
           The composite score and individual signals are sourced from CBBI by Colin Talks Crypto and LookIntoBitcoin. None of this constitutes financial advice. Educational and informational purposes only.
         </p>
       </div>

@@ -24,17 +24,19 @@ export default function Nav() {
     >
       <div
         style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 48px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 32px",
-          height: "48px",
+          height: "52px",
         }}
       >
         <Link
           href="/"
           style={{
-            fontSize: "11px",
+            fontSize: "14px",
             fontWeight: 600,
             letterSpacing: "0.2em",
             textTransform: "uppercase",
@@ -45,7 +47,7 @@ export default function Nav() {
           BITCOIN BEACON
         </Link>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "28px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
           {NAV_LINKS.map(({ href, label }) => {
             const active = pathname === href;
             return (
@@ -53,12 +55,13 @@ export default function Nav() {
                 key={href}
                 href={href}
                 style={{
-                  fontSize: "9.5px",
-                  fontWeight: 400,
+                  fontSize: "12px",
+                  fontWeight: active ? 500 : 400,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
-                  color: active ? "#000" : "rgba(0,0,0,0.45)",
+                  color: "#000",
                   textDecoration: "none",
+                  opacity: active ? 1 : 0.5,
                 }}
               >
                 {label}
@@ -67,11 +70,12 @@ export default function Nav() {
           })}
           <span
             style={{
-              fontSize: "9.5px",
+              fontSize: "12px",
               fontWeight: 400,
               letterSpacing: "0.16em",
               textTransform: "uppercase",
-              color: "rgba(0,0,0,0.45)",
+              color: "#000",
+              opacity: 0.5,
             }}
           >
             EN ▾
