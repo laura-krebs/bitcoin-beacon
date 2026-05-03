@@ -53,11 +53,11 @@ export default function Nav() {
           {NAV_LINKS.map(({ href, label }) => (
             <Link key={href} href={href} className="nav-link-dark">{label}</Link>
           ))}
-          <div ref={langRef} style={{ position: "relative" }}>
+          <div ref={langRef} style={{ position: "relative", display: "flex", alignItems: "center" }}>
             <button
               onClick={() => setLangOpen(!langOpen)}
               className="nav-link-dark"
-              style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}
+              style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0, lineHeight: 1 }}
             >
               EN ▾
             </button>
@@ -91,8 +91,8 @@ export default function Nav() {
             </Link>
           );
         })}
-        <div ref={langRef} style={{ position: "relative" }}>
-          <button onClick={() => setLangOpen(!langOpen)} style={{ fontSize: "9.5px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", opacity: 0.45, background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0 }}>
+        <div ref={langRef} style={{ position: "relative", display: "flex", alignItems: "center" }}>
+          <button onClick={() => setLangOpen(!langOpen)} style={{ fontSize: "9.5px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", opacity: 0.45, background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0, lineHeight: 1 }}>
             EN ▾
           </button>
           {langOpen && (

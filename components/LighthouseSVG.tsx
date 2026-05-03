@@ -1,13 +1,13 @@
-// Mockup v3 exact coordinates — with specified modifications:
-// + stem above circle (top → circle)
+// Lighthouse SVG — matches mockup v3 with applied modifications:
+// – stem (vertical above circle) removed
+// – all hg lines removed (including y=401 — the one crossing through the circle)
 // – tower walls removed
-// – all hg lines except y=401 removed
-// – perfectly-vertical downward ray removed
+// – straight-down ray removed
+// – all ray opacities equal and consistent (set via .ray CSS class)
 export default function LighthouseSVG() {
   const cx = 585.65;
   const cy = 369.17;
   const r  = 38;
-  const stemTop = cy - r; // 331.17
 
   return (
     <svg
@@ -17,10 +17,7 @@ export default function LighthouseSVG() {
       style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
       aria-hidden
     >
-      {/* Stem: from top of SVG down to top of circle */}
-      <line className="stem" x1={cx} y1={0} x2={cx} y2={stemTop} />
-
-      {/* Rays — always pulsing via CSS */}
+      {/* Rays — always pulsing via .rays animation */}
       <g className="rays">
         <line className="ray" x1={cx} y1={cy} x2="590.55" y2="135"/>
         <line className="ray" x1={cx} y1={cy} x2="638"    y2="145"/>
@@ -47,12 +44,6 @@ export default function LighthouseSVG() {
         <line className="ray" x1={cx} y1={cy} x2="613"    y2="132"/>
         <line className="ray" x1={cx} y1={cy} x2="720"    y2="200"/>
       </g>
-
-      {/* Tower walls — removed per spec */}
-
-      {/* First horizontal guide only (y=401) */}
-      <line className="hg" x1="515" y1="401" x2="657" y2="401"/>
-      {/* hg y=473, 546, 618, 691, 763, 836, 908 — removed per spec */}
 
       {/* Lantern */}
       <circle className="ln" cx={cx} cy={cy} r={r}/>

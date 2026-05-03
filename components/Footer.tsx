@@ -10,7 +10,7 @@ export default function Footer() {
     // ── Dark footer (homepage) — matches mockup
     return (
       <footer style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "18px 48px", borderTop: "0.5px solid rgba(255,255,255,0.1)", backgroundColor: "#000" }}>
-        <span style={{ fontSize: "9px", letterSpacing: "0.13em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
+        <span style={{ fontSize: "10px", letterSpacing: "0.13em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
           © 2026 Bitcoin Beacon · All rights reserved
         </span>
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
