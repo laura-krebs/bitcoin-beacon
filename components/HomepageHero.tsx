@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useRef } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
@@ -7,26 +10,41 @@ interface Props {
 }
 
 const HERO_HEIGHT = 660;
-// Score block height: 118px number + 2px margin + 10px label ≈ 130px
-const BLOCK_HEIGHT = 130;
+const BLOCK_HEIGHT = 130; // score number (~118px) + label (~12px)
 const STATUS_GAP   = 14;
 
 export default function HomepageHero({ score, state }: Props) {
-  // score=100 → near lantern (top of lighthouse area); score=0 → base
-  // Linear interpolation: apexY=200 (high, below title), baseY=520 (low, near hero bottom)
+  const [hovered, setHovered] = useState(false);
+  const leaveTimer = useRef<ReturnType<typeof setTimeout>>();
+
+  // Debounced leave — prevents flicker when moving between score-block and status-wrap
+  const onEnter = () => {
+    clearTimeout(leaveTimer.current);
+    setHovered(true);
+  };
+  const onLeave = () => {
+    leaveTimer.current = setTimeout(() => setHovered(false), 40);
+  };
+
+  // score=100 → top (near lantern); score=0 → base of lighthouse
   const scoreY  = Math.round(200 + (1 - score / 100) * 320);
-  // Status pill: below the score block, horizontally centered
   const statusY = Math.min(scoreY + BLOCK_HEIGHT + STATUS_GAP, HERO_HEIGHT - 80);
 
   return (
-    <div className="hero">
+    <div className="hero" data-score-hovered={hovered || undefined}>
       <LighthouseSVG />
 
       <div className="hero-title">
         WHERE ARE WE<br />IN THE CYCLE?
       </div>
 
-      <div className="score-block" style={{ top: `${scoreY}px` }}>
+      {/* Score block — onMouseEnter/Leave trigger unified hover */}
+      <div
+        className="score-block"
+        style={{ top: `${scoreY}px` }}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
+      >
         <div className="score-line" />
         <div className="score-num-wrap">
           <div className="score-num">{score}</div>
@@ -35,10 +53,12 @@ export default function HomepageHero({ score, state }: Props) {
         <div className="score-line" />
       </div>
 
-      {/* Status: below score block, centered on page */}
+      {/* Status: below score block, centered — same hover zone */}
       <div
         className="status-wrap"
         style={{ top: `${statusY}px`, left: "50%", transform: "translateX(-50%)" }}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
       >
         <div className="status-pill">{state.label}</div>
         <div className="status-desc">{state.description}</div>

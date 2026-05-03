@@ -18,31 +18,47 @@ html, body {
 .hero { position:relative; width:100%; height:660px; overflow:hidden; background:#000; }
 
 /* ── LIGHTHOUSE ───────────────────────────────── */
-@keyframes rayPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
-.rays { animation:rayPulse 5s ease-in-out infinite; }
-.ray { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.38; transition:opacity 0.3s; cursor:default; }
-.ray:hover { opacity:0.65; }
-.ln  { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.38; }
+/* spin: slow rotation around lantern center */
+@keyframes rayRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+/* flicker: pronounced opacity oscillation */
+@keyframes rayFlicker {
+  from { opacity: 0.15; }
+  to   { opacity: 0.55; }
+}
 
-/* ── SCORE BLOCK ──────────────────────────────── */
+.rays {
+  animation: rayRotate 20s linear infinite, rayFlicker 2.5s ease-in-out infinite alternate;
+  transform-origin: 585.65px 369.17px;
+}
+
+/* Individual rays: opacity managed by group animation */
+.ray { stroke:#fff; stroke-width:0.8; fill:none; }
+.ln  { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.5; }
+
+/* ── SCORE BLOCK BASE ─────────────────────────── */
 .score-block { position:absolute; left:50%; transform:translateX(-50%); z-index:12; display:flex; align-items:center; cursor:default; }
 .score-num-wrap { display:flex; flex-direction:column; align-items:center; padding:0 6px; }
 .score-line { height:1.5px; width:140px; background:#fff; transition:background 0.25s; flex-shrink:0; }
 .score-num  { font-size:118px; font-weight:300; letter-spacing:-0.04em; color:#fff; line-height:1; transition:color 0.25s; }
 .score-lbl  { font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#fff; margin-top:2px; transition:color 0.25s; font-family:var(--font-space-grotesk),sans-serif; }
-.score-block:hover .score-num  { color:#F7931A; }
-.score-block:hover .score-lbl  { color:#F7931A; }
-.score-block:hover .score-line { background:#F7931A; }
 
-/* ── STATUS CTA ───────────────────────────────── */
+/* ── STATUS CTA BASE ──────────────────────────── */
 .status-wrap { position:absolute; z-index:13; display:flex; flex-direction:column; align-items:center; gap:7px; }
-
-/* Pill own hover + triggered by score block hover — orange outline, orange text, no fill */
-.status-pill { display:inline-block; border:0.8px solid rgba(255,255,255,0.6); color:#fff; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; cursor:pointer; transition:border-color 0.2s, color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
-.status-pill:hover,
-.score-block:hover ~ .status-wrap .status-pill { border-color:#F7931A; color:#F7931A; }
-
+.status-pill { display:inline-block; border:0.8px solid rgba(255,255,255,0.6); color:#fff; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; cursor:pointer; transition:border-color 0.25s, color 0.25s; font-family:var(--font-space-grotesk),sans-serif; }
 .status-desc { font-size:12px; color:rgba(255,255,255,0.35); white-space:nowrap; line-height:1.65; font-family:var(--font-space-grotesk),sans-serif; }
+
+/* ── UNIFIED HOVER: score-block + CTA pill + CYCLE SCORE label ─────
+   Triggered by [data-score-hovered] set via React hover state.
+   Covers: score num, score lines, CYCLE SCORE label, and status pill.
+   Pill: orange outline, orange text — NO fill.
+─────────────────────────────────────────────────────────────────── */
+[data-score-hovered] .score-num  { color: #F7931A; }
+[data-score-hovered] .score-lbl  { color: #F7931A; }
+[data-score-hovered] .score-line { background: #F7931A; }
+[data-score-hovered] .status-pill { border-color: #F7931A; color: #F7931A; background: transparent; }
 
 /* ── HERO TITLE (Schibsted Grotesk) ──────────── */
 .hero-title { position:absolute; top:60px; left:0; right:0; text-align:center; font-size:58px; font-weight:300; letter-spacing:-0.03em; color:#fff; line-height:1.05; z-index:10; pointer-events:none; font-family:var(--font-schibsted-grotesk),sans-serif; }
@@ -51,11 +67,11 @@ html, body {
 .nav-link-dark { font-size:11px; font-weight:400; letter-spacing:0.16em; text-transform:uppercase; color:#fff; text-decoration:none; transition:color 0.2s; cursor:pointer; }
 .nav-link-dark:hover { color:#F7931A; }
 
-/* ── BOTTOM BARS (dark, homepage) ─────────────── */
+/* ── BOTTOM BARS ──────────────────────────────── */
 .ilink { font-size:11px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#fff; text-decoration:none; cursor:pointer; transition:color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
 .ilink:hover { color:#F7931A; }
 
-/* ── FOOTER ALERT HOVER ───────────────────────── */
+/* ── FOOTER ───────────────────────────────────── */
 .footer-alert { font-size:10px; letter-spacing:0.13em; text-transform:uppercase; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
 .footer-alert:hover { color:#F7931A; }
 .footer-x { opacity:0.35; display:flex; align-items:center; transition:opacity 0.2s; }
