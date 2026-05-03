@@ -105,12 +105,6 @@ export default async function MetricsPage() {
         </div>
       </div>
 
-      {/* FOOTER DISCLAIMER */}
-      <div style={C}>
-        <p style={{ fontSize: "13px", lineHeight: 1.9, color: "#000", maxWidth: "640px", padding: "32px 0", opacity: 0.45 }}>
-          The composite score and individual signals are sourced from CBBI by Colin Talks Crypto and LookIntoBitcoin. None of this constitutes financial advice. Educational and informational purposes only.
-        </p>
-      </div>
     </>
   );
 }

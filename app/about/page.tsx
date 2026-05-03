@@ -1,7 +1,7 @@
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
 
 const CREDITS = [
-  { label: "Data source:", value: "CBBI by Colin Talks Crypto", href: "https://colintalkscrypto.com/cbbi" },
+  { label: "Data source:", value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
   { label: "Created and designed by:", value: "@laurakrebs_", href: "https://x.com/laurakrebs_" },
   { label: "Built with:", value: "Claude by Anthropic", href: "https://anthropic.com" },
 ];
@@ -26,7 +26,7 @@ export default function AboutPage() {
         <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
           {/* Left sidebar */}
           <div style={{ paddingTop: "4px" }}>
-            {["The problem.", "The goal."].map((label) => (
+            {["The problem.", "The goal.", "The solution."].map((label) => (
               <div
                 key={label}
                 style={{

@@ -18,25 +18,15 @@ html, body {
 .hero { position:relative; width:100%; height:660px; overflow:hidden; background:#000; }
 
 /* ── LIGHTHOUSE ───────────────────────────────── */
-/* spin: slow rotation around lantern center */
-@keyframes rayRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-/* flicker: pronounced opacity oscillation */
 @keyframes rayFlicker {
   from { opacity: 0.15; }
   to   { opacity: 0.55; }
 }
 
-.rays {
-  animation: rayRotate 20s linear infinite, rayFlicker 2.5s ease-in-out infinite alternate;
-  transform-origin: 585.65px 369.17px;
-}
-
-/* Individual rays: opacity managed by group animation */
-.ray { stroke:#fff; stroke-width:0.8; fill:none; }
-.ln  { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.5; }
+/* Flicker only — no rotation */
+.rays { animation: rayFlicker 1.2s ease-in-out infinite alternate; }
+.ray  { stroke:#fff; stroke-width:0.8; fill:none; }
+.ln   { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.5; }
 
 /* ── SCORE BLOCK BASE ─────────────────────────── */
 .score-block { position:absolute; left:50%; transform:translateX(-50%); z-index:12; display:flex; align-items:center; cursor:default; }

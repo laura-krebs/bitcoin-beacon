@@ -60,8 +60,8 @@ export default function HomepageHero({ score, state }: Props) {
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >
-        <div className="status-pill">{state.label}</div>
-        <div className="status-desc">{state.description}</div>
+        <div className="status-pill" onMouseEnter={onEnter} onMouseLeave={onLeave}>{state.label}</div>
+        <div className="status-desc" onMouseEnter={onEnter} onMouseLeave={onLeave}>{state.description}</div>
       </div>
     </div>
   );
