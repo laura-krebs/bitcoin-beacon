@@ -16,7 +16,7 @@ Compare that to fiat currencies — printed at will by central banks, expanding 
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
-        <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.12)", paddingTop: "16px" }}>
+        <div style={{ borderTop: "0.8px solid rgba(0,0,0,0.12)", paddingTop: "16px" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, letterSpacing: "-0.02em" }}>2009</div>
           <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "6px", opacity: 0.45 }}>Year Bitcoin Launched</div>
         </div>
@@ -60,7 +60,7 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
               justifyContent: "space-between",
               alignItems: "baseline",
               padding: "9px 0",
-              borderBottom: "0.5px solid rgba(0,0,0,0.08)",
+              borderBottom: "0.8px solid rgba(0,0,0,0.08)",
               opacity: h.muted ? 0.35 : 1,
             }}
           >
@@ -88,7 +88,7 @@ DCA is widely considered the most sensible strategy for investing in Bitcoin. Th
           <thead>
             <tr>
               {["Month", "Price", "Sats"].map((h) => (
-                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.5px solid rgba(0,0,0,0.12)", opacity: 0.45 }}>
+                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.8px solid rgba(0,0,0,0.12)", opacity: 0.45 }}>
                   {h}
                 </th>
               ))}
@@ -102,9 +102,9 @@ DCA is widely considered the most sensible strategy for investing in Bitcoin. Th
               ["Avg", "$59,322", "509,524"],
             ].map(([month, price, sats]) => (
               <tr key={month}>
-                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{month}</td>
-                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{price}</td>
-                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.5px solid rgba(0,0,0,0.06)" }}>{sats}</td>
+                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.8px solid rgba(0,0,0,0.06)" }}>{month}</td>
+                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.8px solid rgba(0,0,0,0.06)" }}>{price}</td>
+                <td style={{ fontSize: "13px", padding: "7px 0", borderBottom: "0.8px solid rgba(0,0,0,0.06)" }}>{sats}</td>
               </tr>
             ))}
           </tbody>
@@ -169,7 +169,7 @@ export default function LearnPage() {
   return (
     <>
       {/* PAGE HERO */}
-      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
+      <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
             Understanding<br />Bitcoin
@@ -181,7 +181,7 @@ export default function LearnPage() {
       </section>
 
       {/* TABLE OF CONTENTS */}
-      <div style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}>
+      <div style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
           {TOC_ITEMS.map((item, i) => (
             <a
@@ -190,7 +190,7 @@ export default function LearnPage() {
               style={{
                 padding: "22px 0",
                 paddingRight: "16px",
-                borderRight: i < 5 ? "0.5px solid rgba(0,0,0,0.12)" : undefined,
+                borderRight: i < 5 ? "0.8px solid rgba(0,0,0,0.12)" : undefined,
                 paddingLeft: i > 0 ? "16px" : 0,
                 textDecoration: "none",
                 display: "block",
@@ -208,11 +208,11 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)" }}
+          style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)" }}
         >
           <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
             {/* Col 1: section number + title */}
-            <div style={{ borderRight: "0.5px solid rgba(0,0,0,0.12)", padding: "44px 24px 44px 0" }}>
+            <div style={{ borderRight: "0.8px solid rgba(0,0,0,0.12)", padding: "44px 24px 44px 0" }}>
               <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px", opacity: 0.38 }}>
                 {section.num}
               </div>
@@ -231,7 +231,7 @@ export default function LearnPage() {
             </div>
 
             {/* Col 3: aside */}
-            <div style={{ borderLeft: "0.5px solid rgba(0,0,0,0.12)", padding: "44px 0 44px 28px" }}>
+            <div style={{ borderLeft: "0.8px solid rgba(0,0,0,0.12)", padding: "44px 0 44px 28px" }}>
               {section.aside}
             </div>
           </div>

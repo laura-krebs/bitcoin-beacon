@@ -1,31 +1,16 @@
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
 
 const CREDITS = [
-  {
-    label: "Data source:",
-    value: "CBBI by Colin Talks Crypto",
-    href: "https://colintalkscrypto.com/cbbi",
-    linkText: "colintalkscrypto.com/cbbi",
-  },
-  {
-    label: "Created and designed by:",
-    value: "@laurakrebs_",
-    href: "https://x.com/laurakrebs_",
-    linkText: "x.com/laurakrebs_",
-  },
-  {
-    label: "Built with:",
-    value: "Claude by Anthropic",
-    href: "https://anthropic.com",
-    linkText: "anthropic.com",
-  },
+  { label: "Data source:", value: "CBBI by Colin Talks Crypto", href: "https://colintalkscrypto.com/cbbi" },
+  { label: "Created and designed by:", value: "@laurakrebs_", href: "https://x.com/laurakrebs_" },
+  { label: "Built with:", value: "Claude by Anthropic", href: "https://anthropic.com" },
 ];
 
 export default function AboutPage() {
   return (
     <>
       {/* PAGE HERO */}
-      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
+      <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             Bitcoin education<br />for everyone.
@@ -37,11 +22,11 @@ export default function AboutPage() {
       </section>
 
       {/* BODY */}
-      <section style={{ borderBottom: "0.5px solid rgba(0,0,0,0.15)", padding: "52px 0" }}>
+      <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "52px 0" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
           {/* Left sidebar */}
           <div style={{ paddingTop: "4px" }}>
-            {["A broken system.", "A better money."].map((label) => (
+            {["The problem.", "The goal."].map((label) => (
               <div
                 key={label}
                 style={{
@@ -84,11 +69,11 @@ export default function AboutPage() {
               Disclaimer
             </div>
             <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#000" }}>
-              Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles — not to guide individual investment decisions.
+              Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles.
             </p>
           </div>
 
-          {/* Credits — right-aligned, label + value on separate lines */}
+          {/* Credits — right-aligned, value as link only (no URL text) */}
           <div style={{ textAlign: "right" }}>
             <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
               Data Source & Credits
@@ -99,17 +84,14 @@ export default function AboutPage() {
                   <div style={{ fontSize: "10px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.45, marginBottom: "3px" }}>
                     {c.label}
                   </div>
-                  <div style={{ fontSize: "12px", color: "#000", lineHeight: 1.6 }}>
-                    {c.value}{" "}
-                    <a
-                      href={c.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "#000", textDecoration: "none", borderBottom: "0.5px solid rgba(0,0,0,0.3)" }}
-                    >
-                      {c.linkText}
-                    </a>
-                  </div>
+                  <a
+                    href={c.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontSize: "12px", color: "#000", textDecoration: "none", borderBottom: "0.8px solid rgba(0,0,0,0.3)", lineHeight: 1.6 }}
+                  >
+                    {c.value}
+                  </a>
                 </div>
               ))}
             </div>

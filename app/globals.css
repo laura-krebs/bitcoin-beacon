@@ -12,7 +12,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-*:focus-visible { outline:0.5px solid rgba(0,0,0,0.4); outline-offset:2px; }
+*:focus-visible { outline:0.8px solid rgba(0,0,0,0.4); outline-offset:2px; }
 
 /* ── HERO ─────────────────────────────────────── */
 .hero { position:relative; width:100%; height:660px; overflow:hidden; background:#000; }
@@ -20,10 +20,9 @@ html, body {
 /* ── LIGHTHOUSE ───────────────────────────────── */
 @keyframes rayPulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
 .rays { animation:rayPulse 5s ease-in-out infinite; }
-/* All ray lines same opacity — no element brighter than another */
-.ray { stroke:#fff; stroke-width:0.5; fill:none; opacity:0.38; transition:opacity 0.3s; cursor:default; }
+.ray { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.38; transition:opacity 0.3s; cursor:default; }
 .ray:hover { opacity:0.65; }
-.ln  { stroke:#fff; stroke-width:0.6; fill:none; opacity:0.38; }
+.ln  { stroke:#fff; stroke-width:0.8; fill:none; opacity:0.38; }
 
 /* ── SCORE BLOCK ──────────────────────────────── */
 .score-block { position:absolute; left:50%; transform:translateX(-50%); z-index:12; display:flex; align-items:center; cursor:default; }
@@ -37,23 +36,26 @@ html, body {
 
 /* ── STATUS CTA ───────────────────────────────── */
 .status-wrap { position:absolute; z-index:13; display:flex; flex-direction:column; align-items:center; gap:7px; }
-.status-pill { display:inline-block; border:0.5px solid rgba(255,255,255,0.6); color:#fff; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; cursor:pointer; transition:background 0.2s, border-color 0.2s, color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
-.status-pill:hover { background:#F7931A; border-color:#F7931A; color:#000; }
-.status-desc { font-size:10px; color:rgba(255,255,255,0.35); white-space:nowrap; line-height:1.65; font-family:var(--font-space-grotesk),sans-serif; }
+
+/* Pill own hover + triggered by score block hover — orange outline, orange text, no fill */
+.status-pill { display:inline-block; border:0.8px solid rgba(255,255,255,0.6); color:#fff; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; cursor:pointer; transition:border-color 0.2s, color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
+.status-pill:hover,
+.score-block:hover ~ .status-wrap .status-pill { border-color:#F7931A; color:#F7931A; }
+
+.status-desc { font-size:12px; color:rgba(255,255,255,0.35); white-space:nowrap; line-height:1.65; font-family:var(--font-space-grotesk),sans-serif; }
 
 /* ── HERO TITLE (Schibsted Grotesk) ──────────── */
 .hero-title { position:absolute; top:60px; left:0; right:0; text-align:center; font-size:58px; font-weight:300; letter-spacing:-0.03em; color:#fff; line-height:1.05; z-index:10; pointer-events:none; font-family:var(--font-schibsted-grotesk),sans-serif; }
 
 /* ── NAV LINK (dark homepage) ─────────────────── */
-.nav-link-dark { font-size:9.5px; font-weight:400; letter-spacing:0.16em; text-transform:uppercase; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.2s; cursor:pointer; }
+.nav-link-dark { font-size:11px; font-weight:400; letter-spacing:0.16em; text-transform:uppercase; color:#fff; text-decoration:none; transition:color 0.2s; cursor:pointer; }
 .nav-link-dark:hover { color:#F7931A; }
 
 /* ── BOTTOM BARS (dark, homepage) ─────────────── */
-/* Info row: links + meta */
 .ilink { font-size:11px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#fff; text-decoration:none; cursor:pointer; transition:color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
 .ilink:hover { color:#F7931A; }
 
-/* ── FOOTER (dark homepage) ───────────────────── */
+/* ── FOOTER ALERT HOVER ───────────────────────── */
 .footer-alert { font-size:10px; letter-spacing:0.13em; text-transform:uppercase; color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
 .footer-alert:hover { color:#F7931A; }
 .footer-x { opacity:0.35; display:flex; align-items:center; transition:opacity 0.2s; }
