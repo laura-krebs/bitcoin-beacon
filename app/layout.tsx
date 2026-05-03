@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   description:
     "An educational Bitcoin market cycle tracker. One score, updated daily, with plain-language context.",
   manifest: "/manifest.json",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

@@ -50,8 +50,8 @@ export default async function HomePage() {
       {/* ── INFO ROW ───────────────────────────────── */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 48px", borderTop: "0.8px solid rgba(0,0,0,0.1)" }}>
         <div style={{ display: "flex", gap: "28px" }}>
-          <Link href="/learn" className="ilink">What does this mean →</Link>
-          <Link href="/metrics" className="ilink">How it&apos;s calculated →</Link>
+          <Link href="/metrics" className="ilink">What does this mean →</Link>
+          <Link href="/learn" className="ilink">Learn more →</Link>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <span style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#000", fontFamily: F }}>

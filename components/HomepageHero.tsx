@@ -1,47 +1,63 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
-interface Props {
-  score: number;
-  state: ScoreState;
-}
+// FAROL_final.svg viewBox height and Y coordinate of rays bottom
+const SVG_H      = 1810.74;
+const RAYS_BTM_Y = 430;
 
-const HERO_HEIGHT = 660;
-const BLOCK_HEIGHT = 130; // score number (~118px) + label (~12px)
-const STATUS_GAP   = 14;
+const BLOCK_H  = 142; // 130px score + 12px label
+const STATUS_GAP = 14;
 
-export default function HomepageHero({ score, state }: Props) {
-  const [hovered, setHovered] = useState(false);
+export default function HomepageHero({ score, state }: { score: number; state: ScoreState }) {
+  const heroRef  = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout>>();
 
-  // Debounced leave — prevents flicker when moving between score-block and status-wrap
-  const onEnter = () => {
-    clearTimeout(leaveTimer.current);
-    setHovered(true);
-  };
-  const onLeave = () => {
-    leaveTimer.current = setTimeout(() => setHovered(false), 40);
-  };
+  const [hovered, setHovered] = useState(false);
+  const [pos, setPos] = useState({ titleTop: 213, scoreGroupTop: 346 });
 
-  // score=100 → top (near lantern); score=0 → base of lighthouse
-  const scoreY  = Math.round(200 + (1 - score / 100) * 320);
-  const statusY = Math.min(scoreY + BLOCK_HEIGHT + STATUS_GAP, HERO_HEIGHT - 80);
+  useEffect(() => {
+    const update = () => {
+      if (!heroRef.current || !titleRef.current) return;
+      const heroH     = heroRef.current.offsetHeight;
+      const raysBottom = heroH * (RAYS_BTM_Y / SVG_H);
+      const titleTop   = raysBottom + 56;
+      const titleH     = titleRef.current.offsetHeight;
+      setPos({ titleTop: Math.round(titleTop), scoreGroupTop: Math.round(titleTop + titleH + 9) });
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const onEnter = () => { clearTimeout(leaveTimer.current); setHovered(true); };
+  const onLeave = () => { leaveTimer.current = setTimeout(() => setHovered(false), 40); };
+
+  const statusTop = pos.scoreGroupTop + BLOCK_H + STATUS_GAP;
+
+  // Render description: split on "<br>" and insert JSX line breaks
+  const descLines = state.description.split("<br>");
 
   return (
-    <div className="hero" data-score-hovered={hovered || undefined}>
+    <div className="hero" ref={heroRef} data-score-hovered={hovered || undefined}>
       <LighthouseSVG />
 
-      <div className="hero-title">
+      {/* Title — position set dynamically from lighthouse geometry */}
+      <div
+        ref={titleRef}
+        className="hero-title"
+        style={{ top: `${pos.titleTop}px` }}
+      >
         WHERE ARE WE<br />IN THE CYCLE?
       </div>
 
-      {/* Score block — onMouseEnter/Leave trigger unified hover */}
+      {/* Score block */}
       <div
         className="score-block"
-        style={{ top: `${scoreY}px` }}
+        style={{ top: `${pos.scoreGroupTop}px` }}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >
@@ -53,15 +69,21 @@ export default function HomepageHero({ score, state }: Props) {
         <div className="score-line" />
       </div>
 
-      {/* Status: below score block, centered — same hover zone */}
+      {/* Status pill + description */}
       <div
         className="status-wrap"
-        style={{ top: `${statusY}px`, left: "50%", transform: "translateX(-50%)" }}
+        style={{ top: `${statusTop}px`, left: "50%", transform: "translateX(-50%)" }}
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
       >
-        <div className="status-pill" onMouseEnter={onEnter} onMouseLeave={onLeave}>{state.label}</div>
-        <div className="status-desc" onMouseEnter={onEnter} onMouseLeave={onLeave}>{state.description}</div>
+        <div className="status-pill" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+          {state.label}
+        </div>
+        <div className="status-desc" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+          {descLines.map((line, i) => (
+            <span key={i}>{line}{i < descLines.length - 1 && <br />}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

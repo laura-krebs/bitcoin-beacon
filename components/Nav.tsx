@@ -33,7 +33,7 @@ export default function Nav() {
 
   return (
     <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", borderBottom: "0.8px solid rgba(0,0,0,0.15)", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
-      <Link href="/" style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
+      <Link href="/" style={{ fontSize: "11.55px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
         Bitcoin Beacon
       </Link>
       <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
