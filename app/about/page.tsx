@@ -1,7 +1,9 @@
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const LBL_STYLE = { fontSize: "11px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase" as const, opacity: 0.45, marginBottom: "4px" };
 
+// CBBI has no label (section header "Data Source & Credits" covers it)
 const CREDITS = [
-  { label: "Data source:", value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
+  { label: null, value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
   { label: "Created and designed by:", value: "@laurakrebs_", href: "https://x.com/laurakrebs_" },
   { label: "Built with:", value: "Claude by Anthropic", href: "https://anthropic.com" },
 ];
@@ -13,7 +15,7 @@ export default function AboutPage() {
       <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
-            Bitcoin education<br />for everyone.
+            Bitcoin education<br />for everyone
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
             Most tools that track Bitcoin cycles weren&apos;t built with clarity for newcomers in mind. Bitcoin Beacon started with a simple question: what would this look like with a clean interface and first things explained first?
@@ -24,7 +26,6 @@ export default function AboutPage() {
       {/* BODY */}
       <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "52px 0" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
-          {/* Left sidebar */}
           <div style={{ paddingTop: "4px" }}>
             {["The problem.", "The goal.", "The solution."].map((label) => (
               <div
@@ -43,8 +44,6 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-
-          {/* Right: body */}
           <div>
             {[
               "The biggest barrier to Bitcoin adoption isn't complexity — it's fear. If you don't have the confidence or context to know when it makes sense to get involved, you stay out entirely, and never get close to understanding the true depth of Bitcoin and its ecosystem.",
@@ -63,7 +62,6 @@ export default function AboutPage() {
       {/* BOTTOM ROW */}
       <section style={{ padding: "44px 0" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }}>
-          {/* Disclaimer */}
           <div>
             <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
               Disclaimer
@@ -73,17 +71,15 @@ export default function AboutPage() {
             </p>
           </div>
 
-          {/* Credits — right-aligned, value as link only (no URL text) */}
+          {/* Credits — right-aligned, value is the link, no URL text */}
           <div style={{ textAlign: "right" }}>
             <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
               Data Source & Credits
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
               {CREDITS.map((c) => (
-                <div key={c.label}>
-                  <div style={{ fontSize: "10px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase", opacity: 0.45, marginBottom: "3px" }}>
-                    {c.label}
-                  </div>
+                <div key={c.value}>
+                  {c.label && <div style={LBL_STYLE}>{c.label}</div>}
                   <a
                     href={c.href}
                     target="_blank"
