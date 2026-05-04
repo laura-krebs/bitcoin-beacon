@@ -4,82 +4,89 @@ import { useState, useRef, useEffect } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
-// FAROL_final.svg viewBox height and Y coordinate of rays bottom
+// SVG geometry constants (FAROL_final.svg viewBox 0 0 756.52 1810.74)
 const SVG_H      = 1810.74;
-const RAYS_BTM_Y = 430;
+const SVG_W      = 756.52;
+const ARM_SVG_X  = 745.64; // rightmost arm endpoint x in SVG coords
 
-const BLOCK_H  = 142; // 130px score + 12px label
-const STATUS_GAP = 14;
+// Distance from info-block top to pill vertical center (px)
+// score-num (130) + score-lbl (12 incl margin-top:2) + gap (8) + pill/2 (11) = 161
+const PILL_OFFSET = 161;
+
+interface Layout {
+  armLength:    number;
+  scoreY:       number;
+  infoBlockTop: number;
+}
+
+function calcLayout(heroH: number, score: number): Layout {
+  const svgScale   = heroH / SVG_H;
+  const armLength  = Math.round((ARM_SVG_X - SVG_W / 2) * svgScale); // ~134px
+  const topLimit   = heroH * 0.18;
+  const bottomLimit = heroH - 60;
+  const scoreY     = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
+  const infoBlockTop = Math.max(10, scoreY - PILL_OFFSET);
+  return { armLength, scoreY, infoBlockTop };
+}
 
 export default function HomepageHero({ score, state }: { score: number; state: ScoreState }) {
-  const heroRef  = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const leaveTimer = useRef<ReturnType<typeof setTimeout>>();
-
-  const [hovered, setHovered] = useState(false);
-  const [pos, setPos] = useState({ titleTop: 213, scoreGroupTop: 346 });
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
 
   useEffect(() => {
     const update = () => {
-      if (!heroRef.current || !titleRef.current) return;
-      const heroH     = heroRef.current.offsetHeight;
-      const raysBottom = heroH * (RAYS_BTM_Y / SVG_H);
-      const titleTop   = raysBottom + 56;
-      const titleH     = titleRef.current.offsetHeight;
-      setPos({ titleTop: Math.round(titleTop), scoreGroupTop: Math.round(titleTop + titleH + 9) });
+      if (!heroRef.current) return;
+      setLayout(calcLayout(heroRef.current.offsetHeight, score));
     };
     update();
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
-  }, []);
+  }, [score]);
 
-  const onEnter = () => { clearTimeout(leaveTimer.current); setHovered(true); };
-  const onLeave = () => { leaveTimer.current = setTimeout(() => setHovered(false), 40); };
-
-  const statusTop = pos.scoreGroupTop + BLOCK_H + STATUS_GAP;
-
-  // Render description: split on "<br>" and insert JSX line breaks
+  const { armLength, scoreY, infoBlockTop } = layout;
   const descLines = state.description.split("<br>");
 
   return (
-    <div className="hero" ref={heroRef} data-score-hovered={hovered || undefined}>
+    <div className="hero" ref={heroRef}>
       <LighthouseSVG />
 
-      {/* Title — position set dynamically from lighthouse geometry */}
-      <div
-        ref={titleRef}
-        className="hero-title"
-        style={{ top: `${pos.titleTop}px` }}
-      >
+      {/* Title — top-left corner, fixed */}
+      <div className="hero-title" style={{ top: "80px", left: "48px" }}>
         WHERE ARE WE<br />IN THE CYCLE?
       </div>
 
-      {/* Score block */}
+      {/* Horizontal score line — spans arm length each side from center */}
       <div
-        className="score-block"
-        style={{ top: `${pos.scoreGroupTop}px` }}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
-      >
-        <div className="score-line" />
-        <div className="score-num-wrap">
-          <div className="score-num">{score}</div>
-          <div className="score-lbl">Cycle Score</div>
-        </div>
-        <div className="score-line" />
-      </div>
+        style={{
+          position: "absolute",
+          top: `${scoreY}px`,
+          left: `calc(50% - ${armLength}px)`,
+          width: `${2 * armLength}px`,
+          height: "0.8px",
+          background: "#000",
+          zIndex: 10,
+          pointerEvents: "none",
+        }}
+      />
 
-      {/* Status pill + description */}
+      {/* Info block — right of line, pill vertically aligned with line */}
       <div
-        className="status-wrap"
-        style={{ top: `${statusTop}px`, left: "50%", transform: "translateX(-50%)" }}
-        onMouseEnter={onEnter}
-        onMouseLeave={onLeave}
+        style={{
+          position: "absolute",
+          top: `${infoBlockTop}px`,
+          left: `calc(50% + ${armLength + 15}px)`,
+          zIndex: 12,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+        }}
       >
-        <div className="status-pill" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+        <div className="score-num">{score}</div>
+        <div className="score-lbl">Cycle Score</div>
+        <div className="status-pill" style={{ marginTop: "8px" }}>
           {state.label}
         </div>
-        <div className="status-desc" onMouseEnter={onEnter} onMouseLeave={onLeave}>
+        <div className="status-desc" style={{ marginTop: "7px" }}>
           {descLines.map((line, i) => (
             <span key={i}>{line}{i < descLines.length - 1 && <br />}</span>
           ))}

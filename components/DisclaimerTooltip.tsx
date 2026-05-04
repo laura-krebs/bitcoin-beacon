@@ -13,7 +13,7 @@ export default function DisclaimerTooltip() {
           fontSize: "9px",
           color: "rgba(0,0,0,0.4)",
           background: "none",
-          border: "0.8px solid rgba(0,0,0,0.3)",
+          border: "0.8px solid #000",
           cursor: "pointer",
           padding: "1px 5px",
           fontFamily: "inherit",
@@ -31,7 +31,7 @@ export default function DisclaimerTooltip() {
             right: 0,
             width: "280px",
             background: "#F7931A",
-            border: "0.8px solid rgba(0,0,0,0.2)",
+            border: "0.8px solid #000",
             padding: "16px",
             zIndex: 100,
           }}

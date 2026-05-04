@@ -7,7 +7,7 @@ export default function LighthouseSVG() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 756.52 1810.74"
       preserveAspectRatio="xMidYMax meet"
-      fill="rgba(0,0,0,0.15)"
+      fill="#000"
       style={{
         position: "absolute",
         height: "100%",

@@ -20,8 +20,8 @@ export default async function HomePage() {
       <HomepageHero score={score} state={state} />
 
       {/* ── METRICS ROW ────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderTop: "0.8px solid rgba(0,0,0,0.15)" }}>
-        <div style={{ padding: "26px 48px", borderRight: "0.8px solid rgba(0,0,0,0.15)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderTop: "0.8px solid #000" }}>
+        <div style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {data.btcPrice > 0 ? formatPrice(data.btcPrice) : "—"}
           </div>
@@ -29,7 +29,7 @@ export default async function HomePage() {
             BTC Price
           </div>
         </div>
-        <div style={{ padding: "26px 48px", borderRight: "0.8px solid rgba(0,0,0,0.15)" }}>
+        <div style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {score}
           </div>
@@ -48,7 +48,7 @@ export default async function HomePage() {
       </div>
 
       {/* ── INFO ROW ───────────────────────────────── */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 48px", borderTop: "0.8px solid rgba(0,0,0,0.1)" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
         <div style={{ display: "flex", gap: "28px" }}>
           <Link href="/metrics" className="ilink">What does this mean →</Link>
           <Link href="/learn" className="ilink">Learn more →</Link>

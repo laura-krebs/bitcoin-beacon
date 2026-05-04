@@ -32,7 +32,7 @@ export default function Nav() {
   }, [langOpen]);
 
   return (
-    <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", borderBottom: "0.8px solid rgba(0,0,0,0.15)", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
+    <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
       <Link href="/" style={{ fontSize: "11.55px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
         Bitcoin Beacon
       </Link>
@@ -53,9 +53,9 @@ export default function Nav() {
             EN ▾
           </button>
           {langOpen && (
-            <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.8px solid rgba(0,0,0,0.15)", minWidth: "130px", zIndex: 100 }}>
+            <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.8px solid #000", minWidth: "130px", zIndex: 100 }}>
               {LANGS.map((lang) => (
-                <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid rgba(0,0,0,0.08)", cursor: lang.available ? "pointer" : "default" }}>
+                <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default" }}>
                   {lang.label}
                 </div>
               ))}

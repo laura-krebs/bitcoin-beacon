@@ -12,7 +12,7 @@ export default function AboutPage() {
   return (
     <>
       {/* PAGE HERO */}
-      <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
+      <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
             Bitcoin education<br />for everyone
@@ -24,7 +24,7 @@ export default function AboutPage() {
       </section>
 
       {/* BODY */}
-      <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "52px 0" }}>
+      <section style={{ borderBottom: "0.8px solid #000", padding: "52px 0" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
           <div style={{ paddingTop: "4px" }}>
             {["The problem.", "The goal.", "The solution."].map((label) => (
@@ -84,7 +84,7 @@ export default function AboutPage() {
                     href={c.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ fontSize: "12px", color: "#000", textDecoration: "none", borderBottom: "0.8px solid rgba(0,0,0,0.3)", lineHeight: 1.6 }}
+                    style={{ fontSize: "12px", color: "#000", textDecoration: "none", borderBottom: "0.8px solid #000", lineHeight: 1.6 }}
                   >
                     {c.value}
                   </a>

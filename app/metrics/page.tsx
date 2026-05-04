@@ -26,7 +26,7 @@ export default async function MetricsPage() {
   return (
     <>
       {/* PAGE HERO */}
-      <section style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)", padding: "64px 0 52px" }}>
+      <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
             9 on-chain metrics<br />One score
@@ -38,7 +38,7 @@ export default async function MetricsPage() {
       </section>
 
       {/* SCORE SUMMARY BAR */}
-      <div style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)" }}>
+      <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
           {[
             { value: String(score), label: "Composite Score" },
@@ -46,7 +46,7 @@ export default async function MetricsPage() {
             { value: data.btcPrice > 0 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice) : "—", label: "BTC Price" },
             { value: "Daily", label: "Update Frequency" },
           ].map((box, i) => (
-            <div key={box.label} style={{ padding: "22px 28px", borderRight: i < 3 ? "0.8px solid rgba(0,0,0,0.12)" : undefined, paddingLeft: i === 0 ? 0 : undefined, paddingRight: i === 3 ? 0 : undefined }}>
+            <div key={box.label} style={{ padding: "22px 28px", borderRight: i < 3 ? "0.8px solid #000" : undefined, paddingLeft: i === 0 ? 0 : undefined, paddingRight: i === 3 ? 0 : undefined }}>
               <div style={VAL}>{box.value}</div>
               <div style={LBL}>{box.label}</div>
             </div>
@@ -55,7 +55,7 @@ export default async function MetricsPage() {
       </div>
 
       {/* SECTION LABEL */}
-      <div style={{ borderBottom: "0.8px solid rgba(0,0,0,0.1)" }}>
+      <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, padding: "22px 48px" }}>
           <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.45 }}>
             The 9 Metrics
@@ -64,7 +64,7 @@ export default async function MetricsPage() {
       </div>
 
       {/* METRICS GRID 3×3 */}
-      <div style={{ borderBottom: "0.8px solid rgba(0,0,0,0.15)" }}>
+      <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
           {METRICS.map((m, i) => {
             const col = i % 3;
@@ -78,8 +78,8 @@ export default async function MetricsPage() {
                   paddingLeft: col === 0 ? 0 : "28px",
                   paddingRight: col === 2 ? 0 : "28px",
                   textAlign: "left",
-                  borderRight: col < 2 ? "0.8px solid rgba(0,0,0,0.12)" : undefined,
-                  borderBottom: row < 2 ? "0.8px solid rgba(0,0,0,0.12)" : undefined,
+                  borderRight: col < 2 ? "0.8px solid #000" : undefined,
+                  borderBottom: row < 2 ? "0.8px solid #000" : undefined,
                 }}
               >
                 <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.4 }}>
