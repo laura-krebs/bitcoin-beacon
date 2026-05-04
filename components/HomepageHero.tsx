@@ -12,26 +12,34 @@ const PILL_OFFSET = 161;
 
 interface Layout { armLength: number; scoreY: number; infoBlockTop: number; }
 
-function calcLayout(heroH: number, score: number, scoreGroupH: number): Layout {
-  const svgScale    = heroH / SVG_H;
-  const armLength   = Math.round((ARM_SVG_X - SVG_W / 2) * svgScale);
-  const topLimit    = heroH * 0.18;
-  const bottomLimit = heroH - scoreGroupH - 20;
-  const scoreY      = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
+function calcLayout(
+  heroH: number,
+  score: number,
+  scoreGroupH: number,
+  pillOffsetFromTop: number,
+): Layout {
+  const svgScale   = heroH / SVG_H;
+  const armLength  = Math.round((ARM_SVG_X - SVG_W / 2) * svgScale);
+  const topLimit   = heroH * 0.18;
+  // bottomLimit = max Y position of the pill, ensuring description below still fits
+  const bottomLimit = heroH - (scoreGroupH - pillOffsetFromTop) - 20;
+  const scoreY     = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
   return { armLength, scoreY, infoBlockTop: Math.max(10, scoreY - PILL_OFFSET) };
 }
 
 export default function HomepageHero({ score, state }: { score: number; state: ScoreState }) {
   const heroRef       = useRef<HTMLDivElement>(null);
   const scoreGroupRef = useRef<HTMLDivElement>(null);
-  const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score, 240));
+  const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score, 240, 80));
 
   useEffect(() => {
     const update = () => {
       if (!heroRef.current) return;
-      const heroH       = heroRef.current.offsetHeight;
-      const scoreGroupH = scoreGroupRef.current?.offsetHeight ?? 240;
-      setLayout(calcLayout(heroH, score, scoreGroupH));
+      const heroH           = heroRef.current.offsetHeight;
+      const scoreGroupH     = scoreGroupRef.current?.offsetHeight ?? 240;
+      const pillOffsetFromTop =
+        scoreGroupRef.current?.querySelector<HTMLElement>(".pill")?.offsetTop ?? 80;
+      setLayout(calcLayout(heroH, score, scoreGroupH, pillOffsetFromTop));
     };
     update();
     window.addEventListener("resize", update);
@@ -59,7 +67,8 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       >
         <div className="score-num">{score}</div>
         <div className="score-lbl">Cycle Score</div>
-        <div className="status-pill" style={{ marginTop: "8px" }}>{state.label}</div>
+        {/* "pill" class used by querySelector to measure pill offset from block top */}
+        <div className="status-pill pill" style={{ marginTop: "8px" }}>{state.label}</div>
         <div className="status-desc" style={{ marginTop: "7px" }}>
           {descLines.map((line, i) => (
             <span key={i}>{line}{i < descLines.length - 1 && <br />}</span>
