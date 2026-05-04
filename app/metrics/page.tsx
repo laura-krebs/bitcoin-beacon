@@ -57,7 +57,7 @@ export default async function MetricsPage() {
       {/* SECTION LABEL */}
       <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, padding: "22px 48px" }}>
-          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", opacity: 0.45 }}>
+          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase" }}>
             The 9 Metrics
           </span>
         </div>
@@ -82,7 +82,7 @@ export default async function MetricsPage() {
                   borderBottom: row < 2 ? "0.8px solid #000" : undefined,
                 }}
               >
-                <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px", opacity: 0.4 }}>
+                <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px" }}>
                   {m.num}
                 </div>
                 <div style={{ fontSize: "15px", fontWeight: 500, marginBottom: "12px", letterSpacing: "-0.01em" }}>

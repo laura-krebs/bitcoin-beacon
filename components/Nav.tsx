@@ -32,7 +32,7 @@ export default function Nav() {
   }, [langOpen]);
 
   return (
-    <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "#F7931A" }}>
+    <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "transparent" }}>
       <Link href="/" style={{ fontSize: "11.55px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
         Bitcoin Beacon
       </Link>
@@ -40,7 +40,12 @@ export default function Nav() {
         {NAV_LINKS.map(({ href, label }) => {
           const active = pathname === href;
           return (
-            <Link key={href} href={href} style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", opacity: active ? 1 : 0.45 }}>
+            <Link
+              key={href}
+              href={href}
+              className="hover-muted"
+              style={{ fontSize: "11px", fontWeight: active ? 500 : 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}
+            >
               {label}
             </Link>
           );
@@ -48,14 +53,19 @@ export default function Nav() {
         <div ref={langRef} style={{ position: "relative", display: "flex", alignItems: "center" }}>
           <button
             onClick={() => setLangOpen(!langOpen)}
-            style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", opacity: 0.45, background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0, lineHeight: 1 }}
+            className="hover-muted"
+            style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0, lineHeight: 1 }}
           >
             EN ▾
           </button>
           {langOpen && (
             <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.8px solid #000", minWidth: "130px", zIndex: 100 }}>
               {LANGS.map((lang) => (
-                <div key={lang.code} style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default" }}>
+                <div
+                  key={lang.code}
+                  className={lang.available ? "hover-muted" : undefined}
+                  style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default" }}
+                >
                   {lang.label}
                 </div>
               ))}

@@ -10,7 +10,7 @@ const T = {
 
 export default function Footer() {
   return (
-    <footer style={{ borderTop: "0.8px solid #000" }}>
+    <footer style={{ borderTop: "0.8px solid rgba(0,0,0,0.15)" }}>
       <div
         style={{
           display: "grid",

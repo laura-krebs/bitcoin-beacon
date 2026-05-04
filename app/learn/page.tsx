@@ -45,7 +45,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 The score on Bitcoin Beacon is designed to give you a sense of where we currently are in that cycle.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.45 }}>Halving Timeline</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px" }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
           { year: "2016", label: "2nd Halving", muted: false },
@@ -83,7 +83,7 @@ Example: if you invest $100 every month for 24 months, some months you'll buy at
 DCA is widely considered the most sensible strategy for investing in Bitcoin. This is how serious long-term holders approach it. It removes emotion from the equation.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", opacity: 0.45 }}>DCA Example</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px" }}>DCA Example</div>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
@@ -196,7 +196,7 @@ export default function LearnPage() {
                 display: "block",
               }}
             >
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px", opacity: 0.38 }}>{item.num}</div>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px" }}>{item.num}</div>
               <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.4 }}>{item.title}</div>
             </a>
           ))}
@@ -213,7 +213,7 @@ export default function LearnPage() {
           <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
             {/* Col 1: section number + title */}
             <div style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px", opacity: 0.38 }}>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px" }}>
                 {section.num}
               </div>
               <div style={{ fontSize: "18px", fontWeight: 500, color: "#000", lineHeight: 1.3, letterSpacing: "-0.01em" }}>

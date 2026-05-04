@@ -54,9 +54,6 @@ export default async function HomePage() {
           <Link href="/learn" className="ilink">Learn more →</Link>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <span style={{ fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", color: "#000", fontFamily: F }}>
-            Real time data
-          </span>
           <a
             href="https://x.com/bitcoinbeacon"
             target="_blank"
