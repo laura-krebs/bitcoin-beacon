@@ -79,13 +79,17 @@ async function fetchCBBI(): Promise<CBBIData> {
 }
 
 async function fetchBTCPrice(): Promise<number> {
-  const url =
-    process.env.COINGECKO_URL ??
-    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
-  const res = await fetch(url, { next: { revalidate: 3600 } });
-  if (!res.ok) throw new Error("CoinGecko fetch failed");
+  const apiKey = process.env.COINMARKETCAP_API_KEY ?? "";
+  const res = await fetch(
+    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?id=1&convert=USD",
+    {
+      headers: { "X-CMC_PRO_API_KEY": apiKey },
+      next: { revalidate: 3600 },
+    }
+  );
+  if (!res.ok) throw new Error("CoinMarketCap fetch failed");
   const json = await res.json();
-  return json.bitcoin?.usd ?? 0;
+  return json.data?.["1"]?.quote?.USD?.price ?? 0;
 }
 
 async function fetchFearGreed(): Promise<FearGreedData> {

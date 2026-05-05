@@ -1,9 +1,14 @@
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
 const LBL_STYLE = { fontSize: "11px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase" as const, opacity: 0.45, marginBottom: "4px" };
+const SECTION_TITLE = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "8px", opacity: 0.45 };
 
-// CBBI has no label (section header "Data Source & Credits" covers it)
+const DATA_SOURCES = [
+  { value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
+  { value: "CoinMarketCap", href: "https://coinmarketcap.com" },
+  { value: "Fear & Greed Index by Alternative.me", href: "https://alternative.me/crypto/fear-and-greed-index" },
+];
+
 const CREDITS = [
-  { label: null, value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
   { label: "Created and designed by:", value: "@laurakrebs_", href: "https://x.com/laurakrebs_" },
   { label: "Built with:", value: "Claude by Anthropic", href: "https://anthropic.com" },
 ];
@@ -62,24 +67,42 @@ export default function AboutPage() {
       {/* BOTTOM ROW */}
       <section style={{ padding: "44px 0" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }}>
+
+          {/* Disclaimer */}
           <div>
-            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
-              Disclaimer
-            </div>
+            <div style={SECTION_TITLE}>Disclaimer</div>
             <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#000" }}>
               Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles.
             </p>
           </div>
 
-          {/* Credits — right-aligned, value is the link, no URL text */}
+          {/* Data Source & Credits */}
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "16px", opacity: 0.45 }}>
-              Data Source & Credits
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div style={SECTION_TITLE}>Data Source &amp; Credits</div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              {/* Data sources group */}
+              <div>
+                <div style={LBL_STYLE}>Data sources:</div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                  {DATA_SOURCES.map((s) => (
+                    <a
+                      key={s.value}
+                      href={s.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ fontSize: "12px", color: "#000", textDecoration: "none", borderBottom: "0.8px solid #000", lineHeight: 1.6, display: "inline-block" }}
+                    >
+                      {s.value}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Created by / Built with */}
               {CREDITS.map((c) => (
                 <div key={c.value}>
-                  {c.label && <div style={LBL_STYLE}>{c.label}</div>}
+                  <div style={LBL_STYLE}>{c.label}</div>
                   <a
                     href={c.href}
                     target="_blank"
@@ -92,6 +115,7 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
+
         </div>
       </section>
     </>
