@@ -44,7 +44,7 @@ export default async function MetricsPage() {
             { value: String(score), label: "Composite Score" },
             { value: state.label, label: "Current Signal" },
             { value: data.btcPrice > 0 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice) : "—", label: "BTC Price" },
-            { value: "Daily", label: "Update Frequency" },
+            { value: String(data.fearGreed.value), label: "Fear & Greed" },
           ].map((box, i) => (
             <div key={box.label} style={{ padding: "22px 28px", borderRight: i < 3 ? "0.8px solid #000" : undefined, paddingLeft: i === 0 ? 0 : undefined, paddingRight: i === 3 ? 0 : undefined }}>
               <div style={VAL}>{box.value}</div>

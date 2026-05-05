@@ -18,9 +18,12 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
-        <p style={{ fontSize: "13px", lineHeight: 1.7, color: "#000" }}>
-          With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
-        </p>
+        <div style={{ borderTop: "0.8px solid #000", paddingTop: "14px", marginTop: "4px" }}>
+          <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>Self-custody</div>
+          <p style={{ fontSize: "13px", lineHeight: 1.7, color: "#000" }}>
+            With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
+          </p>
+        </div>
       </div>
     ),
   },
@@ -146,7 +149,6 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Nostr", desc: "Open, decentralised communication using Lightning natively" },
           { label: "Going further", desc: "Liquid, Ark, Fedimint and others are extending Bitcoin's capabilities in payments, privacy, and custody." },
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
-          { label: "Self-custody", desc: "With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money." },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "18px" }}>
             <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px" }}>{item.label}</div>
