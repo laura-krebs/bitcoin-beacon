@@ -47,7 +47,7 @@ export default async function MetricsPage() {
             { value: String(data.fearGreed.value), label: "Fear & Greed", sub: data.fearGreed.classification },
           ].map((box, i) => (
             <div key={box.label} style={{ padding: "22px 28px", borderRight: i < 3 ? "0.8px solid #000" : undefined, paddingLeft: i === 0 ? 0 : undefined, paddingRight: i === 3 ? 0 : undefined }}>
-              <div style={VAL}>{box.value}{box.sub ? ` · ${box.sub}` : ""}</div>
+              <div style={VAL}>{box.value}{box.sub ? ` — ${box.sub}` : ""}</div>
               <div style={LBL}>{box.label}</div>
             </div>
           ))}
