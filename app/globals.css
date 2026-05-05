@@ -25,7 +25,7 @@ html, body {
 }
 /* Rays: pulse in sync */
 @keyframes rayPulse {
-  from { opacity: 0.60; }
+  from { opacity: 0.45; }
   to   { opacity: 1.0; }
 }
 .ray-group { animation: rayPulse 1.4s ease-in-out infinite alternate; }
