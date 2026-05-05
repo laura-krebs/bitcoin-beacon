@@ -12,7 +12,7 @@ There will only ever be 21 million Bitcoin. It's fixed. New Bitcoin is issued th
 
 Compare that to fiat currencies — printed at will by central banks, expanding the money supply whenever it suits policy and quietly diluting their value. The fiat system is a constant erosion of purchasing power. That makes Bitcoin the hardest money humanity has ever known — harder than gold, because you can't increase its supply, no matter how high the demand goes.
 
-Around 1.7 billion adults worldwide have no access to banking services. Bitcoin changes that. If you have internet access, you have access to Bitcoin — no application, no approval, no institution required. It doesn't matter where you were born or what your government thinks. For the first time in history, truly open and borderless money exists.`,
+Around 1.7 billion adults worldwide have no access to banking services. Bitcoin changes that. If you have internet access, you have access to Bitcoin. No application, no approval, no institution required. It doesn't matter where you were born. For the first time in history, truly open and borderless money exists.`,
     aside: (
       <div>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
@@ -133,7 +133,7 @@ Think of these metrics as a compass, not a GPS. They won't tell you the exact de
   {
     num: "06",
     title: "The technology and ecosystem",
-    body: `If you only look at Bitcoin's price, you're missing the point. Bitcoin is a protocol, like the internet. A base layer for value. A set of open rules that anyone can verify and build on.
+    body: `If you only look at Bitcoin's price, you're missing the point. Bitcoin is a protocol. Think of it the way you think about the internet — a base layer for value, a set of open rules that anyone can verify and build on.
 
 The blockchain is a public ledger that records every transaction ever made. It's maintained by thousands of independent computers (nodes) around the world. No single point of failure. No single point of control.
 
@@ -145,8 +145,8 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
         {[
           { label: "Lightning Network", desc: "Instant, low-cost payments on top of Bitcoin" },
           { label: "Nostr", desc: "Open, decentralised communication using Lightning natively" },
-          { label: "Self-custody", desc: "With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money." },
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
+          { label: "Self-custody", desc: "With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money." },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "18px" }}>
             <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px" }}>{item.label}</div>

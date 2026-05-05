@@ -67,7 +67,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         ref={scoreGroupRef}
         style={{ position: "absolute", top: `${infoBlockTop}px`, left: `calc(50% + ${armLength + 15}px)`, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "flex-start" }}
       >
-        <div className="score-num">{score} <span style={{ fontSize: "0.38em", letterSpacing: "0.02em", opacity: 0.35 }}>/ 100</span></div>
+        <div className="score-num">{score}</div>
         <div className="score-lbl">Cycle Score</div>
         {/* "pill" class used by querySelector to measure pill offset from block top */}
         <div className="status-pill pill" style={{ marginTop: "8px" }}>{state.label}</div>
