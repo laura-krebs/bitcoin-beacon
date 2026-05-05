@@ -24,7 +24,7 @@ html, body {
   50%       { opacity: 0.55; }
 }
 /* Rays: static, full opacity — no animation */
-.cone-line { animation: coneShimmer 1.8s ease-in-out infinite; }
+.cone-line { animation: coneShimmer 0.6s ease-in-out infinite; }
 
 /* ── SCORE ELEMENTS (no hover transitions) ───── */
 .score-num  { font-size:130px; font-weight:300; letter-spacing:-0.04em; color:#000; line-height:1; }

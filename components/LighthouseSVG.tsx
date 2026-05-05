@@ -67,7 +67,7 @@ export default function LighthouseSVG() {
             stroke="#000"
             strokeWidth={1.5}
             className="cone-line"
-            style={{ animationDelay: `${((11 - i) * 0.18).toFixed(2)}s` }}
+            style={{ animationDelay: `${((11 - i) * 0.06).toFixed(2)}s` }}
           />
         ))}
       </g>

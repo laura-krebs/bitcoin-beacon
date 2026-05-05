@@ -15,10 +15,10 @@ Compare that to fiat currencies — printed at will by central banks, expanding 
 Around 1.7 billion adults worldwide have no access to banking services. Bitcoin changes that. If you have internet access, you have access to Bitcoin. No application, no approval, no institution required. It doesn't matter where you were born. For the first time in history, truly open and borderless money exists.`,
     aside: (
       <div>
-        <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
+        <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "14px" }}>
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
-        <div style={{ borderTop: "0.8px solid #000", paddingTop: "14px", marginTop: "4px" }}>
+        <div style={{ borderTop: "0.8px solid #000", paddingTop: "14px" }}>
           <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>Self-custody</div>
           <p style={{ fontSize: "13px", lineHeight: 1.7, color: "#000" }}>
             With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
@@ -208,11 +208,11 @@ export default function LearnPage() {
       </div>
 
       {/* SECTIONS */}
-      {SECTIONS.map((section) => (
+      {SECTIONS.map((section, i) => (
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: "0.8px solid #000" }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined }}
         >
           <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
             {/* Col 1: section number + title */}

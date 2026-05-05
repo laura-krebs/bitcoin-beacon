@@ -41,13 +41,14 @@ export default async function MetricsPage() {
       <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
           {[
-            { value: String(score), label: "Composite Score" },
-            { value: state.label, label: "Current Signal" },
-            { value: data.btcPrice > 0 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice) : "—", label: "BTC Price" },
-            { value: String(data.fearGreed.value), label: "Fear & Greed" },
+            { value: `${score} / 100`, label: "Composite Score", sub: null },
+            { value: state.label, label: "Current Signal", sub: null },
+            { value: data.btcPrice > 0 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice) : "—", label: "BTC Price", sub: null },
+            { value: String(data.fearGreed.value), label: "Fear & Greed", sub: data.fearGreed.classification },
           ].map((box, i) => (
             <div key={box.label} style={{ padding: "22px 28px", borderRight: i < 3 ? "0.8px solid #000" : undefined, paddingLeft: i === 0 ? 0 : undefined, paddingRight: i === 3 ? 0 : undefined }}>
               <div style={VAL}>{box.value}</div>
+              {box.sub && <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.55, marginBottom: "4px" }}>{box.sub}</div>}
               <div style={LBL}>{box.label}</div>
             </div>
           ))}
@@ -63,8 +64,8 @@ export default async function MetricsPage() {
         </div>
       </div>
 
-      {/* METRICS GRID 3×3 */}
-      <div style={{ borderBottom: "0.8px solid #000" }}>
+      {/* METRICS GRID 3×3 — no borderBottom (footer provides the closing line) */}
+      <div>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
           {METRICS.map((m, i) => {
             const col = i % 3;
