@@ -48,25 +48,10 @@ export default async function HomePage() {
       </div>
 
       {/* ── INFO ROW ───────────────────────────────── */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
-        <div style={{ display: "flex", gap: "28px" }}>
-          <Link href="/metrics" className="ilink">What does this mean →</Link>
-          <Link href="/learn" className="ilink">Learn more →</Link>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <a
-            href="https://x.com/bitcoinbeacon"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover-muted"
-            style={{ display: "flex", alignItems: "center", gap: "7px", color: "#000", textDecoration: "none", fontSize: "11px", letterSpacing: "0.18em", textTransform: "uppercase", fontFamily: F }}
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-            Follow for daily cycle alerts →
-          </a>
-        </div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
+        <Link href="/metrics" className="ilink">What does this mean →</Link>
+        <Link href="/metrics" className="ilink" style={{ textAlign: "center" }}>How it&apos;s calculated →</Link>
+        <Link href="/learn" className="ilink" style={{ textAlign: "right" }}>Learn more →</Link>
       </div>
     </>
   );
