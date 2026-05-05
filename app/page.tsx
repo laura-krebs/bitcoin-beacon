@@ -48,10 +48,9 @@ export default async function HomePage() {
       </div>
 
       {/* ── INFO ROW ───────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
         <Link href="/metrics" className="ilink">What does this mean →</Link>
-        <Link href="/metrics" className="ilink" style={{ textAlign: "center" }}>How it&apos;s calculated →</Link>
-        <Link href="/learn" className="ilink" style={{ textAlign: "right" }}>Learn more →</Link>
+        <Link href="/learn" className="ilink">Learn more →</Link>
       </div>
     </>
   );
