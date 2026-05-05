@@ -1,16 +1,15 @@
 // FAROL_final.svg — paths split into animated rays and static tower body
 //
-// ray-group  → 12 arm/beam paths  → pulse 0.15–0.40 opacity
-// tower      → main body path     → static, full opacity
-// cone-lines → 12 horizontal bars → shimmer scans top→bottom with staggered delay
+// ray-group   → 12 arm/beam paths above dome → pulse 0.15–0.40 opacity
+// tower       → main body path               → static, full opacity
+// tower-lines → 12 horizontal bars           → shimmer scans top→bottom
 //
-// ClipPath polygon approximates the cone boundary formed by the outermost arms:
-//   upper-left (118,14) → upper-right (638,15) → right arm (746,253)
-//   → lower-right (681,422) → tower corners (479,434)↔(279,434)
-//   → lower-left (77,422) → left arm (12,253) → back
+// Tower body trapezoid (from M279.11,433.6 path geometry):
+//   left wall:  (279, 433) → (158, 1811)   [goes left as it descends]
+//   right wall: (479, 433) → (600, 1811)   [goes right as it descends]
 
-// 12 y-values evenly spaced from top of cone (y=15) to base (y=430)
-const CONE_Y = Array.from({ length: 12 }, (_, i) => 15 + (i / 11) * (430 - 15));
+// 12 y-values evenly spaced through tower body (y=433 to y=1810)
+const CONE_Y = Array.from({ length: 12 }, (_, i) => 433 + (i / 11) * (1810 - 433));
 
 export default function LighthouseSVG() {
   return (
@@ -30,9 +29,9 @@ export default function LighthouseSVG() {
       aria-hidden
     >
       <defs>
-        {/* Cone clipPath — octagonal boundary matching the outermost beam arms */}
+        {/* Tower body clipPath — trapezoid matching the two tapered wall lines below the platform */}
         <clipPath id="lighthouse-cone">
-          <polygon points="118,14 638,15 746,253 681,422 479,434 279,434 77,422 12,253" />
+          <polygon points="279,433 479,433 600,1811 158,1811" />
         </clipPath>
       </defs>
 
