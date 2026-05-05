@@ -10,7 +10,9 @@ Bitcoin was introduced in 2009 by Satoshi Nakamoto, an anonymous person or group
 
 There will only ever be 21 million Bitcoin. It's fixed. New Bitcoin is issued through a process called mining, where specialized computers secure the network and are rewarded with newly created coins. This issuance follows a predictable schedule and keeps decreasing over time, with the last Bitcoin expected to be mined around the year 2140.
 
-Compare that to fiat currencies — printed at will by central banks, expanding the money supply whenever it suits policy and quietly diluting their value. The fiat system is a constant erosion of purchasing power. That makes Bitcoin the hardest money humanity has ever known — harder than gold, because you can't increase its supply, no matter how high the demand goes. Scarce by design. Borderless by nature.`,
+Compare that to fiat currencies — printed at will by central banks, expanding the money supply whenever it suits policy and quietly diluting their value. The fiat system is a constant erosion of purchasing power. That makes Bitcoin the hardest money humanity has ever known — harder than gold, because you can't increase its supply, no matter how high the demand goes.
+
+Around 1.7 billion adults worldwide have no access to banking services. Bitcoin changes that. If you have internet access, you have access to Bitcoin — no application, no approval, no institution required. It doesn't matter where you were born or what your government thinks. For the first time in history, truly open and borderless money exists.`,
     aside: (
       <div>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
@@ -131,7 +133,7 @@ Think of these metrics as a compass, not a GPS. They won't tell you the exact de
   {
     num: "06",
     title: "The technology and ecosystem",
-    body: `If you only look at Bitcoin's price, you're missing the point. Bitcoin is a protocol — like the internet. A base layer for value. A set of open rules that anyone can verify and build on.
+    body: `If you only look at Bitcoin's price, you're missing the point. Bitcoin is a protocol, like the internet. A base layer for value. A set of open rules that anyone can verify and build on.
 
 The blockchain is a public ledger that records every transaction ever made. It's maintained by thousands of independent computers (nodes) around the world. No single point of failure. No single point of control.
 
@@ -143,7 +145,7 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
         {[
           { label: "Lightning Network", desc: "Instant, low-cost payments on top of Bitcoin" },
           { label: "Nostr", desc: "Open, decentralised communication using Lightning natively" },
-          { label: "Self-custody", desc: "Hold your own Bitcoin, take full sovereignty over your money" },
+          { label: "Self-custody", desc: "With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money." },
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "18px" }}>

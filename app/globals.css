@@ -25,10 +25,10 @@ html, body {
 }
 /* Rays: soft pulse in unison */
 @keyframes rayPulse {
-  from { opacity: 0.15; }
-  to   { opacity: 0.40; }
+  from { opacity: 0.10; }
+  to   { opacity: 0.65; }
 }
-.ray-group { animation: rayPulse 2.5s ease-in-out infinite alternate; }
+.ray-group { animation: rayPulse 1.8s ease-in-out infinite alternate; }
 .cone-line { animation: coneShimmer 2.5s ease-in-out infinite; }
 
 /* ── SCORE ELEMENTS (no hover transitions) ───── */

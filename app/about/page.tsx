@@ -9,8 +9,8 @@ const DATA_SOURCES = [
 ];
 
 const CREDITS = [
-  { label: "Created and designed by:", value: "@laurakrebs_", href: "https://x.com/laurakrebs_" },
-  { label: "Built with:", value: "Claude by Anthropic", href: "https://anthropic.com" },
+  { label: "Created and designed by", value: "@laurakrebs_", href: "https://x.com/laurakrebs_" },
+  { label: "Built with", value: "Claude by Anthropic", href: "https://anthropic.com" },
 ];
 
 const LINK = { fontSize: "12px", color: "#000", textDecoration: "none", lineHeight: 1.6 } as const;
@@ -55,7 +55,7 @@ export default function AboutPage() {
             {[
               "The biggest barrier to Bitcoin adoption isn't complexity — it's fear. If you don't have the confidence or context to know when it makes sense to get involved, you stay out entirely, and never get close to understanding the true depth of Bitcoin and its ecosystem.",
               "Good information exists. The on-chain data is public, the metrics are well-documented, and tools like CBBI have done serious work aggregating them. But most of these resources weren't built with the non-technical user in mind. They're dense, visually complex, and rarely explain what Bitcoin actually is and how it works.",
-              "Bitcoin Beacon started as a design problem. The goal was to take the CBBI and present it in the simplest, most accessible way possible — clean interface, plain language, one number that tells you where we are in the cycle, with enough context to actually understand Bitcoin.",
+              "Bitcoin Beacon started as a design problem. The goal was to take the CBBI and present it in the simplest, most accessible way possible. Clean interface, plain language, one number that tells you where we are in the cycle, with enough context to actually understand Bitcoin.",
               "The aim isn't to replace the original tools — it's to make them accessible. To meet you where you are, give you a clear starting point, and let curiosity do the rest. From DCA to self-custody to sovereignty, the path to understanding Bitcoin runs through confidence — and confidence starts with clarity.",
             ].map((para, i) => (
               <p key={i} style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "22px" }}>
