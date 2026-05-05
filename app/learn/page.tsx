@@ -18,10 +18,9 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "20px" }}>
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
-        <div style={{ borderTop: "0.8px solid #000", paddingTop: "16px" }}>
-          <div style={{ fontSize: "26px", fontWeight: 300, letterSpacing: "-0.02em" }}>2009</div>
-          <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "6px", opacity: 0.45 }}>Year Bitcoin Launched</div>
-        </div>
+        <p style={{ fontSize: "13px", lineHeight: 1.7, color: "#000" }}>
+          With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
+        </p>
       </div>
     ),
   },
@@ -145,6 +144,7 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
         {[
           { label: "Lightning Network", desc: "Instant, low-cost payments on top of Bitcoin" },
           { label: "Nostr", desc: "Open, decentralised communication using Lightning natively" },
+          { label: "Going further", desc: "Liquid, Ark, Fedimint and others are extending Bitcoin's capabilities in payments, privacy, and custody." },
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
           { label: "Self-custody", desc: "With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money." },
         ].map((item) => (

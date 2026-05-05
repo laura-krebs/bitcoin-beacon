@@ -31,7 +31,7 @@ export default async function HomePage() {
         </div>
         <div style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
-            {score} <span style={{ fontSize: "0.65em", opacity: 0.4 }}>/ 100</span>
+            {score} <span style={{ fontSize: "26px", fontWeight: 300, opacity: 0.4 }}>/ 100</span>
           </div>
           <div style={{ fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: 0.45, marginTop: "6px", fontFamily: F }}>
             CBBI Score

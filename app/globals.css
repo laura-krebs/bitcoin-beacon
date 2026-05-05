@@ -23,12 +23,7 @@ html, body {
   0%, 100% { opacity: 0.20; }
   50%       { opacity: 0.55; }
 }
-/* Rays: soft pulse in unison */
-@keyframes rayPulse {
-  from { opacity: 0.10; }
-  to   { opacity: 0.65; }
-}
-.ray-group { animation: rayPulse 1.4s ease-in-out infinite alternate; }
+/* Rays: static, full opacity — no animation */
 .cone-line { animation: coneShimmer 1.8s ease-in-out infinite; }
 
 /* ── SCORE ELEMENTS (no hover transitions) ───── */
