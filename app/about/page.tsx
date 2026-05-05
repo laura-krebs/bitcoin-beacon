@@ -25,7 +25,7 @@ export default function AboutPage() {
             Bitcoin education<br />for everyone
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            Most tools that track Bitcoin cycles and on-chain data weren&apos;t built with clarity in mind. Bitcoin Beacon started with a simple question: what would this look like if anyone could understand it — clean interface, fundamentals explained first.
+            Most tools that track Bitcoin cycles and on-chain data weren&apos;t built with clarity in mind. Bitcoin Beacon started with a simple question: what would this look like with a clean interface and fundamentals explained first, so anyone could understand it?
           </p>
         </div>
       </section>
@@ -81,14 +81,17 @@ export default function AboutPage() {
           {/* Credits — no title, no divider lines */}
           <div style={{ textAlign: "right" }}>
 
-            {/* Data sources on a single line */}
-            <div style={{ fontSize: "12px", marginBottom: "16px", lineHeight: 1.6 }}>
-              {DATA_SOURCES.map((s, i) => (
-                <span key={s.value}>
-                  <a href={s.href} target="_blank" rel="noopener noreferrer" style={LINK}>{s.value}</a>
-                  {i < DATA_SOURCES.length - 1 && <span style={{ opacity: 0.35 }}> · </span>}
-                </span>
-              ))}
+            {/* Data sources */}
+            <div style={{ marginBottom: "16px" }}>
+              <div style={SECTION_TITLE}>Data source</div>
+              <div style={{ fontSize: "12px", lineHeight: 1.6 }}>
+                {DATA_SOURCES.map((s, i) => (
+                  <span key={s.value}>
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" style={LINK}>{s.value}</a>
+                    {i < DATA_SOURCES.length - 1 && <span style={{ opacity: 0.35 }}> · </span>}
+                  </span>
+                ))}
+              </div>
             </div>
 
             {/* Created by / Built with */}
