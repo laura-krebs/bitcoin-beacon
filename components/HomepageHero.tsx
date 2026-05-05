@@ -24,7 +24,9 @@ function calcLayout(
   // bottomLimit = max Y position of the pill, ensuring description below still fits
   const bottomLimit = heroH - (scoreGroupH - pillOffsetFromTop) - 20;
   const scoreY     = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
-  return { armLength, scoreY, infoBlockTop: Math.max(10, scoreY - PILL_OFFSET) };
+  // Clamp so score number + label never clip at top (80px) or bottom (80px)
+  const infoBlockTop = Math.max(80, Math.min(heroH - 224, scoreY - PILL_OFFSET));
+  return { armLength, scoreY, infoBlockTop };
 }
 
 export default function HomepageHero({ score, state }: { score: number; state: ScoreState }) {

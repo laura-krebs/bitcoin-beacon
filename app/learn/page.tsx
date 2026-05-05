@@ -42,7 +42,7 @@ Why the volatility? Because the world is still waking up to what Bitcoin actuall
 
 This four-year rhythm is what most people mean when they talk about Bitcoin cycles. But there's an open question worth acknowledging: as Bitcoin matures, will the four-year cycle keep playing out the same way? Some analysts say growing institutional adoption and deeper liquidity may be smoothing the pattern — connecting Bitcoin's cycles less to the Halving and more to broader macroeconomic rhythms, which tend to run longer than four years. Either way, one thing remains clear: the fundamentals haven't changed, and the window to accumulate Bitcoin cheaply just gets smaller over time.
 
-The score on Bitcoin Beacon is designed to give you a sense of where we currently are in that cycle.`,
+The score on Bitcoin Beacon is designed to give you a sense of where we currently stand in the market cycle — however that cycle continues to evolve.`,
     aside: (
       <div>
         <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px" }}>Halving Timeline</div>

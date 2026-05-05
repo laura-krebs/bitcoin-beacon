@@ -20,8 +20,18 @@ export default function Footer() {
         }}
       >
         <span style={T}>Not financial advice. Educational purposes only.</span>
-        <span style={{ ...T, textAlign: "center" }}>© 2026 Bitcoin Beacon · All rights reserved</span>
-        <span style={{ ...T, textAlign: "right" }}>Source: CBBI · CoinGecko · Alternative.me</span>
+        <span style={{ ...T, textAlign: "center" }}>
+          © 2026 Bitcoin Beacon ·{" "}
+          <a
+            href="https://github.com/laura-krebs/bitcoin-beacon"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#000", textDecoration: "none" }}
+          >
+            Open Source
+          </a>
+        </span>
+        <span style={{ ...T, textAlign: "right" }}>Source: CBBI · CoinMarketCap · Alternative.me</span>
       </div>
     </footer>
   );

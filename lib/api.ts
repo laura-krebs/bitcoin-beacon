@@ -31,12 +31,11 @@ export interface ScoreState {
 }
 
 export const SCORE_STATES: ScoreState[] = [
-  { label: "STACK",         description: "Historically favorable<br>accumulation zone.",            range: [0,  20]  },
-  { label: "ACCUMULATE",    description: "Below mid-cycle.<br>Good time to keep<br>buying.",        range: [20, 40]  },
-  { label: "HODL",          description: "Mid-cycle. Keep<br>stacking and keep<br>holding.",        range: [40, 50]  },
-  { label: "HODL",          description: "Mid-cycle. No strong<br>signal. Keep<br>holding.",        range: [50, 60]  },
-  { label: "BULL MOMENTUM", description: "Cycle signals<br>building. Most holders<br>are in profit.", range: [60, 80] },
-  { label: "PEAK ZONE",     description: "Late cycle territory.<br>Proceed with<br>awareness.",     range: [80, 101] },
+  { label: "STACK",         description: "Historically, scores this low have been strong accumulation opportunities.", range: [0,  20]  },
+  { label: "ACCUMULATE",    description: "Low score range. Historically associated with favorable entry points.",       range: [20, 40]  },
+  { label: "HODL",          description: "No strong signal. Hold your position and keep a close eye on the score.",    range: [40, 60]  },
+  { label: "BULL MOMENTUM", description: "Score is rising. Historically associated with increasing market heat.",      range: [60, 80]  },
+  { label: "PEAK ZONE",     description: "High score range. Historically associated with cycle tops. Proceed with awareness.", range: [80, 101] },
 ];
 
 export function getScoreState(score: number): ScoreState {

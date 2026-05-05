@@ -12,10 +12,10 @@ const METRICS = [
   { num: "03", name: "Puell Multiple", desc: "Compares daily miner revenue to its annual average. High values = sell pressure.", url: "https://lookintobitcoin.com/charts/puell-multiple", source: "LookIntoBitcoin" },
   { num: "04", name: "Stock-to-Flow", desc: "Compares existing supply to new issuance rate. Models long-term price.", url: "https://lookintobitcoin.com/charts/stock-to-flow-model", source: "LookIntoBitcoin" },
   { num: "05", name: "2-Year MA Multiplier", desc: "Tracks price relative to 2-year moving average. Identifies macro extremes.", url: "https://lookintobitcoin.com/charts/bitcoin-investor-tool", source: "LookIntoBitcoin" },
-  { num: "06", name: "Trolololo Trend Line", desc: "Long-term logarithmic regression band. Flags deviation from trend.", url: "https://colintalkscrypto.com/cbbi", source: "CBBI" },
+  { num: "06", name: "Trolololo Trend Line", desc: "Long-term logarithmic regression band. Flags deviation from trend.", url: "https://www.blockchaincenter.net/bitcoin-rainbow-chart/", source: "BlockchainCenter" },
   { num: "07", name: "MVRV Z-Score", desc: "Market value vs realized value. High Z-score = market overheated.", url: "https://lookintobitcoin.com/charts/mvrv-zscore", source: "LookIntoBitcoin" },
   { num: "08", name: "Reserve Risk", desc: "Confidence of long-term holders vs current price. Low = good risk/reward.", url: "https://lookintobitcoin.com/charts/reserve-risk", source: "LookIntoBitcoin" },
-  { num: "09", name: "Woobull Tops", desc: "On-chain network valuation model tracking price deviation.", url: "https://colintalkscrypto.com/cbbi", source: "CBBI" },
+  { num: "09", name: "Woobull Tops", desc: "On-chain network valuation model tracking price deviation.", url: "https://woocharts.com/bitcoin-price-models/", source: "Woocharts" },
 ] as const;
 
 export default async function MetricsPage() {
@@ -32,7 +32,7 @@ export default async function MetricsPage() {
             9 on-chain metrics<br />One score
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            The CBBI aggregates nine independent on-chain metrics into a single composite score between 0 and 100. Each metric has historically shown predictive patterns near cycle tops and bottoms. No single metric is definitive — the composite is designed to reduce noise.
+            The CBBI aggregates nine independent on-chain metrics into a single composite score between 0 and 100. The higher the score, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate. Each metric has shown predictive patterns near cycle tops and bottoms. As Bitcoin matures and adoption grows, no single metric is definitive — but combined, they remain effective. The composite is designed to reduce noise.
           </p>
         </div>
       </section>
