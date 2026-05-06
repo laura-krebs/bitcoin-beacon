@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Schibsted_Grotesk } from "next/font/google";
+import { Space_Grotesk, Schibsted_Grotesk, Goudy_Bookletter_1911, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -13,6 +13,19 @@ const spaceGrotesk = Space_Grotesk({
 const schibstedGrotesk = Schibsted_Grotesk({
   subsets: ["latin"],
   variable: "--font-schibsted-grotesk",
+  display: "swap",
+});
+
+const goudyBookletter = Goudy_Bookletter_1911({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-goudy",
+  display: "swap",
+});
+
+const robotoMono = Roboto_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -48,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${schibstedGrotesk.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${schibstedGrotesk.variable} ${goudyBookletter.variable} ${robotoMono.variable}`}>
       <body>
         <Nav />
         <main>{children}</main>

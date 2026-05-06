@@ -44,7 +44,7 @@ export default function Nav() {
               key={href}
               href={href}
               className="hover-muted"
-              style={{ fontSize: "11px", fontWeight: active ? 500 : 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}
+              style={{ fontSize: "11px", fontWeight: active ? 500 : 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", fontFamily: "var(--font-mono), monospace" }}
             >
               {label}
             </Link>
@@ -54,7 +54,7 @@ export default function Nav() {
           <button
             onClick={() => setLangOpen(!langOpen)}
             className="hover-muted"
-            style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", background: "none", border: "none", cursor: "pointer", fontFamily: "inherit", padding: 0, lineHeight: 1 }}
+            style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono), monospace", padding: 0, lineHeight: 1 }}
           >
             EN ▾
           </button>
@@ -64,7 +64,7 @@ export default function Nav() {
                 <div
                   key={lang.code}
                   className={lang.available ? "hover-muted" : undefined}
-                  style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default" }}
+                  style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default", fontFamily: "var(--font-mono), monospace" }}
                 >
                   {lang.label}
                 </div>

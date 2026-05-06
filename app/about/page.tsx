@@ -1,6 +1,7 @@
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
-const LBL_STYLE = { fontSize: "11px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase" as const, opacity: 0.45, marginBottom: "4px" };
-const SECTION_TITLE = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "8px", opacity: 0.45 };
+const M = "var(--font-mono),monospace";
+const LBL_STYLE = { fontSize: "11px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase" as const, opacity: 0.45, marginBottom: "4px", fontFamily: M };
+const SECTION_TITLE = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "8px", opacity: 0.45, fontFamily: M };
 
 const DATA_SOURCES = [
   { value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
@@ -21,7 +22,7 @@ export default function AboutPage() {
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
-          <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.1, fontFamily: "var(--font-goudy), serif" }}>
             Bitcoin education<br />for everyone
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
@@ -45,6 +46,7 @@ export default function AboutPage() {
                   marginBottom: "40px",
                   opacity: 0.45,
                   lineHeight: 1.6,
+                  fontFamily: M,
                 }}
               >
                 {label}

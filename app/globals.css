@@ -18,18 +18,18 @@ html, body {
 .hero { position:relative; width:100%; height:720px; margin-top:-80px; overflow:visible; background:#F7931A; }
 
 /* ── SCORE ELEMENTS (no hover transitions) ───── */
-.score-num  { font-size:130px; font-weight:300; letter-spacing:-0.04em; color:#000; line-height:1; }
-.score-lbl  { font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#000; margin-top:2px; font-family:var(--font-space-grotesk),sans-serif; }
+.score-num  { font-size:130px; font-weight:300; letter-spacing:-0.06em; color:#000; line-height:1; }
+.score-lbl  { font-size:10px; font-weight:500; letter-spacing:0.22em; text-transform:uppercase; color:#000; margin-top:2px; font-family:var(--font-mono),monospace; }
 
 /* ── STATUS CTA ───────────────────────────────── */
-.status-pill { display:inline-block; border:0.8px solid #000; color:#000; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; white-space:nowrap; font-family:var(--font-space-grotesk),sans-serif; }
-.status-desc { font-size:12px; color:rgba(0,0,0,0.65); text-align:left; line-height:1.5; font-family:var(--font-space-grotesk),sans-serif; }
+.status-pill { display:inline-block; border:0.8px solid #000; color:#000; font-size:9px; font-weight:500; letter-spacing:0.2em; text-transform:uppercase; padding:5px 11px; width:fit-content; white-space:nowrap; font-family:var(--font-mono),monospace; }
+.status-desc { font-size:12px; color:rgba(0,0,0,0.65); text-align:left; line-height:1.5; font-family:var(--font-mono),monospace; }
 
 /* ── HERO TITLE — top-left, fixed position ────── */
-.hero-title { position:absolute; z-index:10; text-align:left; font-size:54px; font-weight:400; letter-spacing:-0.02em; color:#000; line-height:1.15; pointer-events:none; font-family:var(--font-schibsted-grotesk),sans-serif; }
+.hero-title { position:absolute; z-index:10; text-align:left; font-size:62px; font-weight:400; letter-spacing:-0.01em; color:#000; line-height:0.9; pointer-events:none; font-family:var(--font-goudy),serif; }
 
 /* ── BOTTOM BARS (homepage) ───────────────────── */
-.ilink { font-size:11px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#000; text-decoration:none; cursor:pointer; transition:opacity 0.2s; font-family:var(--font-space-grotesk),sans-serif; }
+.ilink { font-size:11px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:#000; text-decoration:none; cursor:pointer; transition:opacity 0.2s; font-family:var(--font-mono),monospace; }
 .ilink:hover { opacity: 0.55; }
 
 .hover-muted { transition: opacity 0.2s; }

@@ -3,7 +3,8 @@ import { fetchMarketData, getScoreState } from "@/lib/api";
 export const revalidate = 3600;
 
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
-const LBL = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, opacity: 0.5 };
+const M = "var(--font-mono),monospace";
+const LBL = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, opacity: 0.5, fontFamily: M };
 const VAL = { fontSize: "27px", fontWeight: 300, marginBottom: "6px" };
 
 const METRICS = [
@@ -28,7 +29,7 @@ export default async function MetricsPage() {
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
-          <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             9 on-chain metrics<br />One score
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
@@ -57,7 +58,7 @@ export default async function MetricsPage() {
       {/* SECTION LABEL */}
       <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, padding: "22px 48px" }}>
-          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase" }}>
+          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: M }}>
             The 9 Metrics
           </span>
         </div>
@@ -82,7 +83,7 @@ export default async function MetricsPage() {
                   borderBottom: row < 2 ? "0.8px solid #000" : undefined,
                 }}
               >
-                <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px" }}>
+                <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px", fontFamily: M }}>
                   {m.num}
                 </div>
                 <div style={{ fontSize: "15px", fontWeight: 500, marginBottom: "12px", letterSpacing: "-0.01em" }}>
@@ -92,14 +93,14 @@ export default async function MetricsPage() {
                   {m.desc}
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.4 }}>
+                  <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.4, fontFamily: M }}>
                     {m.source}
                   </span>
                   <a
                     href={m.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", textDecoration: "none", opacity: 0.6 }}
+                    style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", textDecoration: "none", opacity: 0.6, fontFamily: M }}
                   >
                     View chart →
                   </a>

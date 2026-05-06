@@ -1,4 +1,4 @@
-const F = "var(--font-space-grotesk),sans-serif";
+const F = "var(--font-mono),monospace";
 const T = {
   fontSize: "10px",
   letterSpacing: "0.13em",

@@ -19,7 +19,7 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
         <div style={{ borderTop: "0.8px solid #000", paddingTop: "24px" }}>
-          <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px" }}>Self-custody</div>
+          <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px", fontFamily: "var(--font-mono),monospace" }}>Self-custody</div>
           <p style={{ fontSize: "13px", lineHeight: 1.7, color: "#000" }}>
             With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
           </p>
@@ -49,7 +49,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 The score on Bitcoin Beacon is designed to give you a sense of where we currently stand in the market cycle — however that cycle continues to evolve.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px" }}>Halving Timeline</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-mono),monospace" }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
           { year: "2016", label: "2nd Halving", muted: false },
@@ -69,7 +69,7 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
             }}
           >
             <span style={{ fontSize: "14px", fontWeight: 300 }}>{h.year}</span>
-            <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em" }}>{h.label}</span>
+            <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", fontFamily: "var(--font-mono),monospace" }}>{h.label}</span>
           </div>
         ))}
       </div>
@@ -87,12 +87,12 @@ Example: if you invest $100 every month for 24 months, some months you'll buy at
 DCA is widely considered the most sensible strategy for investing in Bitcoin. This is how serious long-term holders approach it. It removes emotion from the equation.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px" }}>DCA Example</div>
+        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-mono),monospace" }}>DCA Example</div>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               {["Month", "Price", "Sats"].map((h) => (
-                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.8px solid #000", opacity: 0.45 }}>
+                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.8px solid #000", opacity: 0.45, fontFamily: "var(--font-mono),monospace" }}>
                   {h}
                 </th>
               ))}
@@ -151,7 +151,7 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "18px" }}>
-            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px" }}>{item.label}</div>
+            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px", fontFamily: "var(--font-mono),monospace" }}>{item.label}</div>
             <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.7 }}>{item.desc}</div>
           </div>
         ))}
@@ -175,7 +175,7 @@ export default function LearnPage() {
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
-          <h1 style={{ fontSize: "52px", fontWeight: 300, letterSpacing: "-0.03em", lineHeight: 1.05 }}>
+          <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             Understanding<br />Bitcoin
           </h1>
           <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
@@ -200,7 +200,7 @@ export default function LearnPage() {
                 display: "block",
               }}
             >
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px" }}>{item.num}</div>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px", fontFamily: "var(--font-mono),monospace" }}>{item.num}</div>
               <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.4 }}>{item.title}</div>
             </a>
           ))}
@@ -217,7 +217,7 @@ export default function LearnPage() {
           <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
             {/* Col 1: section number + title */}
             <div style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px" }}>
+              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px", fontFamily: "var(--font-mono),monospace" }}>
                 {section.num}
               </div>
               <div style={{ fontSize: "18px", fontWeight: 500, color: "#000", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
