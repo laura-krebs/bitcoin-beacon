@@ -20,12 +20,11 @@ function calcLayout(
 ): Layout {
   const svgScale   = heroH / SVG_H;
   const armLength  = Math.round((ARM_SVG_X - SVG_W / 2) * svgScale);
-  const topLimit   = heroH * 0.18;
+  const topLimit   = heroH * 0.25;
   // bottomLimit = max Y position of the pill, ensuring description below still fits
   const bottomLimit = heroH - (scoreGroupH - pillOffsetFromTop) - 20;
   const scoreY     = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
-  // Clamp so score number + label never clip at top (80px) or bottom (80px)
-  const infoBlockTop = Math.max(80, Math.min(heroH - 224, scoreY - PILL_OFFSET));
+  const infoBlockTop = Math.max(0, Math.min(heroH - 224, scoreY - PILL_OFFSET));
   return { armLength, scoreY, infoBlockTop };
 }
 

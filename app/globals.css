@@ -15,21 +15,7 @@ html, body {
 *:focus-visible { outline:0.8px solid #000; outline-offset:2px; }
 
 /* ── HERO ─────────────────────────────────────── */
-.hero { position:relative; width:100%; height:660px; overflow:visible; background:#F7931A; }
-
-/* ── LIGHTHOUSE ANIMATIONS ────────────────────── */
-/* Cone lines: shimmer band scans downward via staggered delay */
-@keyframes coneShimmer {
-  0%, 100% { opacity: 0.20; }
-  50%       { opacity: 0.33; }
-}
-/* Rays: pulse in sync */
-@keyframes rayPulse {
-  from { opacity: 0.45; }
-  to   { opacity: 1.0; }
-}
-.ray-group { animation: rayPulse 1.4s ease-in-out infinite alternate; }
-.cone-line { animation: coneShimmer 0.6s ease-in-out infinite; }
+.hero { position:relative; width:100%; height:720px; margin-top:-80px; overflow:visible; background:#F7931A; }
 
 /* ── SCORE ELEMENTS (no hover transitions) ───── */
 .score-num  { font-size:130px; font-weight:300; letter-spacing:-0.04em; color:#000; line-height:1; }
