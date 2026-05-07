@@ -4,8 +4,7 @@ import HomepageHero from "@/components/HomepageHero";
 
 export const revalidate = 3600;
 
-const F = "var(--font-space-grotesk),sans-serif"; // numbers
-const M = "var(--font-mono),monospace"; // labels
+const F = "var(--font-space-grotesk),sans-serif";
 
 function formatPrice(n: number) {
   return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
@@ -26,7 +25,7 @@ export default async function HomePage() {
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {data.btcPrice > 0 ? formatPrice(data.btcPrice) : "—"}
           </div>
-          <div style={{ fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: 0.45, marginTop: "6px", fontFamily: M }}>
+          <div style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: 0.55, marginTop: "6px", fontFamily: F }}>
             BTC Price
           </div>
         </div>
@@ -34,7 +33,7 @@ export default async function HomePage() {
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {score} <span style={{ fontSize: "26px", fontWeight: 300 }}>/ 100</span>
           </div>
-          <div style={{ fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: 0.45, marginTop: "6px", fontFamily: M }}>
+          <div style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: 0.55, marginTop: "6px", fontFamily: F }}>
             CBBI Score
           </div>
         </div>
@@ -42,7 +41,7 @@ export default async function HomePage() {
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {data.fearGreed.value} — {data.fearGreed.classification}
           </div>
-          <div style={{ fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: 0.45, marginTop: "6px", fontFamily: M }}>
+          <div style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: 0.55, marginTop: "6px", fontFamily: F }}>
             Fear & Greed
           </div>
         </div>

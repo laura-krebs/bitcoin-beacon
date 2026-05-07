@@ -1,7 +1,7 @@
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
-const M = "var(--font-mono),monospace";
-const LBL_STYLE = { fontSize: "11px", color: "#000", letterSpacing: "0.14em", textTransform: "uppercase" as const, opacity: 0.45, marginBottom: "4px", fontFamily: M };
-const SECTION_TITLE = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, marginBottom: "8px", opacity: 0.45, fontFamily: M };
+const M = "var(--font-space-grotesk),sans-serif";
+const LBL_STYLE = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, opacity: 0.55, marginBottom: "4px", fontFamily: M };
+const SECTION_TITLE = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, marginBottom: "8px", opacity: 0.55, fontFamily: M };
 
 const DATA_SOURCES = [
   { value: "CBBI", href: "https://colintalkscrypto.com/cbbi" },
@@ -25,7 +25,7 @@ export default function AboutPage() {
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.1, fontFamily: "var(--font-goudy), serif" }}>
             Bitcoin education<br />for everyone
           </h1>
-          <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+          <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
             Most tools that track Bitcoin cycles and on-chain data weren&apos;t built with clarity in mind. Bitcoin Beacon started with a simple question: what would this look like with a clean interface and fundamentals explained first, so anyone could understand it?
           </p>
         </div>
@@ -39,12 +39,13 @@ export default function AboutPage() {
               <div
                 key={label}
                 style={{
-                  fontSize: "11px",
+                  fontSize: "12px",
+                  fontWeight: 600,
                   color: "#000",
-                  letterSpacing: "0.18em",
+                  letterSpacing: "0.12em",
                   textTransform: "uppercase",
                   marginBottom: "40px",
-                  opacity: 0.45,
+                  opacity: 0.55,
                   lineHeight: 1.6,
                   fontFamily: M,
                 }}
@@ -60,7 +61,7 @@ export default function AboutPage() {
               "Bitcoin Beacon started as a design problem. The goal was to take the CBBI and present it in the simplest, most accessible way possible. Clean interface, plain language, one number that tells you where we are in the cycle, with enough context to actually understand Bitcoin.",
               "The aim isn't to replace the original tools. It's to make them accessible. To meet you where you are, give you a clear starting point, and let curiosity do the rest. From DCA to self-custody to sovereignty, the path to understanding Bitcoin runs through confidence — and confidence starts with clarity.",
             ].map((para, i) => (
-              <p key={i} style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "22px" }}>
+              <p key={i} style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", marginBottom: "22px" }}>
                 {para}
               </p>
             ))}
@@ -75,7 +76,7 @@ export default function AboutPage() {
           {/* Disclaimer */}
           <div>
             <div style={SECTION_TITLE}>Disclaimer</div>
-            <p style={{ fontSize: "14px", lineHeight: 1.9, color: "#000" }}>
+            <p style={{ fontSize: "12px", fontWeight: 400, lineHeight: 1.9, color: "#000" }}>
               Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles.
             </p>
           </div>

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Schibsted_Grotesk, Goudy_Bookletter_1911, Roboto_Mono } from "next/font/google";
+import { Space_Grotesk, Schibsted_Grotesk, Goudy_Bookletter_1911 } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -23,11 +23,6 @@ const goudyBookletter = Goudy_Bookletter_1911({
   display: "swap",
 });
 
-const robotoMono = Roboto_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   themeColor: "#F7931A",
@@ -61,7 +56,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${schibstedGrotesk.variable} ${goudyBookletter.variable} ${robotoMono.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${schibstedGrotesk.variable} ${goudyBookletter.variable}`}>
       <body>
         <Nav />
         <main>{children}</main>

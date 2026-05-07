@@ -1,10 +1,11 @@
-const F = "var(--font-mono),monospace";
+const F = "var(--font-space-grotesk),sans-serif";
 const T = {
-  fontSize: "10px",
-  letterSpacing: "0.13em",
+  fontSize: "11px",
+  fontWeight: 400,
+  letterSpacing: "0.18em",
   textTransform: "uppercase" as const,
   color: "#000" as const,
-  opacity: 0.45,
+  opacity: 0.55,
   fontFamily: F,
 };
 

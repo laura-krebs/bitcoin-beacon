@@ -3,14 +3,14 @@ import { fetchMarketData, getScoreState } from "@/lib/api";
 export const revalidate = 3600;
 
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
-const M = "var(--font-mono),monospace";
-const LBL = { fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase" as const, opacity: 0.5, fontFamily: M };
+const M = "var(--font-space-grotesk),sans-serif";
+const LBL = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, opacity: 0.55, fontFamily: M };
 const VAL = { fontSize: "27px", fontWeight: 300, marginBottom: "6px" };
 
 const METRICS = [
   { num: "01", name: "Pi Cycle Top", desc: "Tracks two moving averages. Historically signals cycle tops when they cross.", url: "https://lookintobitcoin.com/charts/pi-cycle-top-indicator", source: "LookIntoBitcoin" },
   { num: "02", name: "RUPL / NUPL", desc: "Measures unrealized profit/loss across all Bitcoin holders.", url: "https://lookintobitcoin.com/charts/relative-unrealized-profit--loss", source: "LookIntoBitcoin" },
-  { num: "03", name: "Puell Multiple", desc: "Compares daily miner revenue to its annual average. High values = sell pressure.", url: "https://lookintobitcoin.com/charts/puell-multiple", source: "LookIntoBitcoin" },
+  { num: "03", name: "Puell Multiple", desc: "Daily miner revenue x annual average. High values = sell pressure.", url: "https://lookintobitcoin.com/charts/puell-multiple", source: "LookIntoBitcoin" },
   { num: "04", name: "Stock-to-Flow", desc: "Compares existing supply to new issuance rate. Models long-term price.", url: "https://lookintobitcoin.com/charts/stock-to-flow-model", source: "LookIntoBitcoin" },
   { num: "05", name: "2-Year MA Multiplier", desc: "Tracks price relative to 2-year moving average. Identifies macro extremes.", url: "https://lookintobitcoin.com/charts/bitcoin-investor-tool", source: "LookIntoBitcoin" },
   { num: "06", name: "Trolololo Trend Line", desc: "Long-term logarithmic regression band. Flags deviation from trend.", url: "https://www.blockchaincenter.net/bitcoin-rainbow-chart/", source: "BlockchainCenter" },
@@ -30,10 +30,10 @@ export default async function MetricsPage() {
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
         <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
-            9 on-chain metrics<br />One score
+            Nine on-chain metrics<br />One score
           </h1>
-          <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            The CBBI aggregates nine independent on-chain metrics into a single composite score between 0 and 100. The higher the score, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate. Each metric has shown predictive patterns near cycle tops and bottoms. As Bitcoin matures and adoption grows, no single metric is definitive — but combined, they remain effective. The composite is designed to reduce noise.
+          <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+            The CBBI aggregates nine independent on-chain metrics<br />into a single composite score between 0 and 100. Each metric<br />has shown predictive patterns near cycle tops and bottoms.<br />As Bitcoin matures and adoption grows, no single metric<br />is definitive — but combined, they remain effective.<br />The composite is designed to reduce noise.
           </p>
         </div>
       </section>
@@ -58,7 +58,7 @@ export default async function MetricsPage() {
       {/* SECTION LABEL */}
       <div style={{ borderBottom: "0.8px solid #000" }}>
         <div style={{ ...C, padding: "22px 48px" }}>
-          <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.22em", textTransform: "uppercase", fontFamily: M }}>
+          <span style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: M }}>
             The 9 Metrics
           </span>
         </div>
@@ -83,24 +83,24 @@ export default async function MetricsPage() {
                   borderBottom: row < 2 ? "0.8px solid #000" : undefined,
                 }}
               >
-                <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.18em", marginBottom: "10px", fontFamily: M }}>
+                <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", marginBottom: "10px", fontFamily: M }}>
                   {m.num}
                 </div>
-                <div style={{ fontSize: "15px", fontWeight: 500, marginBottom: "12px", letterSpacing: "-0.01em" }}>
+                <div style={{ fontSize: "18px", fontWeight: 500, marginBottom: "12px", letterSpacing: "-0.01em" }}>
                   {m.name}
                 </div>
-                <p style={{ fontSize: "13px", lineHeight: 1.9, color: "#000", marginBottom: "14px" }}>
+                <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.8, color: "#000", marginBottom: "14px" }}>
                   {m.desc}
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", opacity: 0.4, fontFamily: M }}>
+                  <span style={{ fontSize: "12px", fontWeight: 400, color: "#000", letterSpacing: "0.12em", opacity: 0.55, fontFamily: M }}>
                     {m.source}
                   </span>
                   <a
                     href={m.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", textDecoration: "none", opacity: 0.6, fontFamily: M }}
+                    style={{ fontSize: "11px", color: "#000", letterSpacing: "0.12em", textDecoration: "none", opacity: 0.6, fontFamily: M }}
                   >
                     View chart →
                   </a>

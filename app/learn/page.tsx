@@ -19,8 +19,8 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
           "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
         </p>
         <div style={{ borderTop: "0.8px solid #000", paddingTop: "24px" }}>
-          <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px", fontFamily: "var(--font-mono),monospace" }}>Self-custody</div>
-          <p style={{ fontSize: "13px", lineHeight: 1.7, color: "#000" }}>
+          <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Self-custody</div>
+          <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#000" }}>
             With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
           </p>
         </div>
@@ -49,7 +49,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 The score on Bitcoin Beacon is designed to give you a sense of where we currently stand in the market cycle — however that cycle continues to evolve.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-mono),monospace" }}>Halving Timeline</div>
+        <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
           { year: "2016", label: "2nd Halving", muted: false },
@@ -65,11 +65,11 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
               alignItems: "baseline",
               padding: "9px 0",
               borderBottom: "0.8px solid #000",
-              opacity: h.muted ? 0.35 : 1,
+              opacity: h.muted ? 0.55 : 1,
             }}
           >
             <span style={{ fontSize: "14px", fontWeight: 300 }}>{h.year}</span>
-            <span style={{ fontSize: "11px", color: "#000", letterSpacing: "0.1em", fontFamily: "var(--font-mono),monospace" }}>{h.label}</span>
+            <span style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{h.label}</span>
           </div>
         ))}
       </div>
@@ -87,12 +87,12 @@ Example: if you invest $100 every month for 24 months, some months you'll buy at
 DCA is widely considered the most sensible strategy for investing in Bitcoin. This is how serious long-term holders approach it. It removes emotion from the equation.`,
     aside: (
       <div>
-        <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-mono),monospace" }}>DCA Example</div>
+        <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>DCA Example</div>
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr>
               {["Month", "Price", "Sats"].map((h) => (
-                <th key={h} style={{ fontSize: "10px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 400, borderBottom: "0.8px solid #000", opacity: 0.45, fontFamily: "var(--font-mono),monospace" }}>
+                <th key={h} style={{ fontSize: "11px", color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", textAlign: "left", padding: "5px 0", fontWeight: 600, borderBottom: "0.8px solid #000", opacity: 0.55, fontFamily: "var(--font-space-grotesk),sans-serif" }}>
                   {h}
                 </th>
               ))}
@@ -151,8 +151,8 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "18px" }}>
-            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px", fontFamily: "var(--font-mono),monospace" }}>{item.label}</div>
-            <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.7 }}>{item.desc}</div>
+            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.label}</div>
+            <div style={{ fontSize: "15px", color: "#000", lineHeight: 1.8 }}>{item.desc}</div>
           </div>
         ))}
       </div>
@@ -178,7 +178,7 @@ export default function LearnPage() {
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             Understanding<br />Bitcoin
           </h1>
-          <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+          <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
             Bitcoin can feel overwhelming at first. This page covers the core concepts. Just the foundations you need to understand what you&apos;re looking at and why it matters.
           </p>
         </div>
@@ -200,8 +200,8 @@ export default function LearnPage() {
                 display: "block",
               }}
             >
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", marginBottom: "8px", fontFamily: "var(--font-mono),monospace" }}>{item.num}</div>
-              <div style={{ fontSize: "13px", color: "#000", lineHeight: 1.4 }}>{item.title}</div>
+              <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", marginBottom: "8px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.num}</div>
+              <div style={{ fontSize: "15px", fontWeight: 500, color: "#000", lineHeight: 1.4 }}>{item.title}</div>
             </a>
           ))}
         </div>
@@ -217,7 +217,7 @@ export default function LearnPage() {
           <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
             {/* Col 1: section number + title */}
             <div style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
-              <div style={{ fontSize: "11px", color: "#000", letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "12px", fontFamily: "var(--font-mono),monospace" }}>
+              <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "12px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
                 {section.num}
               </div>
               <div style={{ fontSize: "18px", fontWeight: 500, color: "#000", lineHeight: 1.3, letterSpacing: "-0.01em" }}>
@@ -228,7 +228,7 @@ export default function LearnPage() {
             {/* Col 2: body */}
             <div style={{ padding: "44px 44px" }}>
               {section.body.split("\n\n").map((para, j) => (
-                <p key={j} style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "18px" }}>
+                <p key={j} style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", marginBottom: "18px" }}>
                   {para.trim()}
                 </p>
               ))}

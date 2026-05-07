@@ -33,7 +33,9 @@ export default function Nav() {
 
   return (
     <nav style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "transparent" }}>
-      <Link href="/" style={{ fontSize: "11.55px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none" }}>
+      <Link href="/" style={{ fontSize: "12.1px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/bitcoin-symbol.svg" alt="" aria-hidden style={{ height: "21px", width: "auto" }} />
         Bitcoin Beacon
       </Link>
       <div style={{ display: "flex", gap: "28px", alignItems: "center" }}>
@@ -44,7 +46,7 @@ export default function Nav() {
               key={href}
               href={href}
               className="hover-muted"
-              style={{ fontSize: "11px", fontWeight: active ? 500 : 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", fontFamily: "var(--font-mono), monospace" }}
+              style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", textDecoration: "none", fontFamily: "var(--font-space-grotesk), sans-serif" }}
             >
               {label}
             </Link>
@@ -54,7 +56,7 @@ export default function Nav() {
           <button
             onClick={() => setLangOpen(!langOpen)}
             className="hover-muted"
-            style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-mono), monospace", padding: 0, lineHeight: 1 }}
+            style={{ fontSize: "11px", fontWeight: 400, letterSpacing: "0.16em", textTransform: "uppercase", color: "#000", background: "none", border: "none", cursor: "pointer", fontFamily: "var(--font-space-grotesk), sans-serif", padding: 0, lineHeight: 1 }}
           >
             EN ▾
           </button>
@@ -64,7 +66,7 @@ export default function Nav() {
                 <div
                   key={lang.code}
                   className={lang.available ? "hover-muted" : undefined}
-                  style={{ padding: "10px 16px", fontSize: "11px", letterSpacing: "0.14em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default", fontFamily: "var(--font-mono), monospace" }}
+                  style={{ padding: "10px 16px", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default", fontFamily: "var(--font-space-grotesk), sans-serif" }}
                 >
                   {lang.label}
                 </div>
