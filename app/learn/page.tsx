@@ -23,6 +23,21 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
           <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#000" }}>
             With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
           </p>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/security.svg"
+            alt=""
+            aria-hidden
+            style={{
+              display: "block",
+              width: "300px",
+              height: "auto",
+              marginTop: "28px",
+              marginLeft: "auto",
+              transform: "translateX(calc(50vw - 463px))",
+              pointerEvents: "none",
+            }}
+          />
         </div>
       </div>
     ),
