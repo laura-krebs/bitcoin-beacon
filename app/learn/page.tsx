@@ -4,7 +4,7 @@ const SECTIONS = [
   {
     num: "01",
     title: "What is Bitcoin?",
-    body: `Bitcoin is the first form of money in history that no government, bank, or corporation can control. It's not just digital money — it's sovereign money. It runs on a decentralized network where thousands of independent participants control the rules. No single person or institution can change them unilaterally.
+    body: `Bitcoin is the first form of money in history that no government, bank, or corporation can control. To many, it's an asset, something to invest in. But Bitcoin is much more than that. It's not just digital money — it's sovereign money. It runs on a decentralized network where thousands of independent participants control the rules. No single person or institution can change them unilaterally.
 
 Bitcoin was introduced in 2009 by Satoshi Nakamoto, an anonymous person or group whose identity remains unknown to this day. Since then, it has proven itself as the most secure monetary network ever created — and one of the most valuable assets in the world.
 
@@ -212,9 +212,27 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative" }}
         >
-          <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px" }}>
+          {section.num === "01" && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src="/globe_new.svg"
+              alt=""
+              aria-hidden
+              style={{
+                position: "absolute",
+                left: "-220px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                width: "440px",
+                height: "auto",
+                zIndex: 0,
+                pointerEvents: "none",
+              }}
+            />
+          )}
+          <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px", position: "relative", zIndex: 1 }}>
             {/* Col 1: section number + title */}
             <div style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
               <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "12px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
