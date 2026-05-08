@@ -30,11 +30,11 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
             aria-hidden
             style={{
               display: "block",
-              width: "300px",
+              width: "400px",
               height: "auto",
               marginTop: "28px",
               marginLeft: "auto",
-              transform: "translateX(calc(50vw - 463px))",
+              transform: "translateX(calc(50vw - 428px))",
               pointerEvents: "none",
             }}
           />
@@ -227,7 +227,7 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative" }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative", overflowX: section.num === "01" ? "hidden" : undefined }}
         >
           {section.num === "01" && (
             // eslint-disable-next-line @next/next/no-img-element
