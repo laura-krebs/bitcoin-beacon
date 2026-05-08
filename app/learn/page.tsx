@@ -212,9 +212,8 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative" }}
         >
-          <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px", position: "relative" }}>
           {section.num === "01" && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -223,16 +222,17 @@ export default function LearnPage() {
               aria-hidden
               style={{
                 position: "absolute",
-                left: "calc(-50vw + 446px)",
+                left: "-220px",
                 top: "50%",
                 transform: "translateY(-50%)",
                 width: "440px",
                 height: "auto",
-                zIndex: -1,
+                zIndex: 0,
                 pointerEvents: "none",
               }}
             />
           )}
+          <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px", position: "relative", zIndex: 1 }}>
             {/* Col 1: section number + title */}
             <div style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
               <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "12px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
