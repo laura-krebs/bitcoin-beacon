@@ -222,7 +222,7 @@ export default function LearnPage() {
               aria-hidden
               style={{
                 position: "absolute",
-                left: "-220px",
+                left: "-210px",
                 top: "50%",
                 transform: "translateY(-50%)",
                 width: "440px",
