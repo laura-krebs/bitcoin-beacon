@@ -2,7 +2,7 @@ import { fetchMarketData, getScoreState } from "@/lib/api";
 
 export const revalidate = 3600;
 
-const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 32px" } as const;
 const M = "var(--font-space-grotesk),sans-serif";
 const LBL = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, opacity: 0.55, fontFamily: M };
 const VAL = { fontSize: "27px", fontWeight: 300, marginBottom: "6px" };
@@ -57,7 +57,7 @@ export default async function MetricsPage() {
 
       {/* SECTION LABEL */}
       <div style={{ borderBottom: "0.8px solid #000" }}>
-        <div style={{ ...C, padding: "22px 48px" }}>
+        <div style={{ ...C, padding: "22px 32px" }}>
           <span style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", fontFamily: M }}>
             The 9 Metrics
           </span>

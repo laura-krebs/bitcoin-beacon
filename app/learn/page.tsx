@@ -1,4 +1,4 @@
-const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 32px" } as const;
 
 const SECTIONS = [
   {

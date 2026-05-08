@@ -1,4 +1,4 @@
-const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 48px" } as const;
+const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 32px" } as const;
 const M = "var(--font-space-grotesk),sans-serif";
 const LBL_STYLE = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, opacity: 0.55, marginBottom: "4px", fontFamily: M };
 const SECTION_TITLE = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, marginBottom: "8px", opacity: 0.55, fontFamily: M };
