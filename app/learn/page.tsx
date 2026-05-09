@@ -48,7 +48,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 
 The score on Bitcoin Beacon is designed to give you a sense of where we currently stand in the market cycle — however that cycle continues to evolve.`,
     aside: (
-      <div>
+      <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
         <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
@@ -72,6 +72,23 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
             <span style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{h.label}</span>
           </div>
         ))}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/halving.svg"
+          alt=""
+          aria-hidden
+          style={{
+            display: "block",
+            width: "583px",
+            maxWidth: "none",
+            height: "auto",
+            marginTop: "auto",
+            marginBottom: "-45px",
+            marginLeft: "auto",
+            transform: "translateX(calc(50vw - 875px))",
+            pointerEvents: "none",
+          }}
+        />
       </div>
     ),
   },
@@ -178,7 +195,7 @@ export default function LearnPage() {
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             Understanding<br />Bitcoin
           </h1>
-          <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+          <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
             Bitcoin can feel overwhelming at first. This page covers the core concepts. Just the foundations you need to understand what you&apos;re looking at and why it matters.
           </p>
         </div>
@@ -212,20 +229,38 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative" }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative", overflowX: (section.num === "03" || section.num === "06") ? "hidden" : undefined }}
         >
-          {section.num === "01" && (
+          {section.num === "06" && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src="/globe_new.svg"
+              src="/tech.svg"
               alt=""
               aria-hidden
               style={{
                 position: "absolute",
-                left: "-210px",
+                left: "calc(50vw - 884px)",
+                top: "270px",
+                width: "505px",
+                maxWidth: "none",
+                height: "auto",
+                zIndex: 0,
+                pointerEvents: "none",
+              }}
+            />
+          )}
+          {section.num === "01" && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src="/what_is_new.svg"
+              alt=""
+              aria-hidden
+              style={{
+                position: "absolute",
+                left: "5px",
                 top: "50%",
-                transform: "translateY(-50%)",
-                width: "440px",
+                transform: "translateY(calc(-50% + 30px))",
+                width: "401px",
                 height: "auto",
                 zIndex: 0,
                 pointerEvents: "none",
@@ -246,7 +281,7 @@ export default function LearnPage() {
             {/* Col 2: body */}
             <div style={{ padding: "44px 44px" }}>
               {section.body.split("\n\n").map((para, j) => (
-                <p key={j} style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", marginBottom: "18px" }}>
+                <p key={j} style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", marginBottom: "18px" }}>
                   {para.trim()}
                 </p>
               ))}

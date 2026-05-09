@@ -1,7 +1,7 @@
 export default function LighthouseSVG() {
   return (
     <img
-      src="/beacon_new.svg"
+      src="/beacon_new2.svg"
       alt=""
       aria-hidden
       style={{

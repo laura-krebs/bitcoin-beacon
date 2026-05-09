@@ -14,7 +14,7 @@ interface Layout { armLength: number; scoreY: number; }
 function calcLayout(heroH: number, score: number): Layout {
   const svgScale    = heroH / SVG_H;
   const armLength   = Math.round((ARM_SVG_X - SVG_W / 2) * svgScale);
-  const topLimit    = heroH * 0.46;
+  const topLimit    = heroH * 0.46 + 175;
   const bottomLimit = heroH + 12;
   const scoreY      = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
   return { armLength, scoreY };
@@ -68,8 +68,8 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "62px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: "57.8px", color: "#000" }}>
           Where are we<br />in the cycle?
         </div>
-        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 300, lineHeight: 1.6, color: "#000", marginTop: "145px", marginBottom: 0 }}>
-          Follow Bitcoin&apos;s market cycle in real time.<br />The higher the score, the closer we likely<br />are to a cycle top. The lower the score,<br />the safer it historically has been to accumulate.<br />Bitcoin Beacon brings plain language and full<br />context, so anyone can understand what&apos;s behind<br />the most sound money ever created.
+        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "190px", marginBottom: 0 }}>
+          Follow Bitcoin&apos;s market cycle in real time.<br />The higher the score, the closer we likely<br />are to a cycle top. The lower the score,<br />the safer it historically has been to accumulate.
         </p>
       </div>
 

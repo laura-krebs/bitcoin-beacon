@@ -25,8 +25,8 @@ export default function AboutPage() {
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.1, fontFamily: "var(--font-goudy), serif" }}>
             Bitcoin education<br />for everyone
           </h1>
-          <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            Most tools that track Bitcoin cycles and on-chain data weren&apos;t built with clarity in mind. Bitcoin Beacon started with a simple question: what would this look like with a clean interface and fundamentals explained first, so anyone could understand it?
+          <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+            Most tools that track Bitcoin cycles and on-chain data weren&apos;t built with clarity in mind. Bitcoin Beacon brings plain language and full context, so anyone can understand what&apos;s behind the most sound money ever created.
           </p>
         </div>
       </section>
@@ -58,10 +58,10 @@ export default function AboutPage() {
             {[
               "The biggest barrier to Bitcoin adoption isn't complexity — it's fear. If you don't have the confidence or context to know when it makes sense to get involved, you stay out entirely, and never get close to understanding the true depth of Bitcoin and its ecosystem.",
               "Good information exists. The on-chain data is public, the metrics are well-documented, and tools like CBBI have done serious work aggregating them. But most of these resources weren't built with the non-technical user in mind. They're dense, visually complex, and rarely explain what Bitcoin actually is and how it works.",
-              "Bitcoin Beacon started as a design problem. The goal was to take the CBBI and present it in the simplest, most accessible way possible. Clean interface, plain language, one number that tells you where we are in the cycle, with enough context to actually understand Bitcoin.",
+              "Bitcoin Beacon started with a simple question: what would this look like with a clean interface and fundamentals explained first, so anyone could understand it? The goal was to take the CBBI and present it in the simplest, most accessible way possible. Clean interface, plain language, one number that tells you where we are in the cycle, with enough context to actually understand Bitcoin.",
               "The aim isn't to replace the original tools. It's to make them accessible. To meet you where you are, give you a clear starting point, and let curiosity do the rest. From DCA to self-custody to sovereignty, the path to understanding Bitcoin runs through confidence — and confidence starts with clarity.",
             ].map((para, i) => (
-              <p key={i} style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", marginBottom: "22px" }}>
+              <p key={i} style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", marginBottom: "22px" }}>
                 {para}
               </p>
             ))}
@@ -76,7 +76,7 @@ export default function AboutPage() {
           {/* Disclaimer */}
           <div>
             <div style={SECTION_TITLE}>Disclaimer</div>
-            <p style={{ fontSize: "12px", fontWeight: 400, lineHeight: 1.9, color: "#000" }}>
+            <p style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.9, color: "#000" }}>
               Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles.
             </p>
           </div>

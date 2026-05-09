@@ -32,7 +32,7 @@ export default async function MetricsPage() {
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             Nine on-chain metrics<br />One score
           </h1>
-          <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
+          <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
             The CBBI aggregates nine independent on-chain metrics<br />into a single composite score between 0 and 100. Each metric<br />has shown predictive patterns near cycle tops and bottoms.<br />As Bitcoin matures and adoption grows, no single metric<br />is definitive — but combined, they remain effective.<br />The composite is designed to reduce noise.
           </p>
         </div>
@@ -89,7 +89,7 @@ export default async function MetricsPage() {
                 <div style={{ fontSize: "18px", fontWeight: 500, marginBottom: "12px", letterSpacing: "-0.01em" }}>
                   {m.name}
                 </div>
-                <p style={{ fontSize: "17px", fontWeight: 300, lineHeight: 1.8, color: "#000", marginBottom: "14px" }}>
+                <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.8, color: "#000", marginBottom: "14px" }}>
                   {m.desc}
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
