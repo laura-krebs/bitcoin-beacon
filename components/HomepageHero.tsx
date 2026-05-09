@@ -57,8 +57,8 @@ export default function HomepageHero({ score, state }: { score: number; state: S
   const lineY     = scoreY - 50;
   const lineLeft  = `calc(50% - ${armLength}px - 5px)`;
   const lineWidth = `${2 * armLength}px`;
-  // Tooltip starts 3px to the right of the bounding box right edge (right edge = 50% + armLength - 5px)
-  const tooltipLeft = `calc(50% + ${armLength + 3}px)`;
+  // Tooltip starts 8px to the right of the bounding box right edge (right edge = 50% + armLength)
+  const tooltipLeft = `calc(50% + ${armLength - 17}px)`;
 
   return (
     <div className="hero" ref={heroRef}>
@@ -80,18 +80,20 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         onMouseLeave={handleLeave}
         style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "default" }}
       >
-        <div className="score-num" style={{ textAlign: "center", width: "100%", transform: "translateX(-5px)" }}>{formatScore(score)}</div>
-        <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px" }}>Cycle Score</div>
+        {/* Flanking lines centered on score number midpoint */}
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, marginRight: "-5px", transform: "translateX(-2px)" }} />
+          <div className="score-num" style={{ paddingRight: "8px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
+          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, marginLeft: "-5px", transform: "translateX(-2px)" }} />
+        </div>
+        <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px", transform: "translateX(-2px)" }}>Cycle Score</div>
       </div>
 
-      {/* Horizontal marker line */}
-      <div style={{ position: "absolute", top: `${lineY}px`, left: lineLeft, width: lineWidth, height: "0.8px", background: "#000", zIndex: 10, pointerEvents: "none" }} />
-
-      {/* Status tag — exactly MARKER_GAP px below the line */}
+      {/* Status tag — close to CYCLE SCORE label */}
       <div
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        style={{ position: "absolute", top: `${lineY + MARKER_GAP}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default" }}
+        style={{ position: "absolute", top: `${lineY - MARKER_GAP - 1}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default", transform: "translateX(-2px)" }}
       >
         <div className="score-lbl" style={{ fontWeight: 700 }}>{state.label}</div>
       </div>
@@ -99,7 +101,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       {/* Tooltip — fades in on hover, aligned with status tag */}
       <div style={{
         position: "absolute",
-        top: `${lineY}px`,
+        top: `${lineY - MARKER_GAP - groupH + 65}px`,
         transform: "translateY(-50%)",
         left: tooltipLeft,
         zIndex: 20,
