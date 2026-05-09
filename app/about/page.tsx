@@ -32,9 +32,14 @@ export default function AboutPage() {
       </section>
 
       {/* BODY */}
-      <section style={{ borderBottom: "0.8px solid #000", padding: "52px 0" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "64px" }}>
-          <div style={{ paddingTop: "4px" }}>
+      <section style={{ borderBottom: "0.8px solid #000", overflow: "hidden" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 200px 1fr", gap: "40px", alignItems: "stretch" }}>
+          {/* Illustration — bleeds off left viewport edge */}
+          <div style={{ display: "flex", alignItems: "center", transform: "translateX(calc(-50vw + 568px))" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/ideia.svg" alt="" aria-hidden style={{ height: "100%", width: "auto", maxWidth: "none", pointerEvents: "none", display: "block" }} />
+          </div>
+          <div style={{ paddingTop: "52px", paddingBottom: "52px" }}>
             {["The problem.", "The goal.", "The solution."].map((label) => (
               <div
                 key={label}
@@ -54,7 +59,7 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
-          <div>
+          <div style={{ paddingTop: "52px", paddingBottom: "52px" }}>
             {[
               "The biggest barrier to Bitcoin adoption isn't complexity — it's fear. If you don't have the confidence or context to know when it makes sense to get involved, you stay out entirely, and never get close to understanding the true depth of Bitcoin and its ecosystem.",
               "Good information exists. The on-chain data is public, the metrics are well-documented, and tools like CBBI have done serious work aggregating them. But most of these resources weren't built with the non-technical user in mind. They're dense, visually complex, and rarely explain what Bitcoin actually is and how it works.",
