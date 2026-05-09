@@ -167,8 +167,8 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Going further", desc: "Liquid, Ark, Fedimint and others are extending Bitcoin's capabilities in payments, privacy, and custody." },
           { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
         ].map((item) => (
-          <div key={item.label} style={{ marginBottom: "18px" }}>
-            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "5px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.label}</div>
+          <div key={item.label} style={{ marginBottom: "32px" }}>
+            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "10px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.label}</div>
             <div style={{ fontSize: "15px", color: "#000", lineHeight: 1.8 }}>{item.desc}</div>
           </div>
         ))}
