@@ -252,7 +252,7 @@ export default function LearnPage() {
           {section.num === "01" && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src="/what_is_new.svg"
+              src="/what_is_2.svg"
               alt=""
               aria-hidden
               style={{
