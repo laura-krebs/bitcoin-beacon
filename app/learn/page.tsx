@@ -252,15 +252,15 @@ export default function LearnPage() {
           {section.num === "01" && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src="/what_is_2.svg"
+              src="/what_is_3.svg"
               alt=""
               aria-hidden
               style={{
                 position: "absolute",
                 left: "5px",
                 top: "50%",
-                transform: "translateY(calc(-50% + 30px))",
-                width: "401px",
+                transform: "translateY(calc(-50% + 37px))",
+                width: "483px",
                 height: "auto",
                 zIndex: 0,
                 pointerEvents: "none",
