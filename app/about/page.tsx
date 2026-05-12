@@ -1,3 +1,5 @@
+import BackToTop from "@/components/BackToTop";
+
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 32px" } as const;
 const M = "var(--font-space-grotesk),sans-serif";
 const LBL_STYLE = { fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase" as const, opacity: 0.55, marginBottom: "4px", fontFamily: M };
@@ -32,13 +34,13 @@ export default function AboutPage() {
       </section>
 
       {/* BODY */}
-      <section style={{ borderBottom: "0.8px solid #000", overflow: "hidden" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 200px 1fr", gap: "40px", alignItems: "stretch" }}>
-          {/* Illustration — bleeds off left viewport edge */}
-          <div style={{ display: "flex", alignItems: "center", transform: "translateX(calc(-50vw + 568px))" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/ideia.svg" alt="" aria-hidden style={{ height: "100%", width: "auto", maxWidth: "none", pointerEvents: "none", display: "block" }} />
-          </div>
+      <section style={{ borderBottom: "0.8px solid #000", overflow: "hidden", position: "relative" }}>
+        {/* Illustration — absolutely positioned at left viewport edge, out of grid flow */}
+        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, display: "flex", alignItems: "center" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/ideia_new.svg" alt="" aria-hidden style={{ height: "100%", width: "auto", maxWidth: "none", pointerEvents: "none", display: "block" }} />
+        </div>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "40px", alignItems: "stretch" }}>
           <div style={{ paddingTop: "52px", paddingBottom: "52px" }}>
             {["The problem.", "The goal.", "The solution."].map((label) => (
               <div
@@ -63,8 +65,7 @@ export default function AboutPage() {
             {[
               "The biggest barrier to Bitcoin adoption isn't complexity — it's fear. If you don't have the confidence or context to know when it makes sense to get involved, you stay out entirely, and never get close to understanding the true depth of Bitcoin and its ecosystem.",
               "Good information exists. The on-chain data is public, the metrics are well-documented, and tools like CBBI have done serious work aggregating them. But most of these resources weren't built with the non-technical user in mind. They're dense, visually complex, and rarely explain what Bitcoin actually is and how it works.",
-              "Bitcoin Beacon started with a simple question: what would this look like with a clean interface and fundamentals explained first, so anyone could understand it? The goal was to take the CBBI and present it in the simplest, most accessible way possible. Clean interface, plain language, one number that tells you where we are in the cycle, with enough context to actually understand Bitcoin.",
-              "The aim isn't to replace the original tools. It's to make them accessible. To meet you where you are, give you a clear starting point, and let curiosity do the rest. From DCA to self-custody to sovereignty, the path to understanding Bitcoin runs through confidence — and confidence starts with clarity.",
+              "Bitcoin Beacon started with a simple question: what would this look like with a clean interface and fundamentals explained first, so anyone could understand what they're looking at? The goal was to take the CBBI and present it in the simplest, most accessible way possible. Plain language, and one number that tells you where we are in the cycle, with enough context to actually understand it.",
             ].map((para, i) => (
               <p key={i} style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", marginBottom: "22px" }}>
                 {para}
@@ -76,13 +77,13 @@ export default function AboutPage() {
 
       {/* BOTTOM ROW */}
       <section style={{ padding: "44px 0" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }}>
+        <div style={{ ...C, display: "grid", gridTemplateColumns: "2fr 1fr", gap: "64px" }}>
 
           {/* Disclaimer */}
           <div>
             <div style={SECTION_TITLE}>Disclaimer</div>
             <p style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.9, color: "#000" }}>
-              Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles.
+              Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended<br />to help people understand Bitcoin and long-term market cycles.
             </p>
           </div>
 
@@ -117,6 +118,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <BackToTop />
     </>
   );
 }

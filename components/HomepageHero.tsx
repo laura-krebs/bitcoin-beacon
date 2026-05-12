@@ -64,12 +64,12 @@ export default function HomepageHero({ score, state }: { score: number; state: S
     <div className="hero" ref={heroRef}>
       <LighthouseSVG />
 
-      <div style={{ position: "absolute", top: "190px", left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: "420px" }}>
+      <div style={{ position: "absolute", top: "384px", left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: "420px" }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "62px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: "57.8px", color: "#000" }}>
           Where are we<br />in the cycle?
         </div>
-        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "190px", marginBottom: 0 }}>
-          Follow Bitcoin&apos;s market cycle in real time.<br />The higher the score, the closer we likely<br />are to a cycle top. The lower the score,<br />the safer it historically has been to accumulate.
+        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0 }}>
+          Follow Bitcoin&apos;s market cycle with real time data. The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
         </p>
       </div>
 
@@ -81,10 +81,10 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "default" }}
       >
         {/* Flanking lines centered on score number midpoint */}
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, marginRight: "-5px", transform: "translateX(-2px)" }} />
-          <div className="score-num" style={{ paddingRight: "8px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
-          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, marginLeft: "-5px", transform: "translateX(-2px)" }} />
+        <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
+          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, transform: "translateX(-2px)" }} />
+          <div className="score-num" style={{ paddingRight: "4px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
+          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, transform: "translateX(-2px)" }} />
         </div>
         <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px", transform: "translateX(-2px)" }}>Cycle Score</div>
       </div>
@@ -101,7 +101,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       {/* Tooltip — fades in on hover, aligned with status tag */}
       <div style={{
         position: "absolute",
-        top: `${lineY - MARKER_GAP - groupH + 65}px`,
+        top: `${lineY - MARKER_GAP - groupH + 32}px`,
         transform: "translateY(-50%)",
         left: tooltipLeft,
         zIndex: 20,

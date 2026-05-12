@@ -1,3 +1,5 @@
+import BackToTop from "@/components/BackToTop";
+
 const C = { maxWidth: "1200px", margin: "0 auto", padding: "0 32px" } as const;
 
 const SECTIONS = [
@@ -97,9 +99,9 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
     title: "What is DCA?",
     body: `DCA stands for Dollar-Cost Averaging. It means investing a fixed amount on a regular schedule, regardless of the price.
 
-Trying to time Bitcoin is a losing game for most people. So you buy consistently instead. When the price is low, your fixed amount buys more Bitcoin. When it's high, it buys less. Over time, your average purchase price smooths out.
+Trying to time Bitcoin is a losing game for most people. So you buy consistently instead. Example: if you invest $100 every month for 24 months, some months you'll buy at $60k per Bitcoin, some at $70k, some at $50k. Your average cost will reflect the range, not the worst moment.
 
-Example: if you invest $100 every month for 24 months, some months you'll buy at $60k per Bitcoin, some at $70k, some at $50k. Your average cost will reflect the range, not the worst moment.
+There's also Dynamic DCA — instead of a fixed amount, you invest more when prices are low and less when they're high, adjusting by signal or price level. It takes more discipline, but can improve your average entry over time.
 
 DCA is widely considered the most sensible strategy for investing in Bitcoin. This is how serious long-term holders approach it. It removes emotion from the equation.`,
     aside: (
@@ -165,7 +167,7 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Lightning Network", desc: "Instant, low-cost payments on top of Bitcoin" },
           { label: "Nostr", desc: "Open, decentralised communication using Lightning natively" },
           { label: "Going further", desc: "Liquid, Ark, Fedimint and others are extending Bitcoin's capabilities in payments, privacy, and custody." },
-          { label: "Open source", desc: "The code is public, auditable, maintained by a global community" },
+          { label: "Open source", desc: "The code is public, auditable, and maintained by a global community." },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "32px" }}>
             <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "10px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.label}</div>
@@ -196,7 +198,7 @@ export default function LearnPage() {
             Understanding<br />Bitcoin
           </h1>
           <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            Bitcoin can feel overwhelming at first. This page covers the core concepts. Just the foundations you need to understand what you&apos;re looking at and why it matters.
+            Getting into Bitcoin means navigating a lot of information. This page covers the core concepts — the foundations you need to understand what you&apos;re looking at, why cycles matter, and how to make sense of the signals.
           </p>
         </div>
       </section>
@@ -229,7 +231,7 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative", overflowX: (section.num === "03" || section.num === "06") ? "hidden" : undefined }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative", overflowX: section.num === "03" ? "clip" : undefined }}
         >
           {section.num === "06" && (
             // eslint-disable-next-line @next/next/no-img-element
@@ -257,10 +259,10 @@ export default function LearnPage() {
               aria-hidden
               style={{
                 position: "absolute",
-                left: "5px",
+                left: "-2px",
                 top: "50%",
-                transform: "translateY(calc(-50% + 37px))",
-                width: "483px",
+                transform: "translateY(calc(-50% + 32px))",
+                width: "488px",
                 height: "auto",
                 zIndex: 0,
                 pointerEvents: "none",
@@ -294,6 +296,7 @@ export default function LearnPage() {
           </div>
         </div>
       ))}
+      <BackToTop />
     </>
   );
 }

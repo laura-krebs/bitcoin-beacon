@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, Schibsted_Grotesk, Goudy_Bookletter_1911 } from "next/font/google";
+import { Space_Grotesk, Schibsted_Grotesk, Goudy_Bookletter_1911, Quicksand } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -20,6 +20,12 @@ const goudyBookletter = Goudy_Bookletter_1911({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-goudy",
+  display: "swap",
+});
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+  variable: "--font-quicksand",
   display: "swap",
 });
 
@@ -56,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${schibstedGrotesk.variable} ${goudyBookletter.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${schibstedGrotesk.variable} ${goudyBookletter.variable} ${quicksand.variable}`}>
       <body>
         <Nav />
         <main>{children}</main>

@@ -1,8 +1,8 @@
 const F = "var(--font-space-grotesk),sans-serif";
 const T = {
-  fontSize: "11px",
+  fontSize: "10px",
   fontWeight: 400,
-  letterSpacing: "0.18em",
+  letterSpacing: "0.12em",
   textTransform: "uppercase" as const,
   color: "#000" as const,
   opacity: 0.55,
