@@ -16,7 +16,9 @@ function calcLayout(heroH: number, score: number): Layout {
   const armLength   = Math.round((ARM_SVG_X - SVG_W / 2) * svgScale);
   const topLimit    = heroH * 0.46 + 175;
   const bottomLimit = heroH + 12;
-  const scoreY      = Math.round(bottomLimit - (score / 100) * (bottomLimit - topLimit));
+  const score1Y     = bottomLimit - 0.01 * (bottomLimit - topLimit) + 10;
+  const score100Y   = topLimit - 52;
+  const scoreY      = Math.round(score1Y + ((score - 1) / 99) * (score100Y - score1Y));
   return { armLength, scoreY };
 }
 
@@ -82,9 +84,9 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       >
         {/* Flanking lines centered on score number midpoint */}
         <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
-          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, transform: "translateX(-2px)" }} />
+          <div className="line-left" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
           <div className="score-num" style={{ paddingRight: "4px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
-          <div style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0, transform: "translateX(-2px)" }} />
+          <div className="line-right" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
         </div>
         <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px", transform: "translateX(-2px)" }}>Cycle Score</div>
       </div>
