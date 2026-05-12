@@ -17,11 +17,12 @@ Compare that to fiat currencies — printed at will by central banks, expanding 
 Around 1.7 billion adults worldwide have no access to banking services. Bitcoin changes that. If you have internet access, you have access to Bitcoin. No application, no approval, no institution required. It doesn't matter where you were born. For the first time in history, truly open and borderless money exists.`,
     aside: (
       <div>
+        <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Supply</div>
         <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000", marginBottom: "24px" }}>
-          "Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined."
+          Only 21 million Bitcoin will ever exist. Around 19.8 million have already been mined.
         </p>
-        <div style={{ borderTop: "0.8px solid #000", paddingTop: "24px" }}>
-          <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "6px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Self-custody</div>
+        <div style={{ paddingTop: "24px" }}>
+          <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Self-custody</div>
           <p style={{ fontSize: "15px", lineHeight: 1.8, color: "#000" }}>
             With Bitcoin, you can be your own bank. When you hold Bitcoin in self-custody, controlling your own private keys, no one can freeze your funds or block a transaction. You take full sovereignty over your money.
           </p>
@@ -36,9 +37,10 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
 
 Why the volatility? Because the world is still waking up to what Bitcoin actually is. As adoption increases — from individuals to institutions to nation-states — liquidity deepens, and volatility gradually compresses. That's already happening, cycle after cycle.`,
     aside: (
-      <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000" }}>
-        "Every bear market low has been higher than the previous cycle's low. Long-term holders have never lost money holding through a full cycle."
-      </p>
+      <div>
+        <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Stack and HODL</div>
+        <div style={{ fontSize: "15px", color: "#000", lineHeight: 1.8 }}>HODL started as a typo for &ldquo;hold&rdquo; in a 2013 Bitcoin forum post, and stuck. It became a philosophy: don&apos;t panic sell. Buy consistently, hold through the cycles. Long-term, the direction has only ever gone one way.</div>
+      </div>
     ),
   },
   {
@@ -146,9 +148,12 @@ None of these metrics are perfect. But combined, they form a clearer picture tha
 
 Think of these metrics as a compass, not a GPS. They won't tell you the exact destination, but they'll keep you from getting lost.`,
     aside: (
-      <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000" }}>
-        "A risk score is not a price prediction. It reflects historical patterns, not certainty about the future."
-      </p>
+      <div>
+        <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Risk Score</div>
+        <p style={{ fontSize: "15px", lineHeight: 1.9, color: "#000" }}>
+          A risk score is not a price prediction. It reflects historical patterns, not certainty about the future.
+        </p>
+      </div>
     ),
   },
   {
@@ -170,7 +175,7 @@ Understanding this layer matters, because once you see Bitcoin as infrastructure
           { label: "Open source", desc: "The code is public, auditable, and maintained by a global community." },
         ].map((item) => (
           <div key={item.label} style={{ marginBottom: "32px" }}>
-            <div style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "10px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.label}</div>
+            <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{item.label}</div>
             <div style={{ fontSize: "15px", color: "#000", lineHeight: 1.8 }}>{item.desc}</div>
           </div>
         ))}
