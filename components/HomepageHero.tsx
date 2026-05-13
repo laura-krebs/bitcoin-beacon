@@ -32,10 +32,14 @@ export default function HomepageHero({ score, state }: { score: number; state: S
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
   const [groupH, setGroupH] = useState(148);
   const [popupOpen, setPopupOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 1440
+  );
 
   useEffect(() => {
     const update = () => {
       if (!heroRef.current) return;
+      setWindowWidth(window.innerWidth);
       setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
       setLayout(calcLayout(heroRef.current.offsetHeight, score));
     };
@@ -44,9 +48,12 @@ export default function HomepageHero({ score, state }: { score: number; state: S
     return () => window.removeEventListener("resize", update);
   }, [score]);
 
+  const isMobile = windowWidth < 768;
   const { armLength, scoreY } = layout;
   const lineY    = scoreY - 50;
-  const lineLeft = `calc(50% - ${armLength}px - 5px)`;
+  const lineLeft = isMobile
+    ? `calc(50% - ${armLength}px)`
+    : `calc(50% - ${armLength}px - 5px)`;
   const lineWidth = `${2 * armLength}px`;
 
   return (
@@ -69,7 +76,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer" }}
       >
         {/* Flanking lines centered on score number midpoint */}
-        <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
+        <div className="score-lines-row" style={{ display: "flex", alignItems: "center", gap: "30px" }}>
           <div className="line-left" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
           <div className="score-num" style={{ paddingRight: "4px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
           <div className="line-right" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />

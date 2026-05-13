@@ -154,7 +154,7 @@ html, body {
   .lighthouse-img {
     position: relative !important;
     display: block !important;
-    width: calc(129.21vw + 76.34px) !important;
+    width: calc(116.09vw + 177.11px) !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
     height: auto !important;
@@ -163,9 +163,11 @@ html, body {
   }
   /* Bitcoin symbol: black when SVG is full width */
   .bitcoin-symbol-svg { fill: #000 !important; }
-  /* Score scales with SVG: same size at 768px, 10% larger minimum at 320px */
-  .score-num { font-size: calc(7.74vw + 4.57px) !important; }
-  .score-lbl { font-size: calc(1.45vw + 0.84px) !important; }
+  /* Score scales with SVG: same size at 768px, 12% larger minimum at 320px */
+  .score-num { font-size: calc(6.21vw + 16.31px) !important; }
+  .score-lbl { font-size: calc(1.165vw + 3.05px) !important; }
+  /* Marker lines scale with score block */
+  .line-left, .line-right { width: calc(-1.18vw + 53.06px) !important; }
   /* Show mobile sections */
   .mobile-hero-title-section { display: block !important; }
   /* Hide desktop text overlay (title lives in off-white section on mobile) */
@@ -177,7 +179,7 @@ html, body {
 
 /* ── HOMEPAGE METRICS BAR RESPONSIVE ────────────── */
 @media (max-width: 768px) {
-  .homepage-metrics-bar { grid-template-columns: 1fr 1fr !important; }
+  .homepage-metrics-bar { grid-template-columns: calc(50% - 20px) calc(50% + 20px) !important; }
 
   /* Row 1: BTC Price | CBBI Score */
   .metrics-bar-btc { padding: 16px 20px !important; border-bottom: 0.8px solid #000; }

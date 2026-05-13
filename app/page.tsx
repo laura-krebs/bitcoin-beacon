@@ -18,7 +18,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Mobile-only: title in off-white area ABOVE beacon */}
-      <div className="mobile-hero-offwhite-title" style={{ display: "none", background: "#e8dfcd", paddingTop: "95px", paddingBottom: "36px", paddingLeft: "32px", paddingRight: "32px", textAlign: "center" }}>
+      <div className="mobile-hero-offwhite-title" style={{ display: "none", background: "#e8dfcd", paddingTop: "95px", paddingBottom: "15px", paddingLeft: "32px", paddingRight: "32px", textAlign: "center" }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           Where are we<br />in the cycle?
         </div>
