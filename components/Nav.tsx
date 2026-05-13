@@ -113,16 +113,13 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
-            <div style={{ padding: "10px 16px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: 0.45, borderTop: "0.8px solid #000", borderBottom: "0.8px solid #000", fontFamily: "var(--font-space-grotesk), sans-serif" }}>
-              Language
-            </div>
             {LANGS.map((lang, i) => (
               <div
                 key={lang.code}
                 className={lang.available ? "hover-muted" : undefined}
                 style={{ padding: "10px 16px", ...LINK_STYLE, opacity: lang.available ? 1 : 0.35, borderBottom: i < LANGS.length - 1 ? "0.8px solid #000" : undefined, cursor: lang.available ? "pointer" : "default" }}
               >
-                {lang.label}
+                Language — {lang.code}
               </div>
             ))}
           </div>

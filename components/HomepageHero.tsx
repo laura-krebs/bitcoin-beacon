@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
@@ -29,13 +29,9 @@ function formatScore(score: number): string {
 export default function HomepageHero({ score, state }: { score: number; state: ScoreState }) {
   const heroRef       = useRef<HTMLDivElement>(null);
   const scoreGroupRef = useRef<HTMLDivElement>(null);
-  const leaveTimer    = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
   const [groupH, setGroupH] = useState(148);
-  const [isHovered, setIsHovered] = useState(false);
-  const [tooltipFlipped, setTooltipFlipped] = useState(false);
-  const [tooltipReady, setTooltipReady] = useState(false);
-  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [popupOpen, setPopupOpen] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -48,35 +44,10 @@ export default function HomepageHero({ score, state }: { score: number; state: S
     return () => window.removeEventListener("resize", update);
   }, [score]);
 
-  useLayoutEffect(() => {
-    if (!isHovered) {
-      setTooltipFlipped(false);
-      setTooltipReady(false);
-      return;
-    }
-    if (tooltipRef.current) {
-      const rect = tooltipRef.current.getBoundingClientRect();
-      setTooltipFlipped(rect.right > window.innerWidth - 8);
-    }
-    setTooltipReady(true);
-  }, [isHovered]);
-
-  const handleEnter = useCallback(() => {
-    if (leaveTimer.current) clearTimeout(leaveTimer.current);
-    setIsHovered(true);
-  }, []);
-
-  const handleLeave = useCallback(() => {
-    // Small delay so moving between score group and status tag doesn't flicker
-    leaveTimer.current = setTimeout(() => setIsHovered(false), 80);
-  }, []);
-
   const { armLength, scoreY } = layout;
-  const lineY     = scoreY - 50;
-  const lineLeft  = `calc(50% - ${armLength}px - 5px)`;
+  const lineY    = scoreY - 50;
+  const lineLeft = `calc(50% - ${armLength}px - 5px)`;
   const lineWidth = `${2 * armLength}px`;
-  const tooltipLeft  = `calc(50% + ${armLength - 17}px)`;
-  const tooltipRight = `calc(50% + ${armLength + 13}px)`;
 
   return (
     <div className="hero" ref={heroRef}>
@@ -94,9 +65,8 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       {/* Score group — bottom edge exactly MARKER_GAP px above the line */}
       <div
         ref={scoreGroupRef}
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
-        style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "default" }}
+        onClick={() => setPopupOpen(v => !v)}
+        style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer" }}
       >
         {/* Flanking lines centered on score number midpoint */}
         <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
@@ -109,38 +79,38 @@ export default function HomepageHero({ score, state }: { score: number; state: S
 
       {/* Status tag — close to CYCLE SCORE label */}
       <div
-        onMouseEnter={handleEnter}
-        onMouseLeave={handleLeave}
         style={{ position: "absolute", top: `${lineY - MARKER_GAP - 1}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default", transform: "translateX(-2px)" }}
       >
         <div className="score-lbl" style={{ fontWeight: 700 }}>{state.label}</div>
       </div>
 
-      {/* Tooltip — fades in on hover; flips to left side if right edge would overflow */}
-      <div ref={tooltipRef} className="hero-tooltip" style={{
-        position: "absolute",
-        top: `${lineY - MARKER_GAP - groupH + 32}px`,
-        transform: "translateY(-50%)",
-        left: tooltipFlipped ? "auto" : tooltipLeft,
-        right: tooltipFlipped ? tooltipRight : "auto",
-        zIndex: 20,
-        backgroundColor: "#F7931A",
-        color: "#000",
-        border: "1px solid #000",
-        fontFamily: "var(--font-space-grotesk), sans-serif",
-        fontSize: "12px",
-        fontWeight: 400,
-        lineHeight: 1.5,
-        padding: "6px 10px",
-        borderRadius: "20px",
-        maxWidth: "none",
-        opacity: tooltipReady && isHovered ? 1 : 0,
-        transition: "opacity 0.2s ease",
-        pointerEvents: "none",
-        whiteSpace: "nowrap",
-      }}>
-        → {state.description}
-      </div>
+      {/* Score popup — tap/click on all screens */}
+      {popupOpen && (
+        <>
+          <div onClick={() => setPopupOpen(false)} style={{ position: "fixed", inset: 0, zIndex: 199 }} />
+          <div style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            background: "#F7931A",
+            border: "1px solid #000",
+            borderRadius: "4px",
+            padding: "24px 40px 24px 24px",
+            width: "min(320px, calc(100vw - 64px))",
+            zIndex: 200,
+            fontFamily: "var(--font-space-grotesk), sans-serif",
+            fontSize: "14px",
+            fontWeight: 400,
+            lineHeight: 1.6,
+            color: "#000",
+            textAlign: "center",
+          }}>
+            <button onClick={() => setPopupOpen(false)} style={{ position: "absolute", top: "10px", right: "12px", background: "none", border: "none", cursor: "pointer", fontSize: "18px", color: "#000", lineHeight: 1, padding: 0 }}>×</button>
+            {state.description}
+          </div>
+        </>
+      )}
     </div>
   );
 }

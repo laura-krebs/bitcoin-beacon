@@ -150,25 +150,26 @@ html, body {
     margin-top: 0 !important; /* no negative margin — follows off-white section */
     min-width: 0 !important;
   }
-  /* SVG beacon: 15% wider than viewport, bleeds ~7.5% each side */
+  /* SVG beacon: 15% wider than viewport, pixel-perfect centered with equal bleed */
   .lighthouse-img {
     position: relative !important;
-    width: 115% !important;
-    margin-left: -7.5% !important;
+    display: block !important;
+    width: calc(129.21vw + 76.34px) !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     height: auto !important;
     bottom: auto !important;
-    left: auto !important;
-    transform: none !important;
-    display: block !important;
+    margin-left: 0 !important;
   }
   /* Bitcoin symbol: black when SVG is full width */
   .bitcoin-symbol-svg { fill: #000 !important; }
+  /* Score scales with SVG: same size at 768px, 10% larger minimum at 320px */
+  .score-num { font-size: calc(7.74vw + 4.57px) !important; }
+  .score-lbl { font-size: calc(1.45vw + 0.84px) !important; }
   /* Show mobile sections */
-  .mobile-hero-title-section  { display: block !important; }
+  .mobile-hero-title-section { display: block !important; }
   /* Hide desktop text overlay (title lives in off-white section on mobile) */
   .hero-text-overlay { display: none !important; }
-  /* Hide hover tooltip — replaced by "?" button on mobile */
-  .hero-tooltip { display: none !important; }
 }
 
 /* CTA cell hidden on desktop — shown in metrics bar on mobile */

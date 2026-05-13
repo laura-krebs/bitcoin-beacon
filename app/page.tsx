@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { fetchMarketData, getScoreState } from "@/lib/api";
 import HomepageHero from "@/components/HomepageHero";
-import MobileScoreInfo from "@/components/MobileScoreInfo";
 
 export const revalidate = 3600;
 
@@ -19,7 +18,7 @@ export default async function HomePage() {
   return (
     <>
       {/* Mobile-only: title in off-white area ABOVE beacon */}
-      <div className="mobile-hero-offwhite-title" style={{ display: "none", background: "#e8dfcd", paddingTop: "100px", paddingBottom: "36px", paddingLeft: "32px", paddingRight: "32px" }}>
+      <div className="mobile-hero-offwhite-title" style={{ display: "none", background: "#e8dfcd", paddingTop: "95px", paddingBottom: "36px", paddingLeft: "32px", paddingRight: "32px", textAlign: "center" }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           Where are we<br />in the cycle?
         </div>
@@ -29,13 +28,10 @@ export default async function HomePage() {
 
       {/* Mobile-only: divider + "?" info + subtitle BELOW beacon */}
       <div className="mobile-hero-title-section" style={{ display: "none" }}>
-        {/* Divider with centered info button */}
-        <div style={{ position: "relative", height: "40px", display: "flex", alignItems: "center" }}>
-          <div style={{ position: "absolute", left: 0, right: 0, height: "0.5px", background: "rgba(0,0,0,0.15)" }} />
-          <MobileScoreInfo description={state.description} />
-        </div>
-        {/* Subtitle */}
-        <div style={{ padding: "16px 32px 40px", textAlign: "center" }}>
+        {/* Divider below SVG — thicker to match section boundaries */}
+        <div style={{ height: "0.8px", background: "rgba(0,0,0,0.2)" }} />
+        {/* Subtitle — equal padding for vertical centering */}
+        <div style={{ padding: "32px 32px 32px", textAlign: "center" }}>
           <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", margin: 0 }}>
             Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
           </p>
