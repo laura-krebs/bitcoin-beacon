@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useLayoutEffect, useCallback } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
@@ -33,6 +33,9 @@ export default function HomepageHero({ score, state }: { score: number; state: S
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
   const [groupH, setGroupH] = useState(148);
   const [isHovered, setIsHovered] = useState(false);
+  const [tooltipFlipped, setTooltipFlipped] = useState(false);
+  const [tooltipReady, setTooltipReady] = useState(false);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const update = () => {
@@ -44,6 +47,19 @@ export default function HomepageHero({ score, state }: { score: number; state: S
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, [score]);
+
+  useLayoutEffect(() => {
+    if (!isHovered) {
+      setTooltipFlipped(false);
+      setTooltipReady(false);
+      return;
+    }
+    if (tooltipRef.current) {
+      const rect = tooltipRef.current.getBoundingClientRect();
+      setTooltipFlipped(rect.right > window.innerWidth - 8);
+    }
+    setTooltipReady(true);
+  }, [isHovered]);
 
   const handleEnter = useCallback(() => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
@@ -59,19 +75,19 @@ export default function HomepageHero({ score, state }: { score: number; state: S
   const lineY     = scoreY - 50;
   const lineLeft  = `calc(50% - ${armLength}px - 5px)`;
   const lineWidth = `${2 * armLength}px`;
-  // Tooltip starts 8px to the right of the bounding box right edge (right edge = 50% + armLength)
-  const tooltipLeft = `calc(50% + ${armLength - 17}px)`;
+  const tooltipLeft  = `calc(50% + ${armLength - 17}px)`;
+  const tooltipRight = `calc(50% + ${armLength + 13}px)`;
 
   return (
     <div className="hero" ref={heroRef}>
       <LighthouseSVG />
 
-      <div style={{ position: "absolute", top: "384px", left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: "420px" }}>
-        <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "62px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: "57.8px", color: "#000" }}>
+      <div className="hero-text-overlay" style={{ position: "absolute", top: "384px", left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: "calc(50% - 198px)" }}>
+        <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           Where are we<br />in the cycle?
         </div>
-        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0 }}>
-          Follow Bitcoin&apos;s market cycle with real time data. The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
+        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0, maxWidth: "440px" }}>
+          Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
         </p>
       </div>
 
@@ -100,12 +116,13 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         <div className="score-lbl" style={{ fontWeight: 700 }}>{state.label}</div>
       </div>
 
-      {/* Tooltip — fades in on hover, aligned with status tag */}
-      <div style={{
+      {/* Tooltip — fades in on hover; flips to left side if right edge would overflow */}
+      <div ref={tooltipRef} className="hero-tooltip" style={{
         position: "absolute",
         top: `${lineY - MARKER_GAP - groupH + 32}px`,
         transform: "translateY(-50%)",
-        left: tooltipLeft,
+        left: tooltipFlipped ? "auto" : tooltipLeft,
+        right: tooltipFlipped ? tooltipRight : "auto",
         zIndex: 20,
         backgroundColor: "#F7931A",
         color: "#000",
@@ -117,7 +134,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
         padding: "6px 10px",
         borderRadius: "20px",
         maxWidth: "none",
-        opacity: isHovered ? 1 : 0,
+        opacity: tooltipReady && isHovered ? 1 : 0,
         transition: "opacity 0.2s ease",
         pointerEvents: "none",
         whiteSpace: "nowrap",

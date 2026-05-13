@@ -13,6 +13,7 @@ export default function Footer() {
   return (
     <footer style={{ borderTop: "0.8px solid #000" }}>
       <div
+        className="footer-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr 1fr",

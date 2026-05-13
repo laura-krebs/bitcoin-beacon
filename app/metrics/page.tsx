@@ -29,19 +29,19 @@ export default async function MetricsPage() {
     <>
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+        <div className="page-hero-grid" style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             Nine on-chain metrics<br />One score
           </h1>
           <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", paddingTop: "8px" }}>
-            The CBBI aggregates nine independent on-chain metrics<br />into a single composite score between 0 and 100. Each metric<br />has shown predictive patterns near cycle tops and bottoms.<br />As Bitcoin matures and adoption grows, no single metric<br />is definitive — but combined, they remain effective.<br />The composite is designed to reduce noise.
+            The CBBI aggregates nine independent on-chain metrics into a single composite score between 0 and 100. Each metric has shown predictive patterns near cycle tops and bottoms. As Bitcoin matures and adoption grows, no single metric is definitive — but combined, they remain effective. The composite is designed to reduce noise.
           </p>
         </div>
       </section>
 
       {/* SCORE SUMMARY BAR */}
       <div style={{ borderBottom: "0.8px solid #000" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+        <div className="metrics-score-grid" style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
           {[
             { value: `${score} / 100`, label: "Composite Score", sub: null },
             { value: state.label, label: "Current Signal", sub: null },
@@ -67,7 +67,7 @@ export default async function MetricsPage() {
 
       {/* METRICS GRID 3×3 — no borderBottom (footer provides the closing line) */}
       <div>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+        <div className="metrics-cards-grid" style={{ ...C, display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
           {METRICS.map((m, i) => {
             const col = i % 3;
             const row = Math.floor(i / 3);
@@ -93,7 +93,7 @@ export default async function MetricsPage() {
                 <p style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.8, color: "#000", marginBottom: "14px" }}>
                   {m.desc}
                 </p>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <div className="metric-source-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <span style={{ fontSize: "12px", fontWeight: 400, color: "#000", letterSpacing: "0.12em", opacity: 0.55, fontFamily: M }}>
                     {m.source}
                   </span>

@@ -23,7 +23,7 @@ export default function AboutPage() {
     <>
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+        <div className="page-hero-grid" style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.1, fontFamily: "var(--font-goudy), serif" }}>
             Bitcoin education<br />for everyone
           </h1>
@@ -34,14 +34,9 @@ export default function AboutPage() {
       </section>
 
       {/* BODY */}
-      <section style={{ borderBottom: "0.8px solid #000", overflow: "hidden", position: "relative" }}>
-        {/* Illustration — absolutely positioned at left viewport edge, out of grid flow */}
-        <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, display: "flex", alignItems: "center" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/ideia_new.svg" alt="" aria-hidden style={{ height: "100%", width: "auto", maxWidth: "none", pointerEvents: "none", display: "block" }} />
-        </div>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "40px", alignItems: "stretch" }}>
-          <div style={{ paddingTop: "52px", paddingBottom: "52px" }}>
+      <section style={{ borderBottom: "0.8px solid #000", overflowX: "clip", position: "relative" }}>
+<div className="about-body-grid" style={{ ...C, display: "grid", gridTemplateColumns: "200px 1fr", gap: "40px", alignItems: "stretch" }}>
+          <div className="about-sidebar" style={{ paddingTop: "52px", paddingBottom: "52px" }}>
             {["The problem.", "The goal.", "The solution."].map((label) => (
               <div
                 key={label}
@@ -77,18 +72,18 @@ export default function AboutPage() {
 
       {/* BOTTOM ROW */}
       <section style={{ padding: "44px 0" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "2fr 1fr", gap: "64px" }}>
+        <div className="about-bottom-grid" style={{ ...C, display: "grid", gridTemplateColumns: "2fr 1fr", gap: "64px" }}>
 
           {/* Disclaimer */}
           <div>
             <div style={SECTION_TITLE}>Disclaimer</div>
             <p style={{ fontSize: "15px", fontWeight: 400, lineHeight: 1.9, color: "#000" }}>
-              Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended<br />to help people understand Bitcoin and long-term market cycles.
+              Nothing on this site is financial advice. Bitcoin Beacon is an educational tool intended to help people understand Bitcoin and long-term market cycles.
             </p>
           </div>
 
           {/* Credits — no title, no divider lines */}
-          <div style={{ textAlign: "right" }}>
+          <div className="about-credits" style={{ textAlign: "right" }}>
 
             {/* Data sources */}
             <div style={{ marginBottom: "16px" }}>

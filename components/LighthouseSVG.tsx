@@ -4,6 +4,7 @@ export default function LighthouseSVG() {
       src="/beacon_new3.svg"
       alt=""
       aria-hidden
+      className="lighthouse-img"
       style={{
         position: "absolute",
         height: "100%",

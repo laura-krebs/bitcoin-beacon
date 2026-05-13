@@ -17,7 +17,7 @@ html, body {
 *:focus-visible { outline:0.8px solid #000; outline-offset:2px; }
 
 /* ── HERO ─────────────────────────────────────── */
-.hero { position:relative; width:100%; height:720px; margin-top:-80px; overflow:visible; background:#F7931A; }
+.hero { position:relative; width:100%; height:720px; margin-top:-80px; overflow:visible; background:#F7931A; min-width:1280px; }
 
 /* ── SCORE ELEMENTS (no hover transitions) ───── */
 .score-num  { font-size:64px; font-weight:300; letter-spacing:-0.06em; color:#000; line-height:1; }
@@ -48,3 +48,155 @@ html, body {
 }
 .line-left  { animation: line-breathe-left  2s ease-in-out infinite alternate; }
 .line-right { animation: line-breathe-right 2s ease-in-out infinite alternate; }
+
+/* ── NAV RESPONSIVE ──────────────────────────────── */
+.nav-burger { display: none; }
+
+@media (max-width: 768px) {
+  .nav-links { display: none !important; }
+  .nav-burger { display: block; }
+}
+
+/* ── LEARN ILLUSTRATIONS ─────────────────────────── */
+/* Hide at the exact breakpoint where illustrations detach from the divider (C container leaves max-width) */
+@media (max-width: 1199px) {
+  .learn-illustration { display: none; }
+}
+
+/* ── ABOUT RESPONSIVE ────────────────────────────── */
+/* Grid must always paint above the absolute illustration */
+.about-body-grid { position: relative; z-index: 1; }
+
+@media (max-width: 1024px) {
+  .about-illustration { display: none !important; }
+  .about-sidebar { display: none; }
+  .about-body-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 768px) {
+  .about-illustration { display: none !important; }
+  .about-sidebar { display: none; }
+}
+
+/* ── LEARN RESPONSIVE ────────────────────────────── */
+@media (max-width: 768px) {
+  .learn-section-grid { grid-template-columns: 1fr !important; }
+  .learn-col-num { border-right: none !important; padding: 32px 0 8px !important; }
+  .learn-col-body { padding: 8px 0 24px !important; }
+  .learn-col-aside { border-left: none !important; padding: 24px 0 32px !important; }
+  .learn-col-aside * { border-bottom: none !important; border-top: none !important; }
+}
+
+/* ── METRICS RESPONSIVE ──────────────────────────── */
+@media (max-width: 768px) {
+  .metric-source-row { flex-direction: column; align-items: flex-start !important; justify-content: flex-start; gap: 6px; }
+
+  /* Score bar: 4 cols → 2×2 */
+  .metrics-score-grid { grid-template-columns: 1fr 1fr !important; }
+  .metrics-score-grid > *:nth-child(2) { border-right: none !important; }
+  .metrics-score-grid > *:nth-child(-n+2) { border-bottom: 0.8px solid #000; }
+  .metrics-score-grid > *:nth-child(3) { padding-left: 0 !important; }
+
+  /* Metrics cards: 3 cols → 2 cols, fix padding for 2-col alignment */
+  .metrics-cards-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .metrics-cards-grid > * { border-right: none !important; border-bottom: 0.8px solid #000 !important; }
+  .metrics-cards-grid > *:nth-child(odd) { border-right: 0.8px solid #000 !important; padding-left: 0 !important; padding-right: 28px !important; }
+  .metrics-cards-grid > *:nth-child(even) { padding-left: 28px !important; padding-right: 0 !important; }
+  .metrics-cards-grid > *:last-child { border-bottom: none !important; border-right: none !important; }
+}
+
+/* ── PAGE HERO RESPONSIVE ────────────────────────── */
+@media (max-width: 768px) {
+  .page-hero-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+}
+
+/* ── LEARN TOC RESPONSIVE ────────────────────────── */
+@media (max-width: 768px) {
+  .learn-toc-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .learn-toc-grid > *:nth-child(even) { border-right: none !important; }
+  .learn-toc-grid > *:nth-child(odd) { padding-left: 0 !important; }
+  .learn-toc-grid > *:nth-child(-n+4) { border-bottom: 0.8px solid #000; }
+}
+
+/* ── ABOUT BOTTOM ROW RESPONSIVE ─────────────────── */
+@media (max-width: 768px) {
+  .about-bottom-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .about-credits { text-align: left !important; }
+}
+
+/* ── BACK TO TOP — hide on mobile ────────────────── */
+@media (max-width: 768px) {
+  .back-to-top-btn { display: none !important; }
+}
+
+/* ── NAV LOGO ALIGNMENT ──────────────────────────── */
+/* Align logo with page content edge once C container becomes full-width */
+@media (max-width: 1200px) {
+  .site-nav { padding-left: 32px !important; padding-right: 32px !important; }
+}
+
+/* ── HOMEPAGE MOBILE HERO ────────────────────────── */
+.mobile-hero-offwhite-title { display: none; }
+.mobile-hero-title-section  { display: none; }
+
+@media (max-width: 768px) {
+  /* Off-white title section: pulled up behind nav (same as desktop hero), nav floats over it */
+  .mobile-hero-offwhite-title {
+    display: block !important;
+    margin-top: -80px !important; /* starts at y=0 behind nav */
+  }
+  /* Hero: beacon starts immediately after off-white section, full width, auto height */
+  .hero {
+    height: auto !important;
+    margin-top: 0 !important; /* no negative margin — follows off-white section */
+    min-width: 0 !important;
+  }
+  /* SVG beacon: 15% wider than viewport, bleeds ~7.5% each side */
+  .lighthouse-img {
+    position: relative !important;
+    width: 115% !important;
+    margin-left: -7.5% !important;
+    height: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    display: block !important;
+  }
+  /* Bitcoin symbol: black when SVG is full width */
+  .bitcoin-symbol-svg { fill: #000 !important; }
+  /* Show mobile sections */
+  .mobile-hero-title-section  { display: block !important; }
+  /* Hide desktop text overlay (title lives in off-white section on mobile) */
+  .hero-text-overlay { display: none !important; }
+  /* Hide hover tooltip — replaced by "?" button on mobile */
+  .hero-tooltip { display: none !important; }
+}
+
+/* CTA cell hidden on desktop — shown in metrics bar on mobile */
+.metrics-bar-cta { display: none; }
+
+/* ── HOMEPAGE METRICS BAR RESPONSIVE ────────────── */
+@media (max-width: 768px) {
+  .homepage-metrics-bar { grid-template-columns: 1fr 1fr !important; }
+
+  /* Row 1: BTC Price | CBBI Score */
+  .metrics-bar-btc { padding: 16px 20px !important; border-bottom: 0.8px solid #000; }
+  .metrics-bar-score { padding: 16px 20px !important; border-right: none !important; border-bottom: 0.8px solid #000; }
+  .metrics-bar-score > *:last-child { white-space: nowrap; }
+
+  /* Row 2: Fear & Greed | CTA links */
+  .metrics-bar-fg { padding: 16px 20px !important; border-right: 0.8px solid #000 !important; }
+  .metrics-bar-cta { display: flex; flex-direction: column; gap: 10px; padding: 16px 20px !important; justify-content: center; }
+
+  /* Hide the original bottom bar — links have moved into row 2 */
+  .homepage-info-row { display: none !important; }
+}
+
+/* ── FOOTER RESPONSIVE ───────────────────────────── */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+    padding: 24px 48px !important;
+  }
+  .footer-grid > * { text-align: center !important; }
+}

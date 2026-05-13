@@ -52,7 +52,7 @@ This four-year rhythm is what most people mean when they talk about Bitcoin cycl
 
 The score on Bitcoin Beacon is designed to give you a sense of where we currently stand in the market cycle — however that cycle continues to evolve.`,
     aside: (
-      <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
+      <div>
         <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "14px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>Halving Timeline</div>
         {[
           { year: "2012", label: "1st Halving", muted: false },
@@ -76,23 +76,6 @@ The score on Bitcoin Beacon is designed to give you a sense of where we currentl
             <span style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", fontFamily: "var(--font-space-grotesk),sans-serif" }}>{h.label}</span>
           </div>
         ))}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/halving.svg"
-          alt=""
-          aria-hidden
-          style={{
-            display: "block",
-            width: "583px",
-            maxWidth: "none",
-            height: "auto",
-            marginTop: "auto",
-            marginBottom: "-45px",
-            marginLeft: "auto",
-            transform: "translateX(calc(50vw - 875px))",
-            pointerEvents: "none",
-          }}
-        />
       </div>
     ),
   },
@@ -198,7 +181,7 @@ export default function LearnPage() {
     <>
       {/* PAGE HERO */}
       <section style={{ borderBottom: "0.8px solid #000", padding: "64px 0 52px" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
+        <div className="page-hero-grid" style={{ ...C, display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }}>
           <h1 style={{ fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, fontFamily: "var(--font-goudy), serif" }}>
             Understanding<br />Bitcoin
           </h1>
@@ -210,7 +193,7 @@ export default function LearnPage() {
 
       {/* TABLE OF CONTENTS */}
       <div style={{ borderBottom: "0.8px solid #000" }}>
-        <div style={{ ...C, display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
+        <div className="learn-toc-grid" style={{ ...C, display: "grid", gridTemplateColumns: "repeat(6, 1fr)" }}>
           {TOC_ITEMS.map((item, i) => (
             <a
               key={item.num}
@@ -236,47 +219,52 @@ export default function LearnPage() {
         <div
           key={section.num}
           id={`section-${section.num}`}
-          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative", overflowX: section.num === "03" ? "clip" : undefined }}
+          style={{ borderBottom: i < SECTIONS.length - 1 ? "0.8px solid #000" : undefined, position: "relative" }}
         >
           {section.num === "06" && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src="/tech.svg"
-              alt=""
-              aria-hidden
-              style={{
-                position: "absolute",
-                left: "calc(50vw - 884px)",
-                top: "270px",
-                width: "505px",
-                maxWidth: "none",
-                height: "auto",
-                zIndex: 0,
-                pointerEvents: "none",
-              }}
-            />
+            <div className="learn-illustration" style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "calc(50vw - 379px)", overflow: "hidden", zIndex: 0, pointerEvents: "none" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/tech.svg"
+                alt=""
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  left: "calc(50vw - 884px)",
+                  top: "270px",
+                  width: "505px",
+                  maxWidth: "none",
+                  height: "auto",
+                  zIndex: 0,
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
           )}
           {section.num === "01" && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src="/what_is_3.svg"
-              alt=""
-              aria-hidden
-              style={{
-                position: "absolute",
-                left: "-2px",
-                top: "50%",
-                transform: "translateY(calc(-50% + 32px))",
-                width: "488px",
-                height: "auto",
-                zIndex: 0,
-                pointerEvents: "none",
-              }}
-            />
+            <div className="learn-illustration" style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "calc(50vw - 379px)", overflow: "hidden", zIndex: 0, pointerEvents: "none" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/what_is_3.svg"
+                alt=""
+                aria-hidden
+                style={{
+                  position: "absolute",
+                  left: "calc(50vw - 867px)",
+                  top: "50%",
+                  transform: "translateY(calc(-50% + 32px))",
+                  width: "488px",
+                  maxWidth: "none",
+                  height: "auto",
+                  zIndex: 0,
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
           )}
-          <div style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px", position: "relative", zIndex: 1 }}>
+          <div className="learn-section-grid" style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px", position: "relative", zIndex: 1 }}>
             {/* Col 1: section number + title */}
-            <div style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
+            <div className="learn-col-num" style={{ borderRight: "0.8px solid #000", padding: "44px 24px 44px 0" }}>
               <div style={{ fontSize: "12px", fontWeight: 600, color: "#000", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "12px", fontFamily: "var(--font-space-grotesk),sans-serif" }}>
                 {section.num}
               </div>
@@ -286,7 +274,7 @@ export default function LearnPage() {
             </div>
 
             {/* Col 2: body */}
-            <div style={{ padding: "44px 44px" }}>
+            <div className="learn-col-body" style={{ padding: "44px 44px" }}>
               {section.body.split("\n\n").map((para, j) => (
                 <p key={j} style={{ fontSize: "17px", fontWeight: 400, lineHeight: 1.9, color: "#000", marginBottom: "18px" }}>
                   {para.trim()}
@@ -295,7 +283,7 @@ export default function LearnPage() {
             </div>
 
             {/* Col 3: aside */}
-            <div style={{ borderLeft: "0.8px solid #000", padding: "44px 0 44px 28px" }}>
+            <div className="learn-col-aside" style={{ borderLeft: "0.8px solid #000", padding: "44px 0 44px 28px" }}>
               {section.aside}
             </div>
           </div>

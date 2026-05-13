@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchMarketData, getScoreState } from "@/lib/api";
 import HomepageHero from "@/components/HomepageHero";
+import MobileScoreInfo from "@/components/MobileScoreInfo";
 
 export const revalidate = 3600;
 
@@ -17,11 +18,35 @@ export default async function HomePage() {
 
   return (
     <>
+      {/* Mobile-only: title in off-white area ABOVE beacon */}
+      <div className="mobile-hero-offwhite-title" style={{ display: "none", background: "#e8dfcd", paddingTop: "100px", paddingBottom: "36px", paddingLeft: "32px", paddingRight: "32px" }}>
+        <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
+          Where are we<br />in the cycle?
+        </div>
+      </div>
+
       <HomepageHero score={score} state={state} />
 
+      {/* Mobile-only: divider + "?" info + subtitle BELOW beacon */}
+      <div className="mobile-hero-title-section" style={{ display: "none" }}>
+        {/* Divider with centered info button */}
+        <div style={{ position: "relative", height: "40px", display: "flex", alignItems: "center" }}>
+          <div style={{ position: "absolute", left: 0, right: 0, height: "0.5px", background: "rgba(0,0,0,0.15)" }} />
+          <MobileScoreInfo description={state.description} />
+        </div>
+        {/* Subtitle */}
+        <div style={{ padding: "16px 32px 40px", textAlign: "center" }}>
+          <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", margin: 0 }}>
+            Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
+          </p>
+        </div>
+        {/* Bottom divider */}
+        <div style={{ height: "0.5px", background: "rgba(0,0,0,0.15)" }} />
+      </div>
+
       {/* ── METRICS ROW ────────────────────────────── */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderTop: "0.8px solid #000" }}>
-        <div style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
+      <div className="homepage-metrics-bar" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", borderTop: "0.8px solid #000" }}>
+        <div className="metrics-bar-btc" style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {data.btcPrice > 0 ? formatPrice(data.btcPrice) : "—"}
           </div>
@@ -29,7 +54,7 @@ export default async function HomePage() {
             BTC Price
           </div>
         </div>
-        <div style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
+        <div className="metrics-bar-score" style={{ padding: "26px 48px", borderRight: "0.8px solid #000" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {score} <span style={{ fontSize: "26px", fontWeight: 300 }}>/ 100</span>
           </div>
@@ -37,7 +62,7 @@ export default async function HomePage() {
             CBBI Score
           </div>
         </div>
-        <div style={{ padding: "26px 48px" }}>
+        <div className="metrics-bar-fg" style={{ padding: "26px 48px" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
             {data.fearGreed.value} — {data.fearGreed.classification}
           </div>
@@ -45,10 +70,14 @@ export default async function HomePage() {
             Fear & Greed
           </div>
         </div>
+        <div className="metrics-bar-cta" style={{ padding: "26px 48px" }}>
+          <Link href="/metrics" className="ilink">What does this mean →</Link>
+          <Link href="/learn" className="ilink">Learn more →</Link>
+        </div>
       </div>
 
       {/* ── INFO ROW ───────────────────────────────── */}
-      <div style={{ display: "flex", justifyContent: "space-between", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
+      <div className="homepage-info-row" style={{ display: "flex", justifyContent: "space-between", padding: "13px 48px", borderTop: "0.8px solid #000" }}>
         <Link href="/metrics" className="ilink">What does this mean →</Link>
         <Link href="/learn" className="ilink">Learn more →</Link>
       </div>
