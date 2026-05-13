@@ -143,35 +143,42 @@ html, body {
   .mobile-hero-offwhite-title {
     display: block !important;
     margin-top: -80px !important; /* starts at y=0 behind nav */
+    position: relative !important;
+    z-index: 10 !important;
   }
-  /* Hero: beacon starts immediately after off-white section, full width, auto height */
+  /* Hero: auto height determined by the mobile SVG's natural dimensions */
   .hero {
     height: auto !important;
-    margin-top: 0 !important; /* no negative margin — follows off-white section */
+    margin-top: 0 !important;
     min-width: 0 !important;
+    overflow: visible !important;
   }
-  /* SVG beacon: 15% wider than viewport, pixel-perfect centered with equal bleed */
+  /* Mobile SVG: full viewport width, height auto, no centering calc needed */
   .lighthouse-img {
     position: relative !important;
     display: block !important;
-    width: calc(116.09vw + 177.11px) !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    width: 100% !important;
     height: auto !important;
+    left: auto !important;
+    transform: none !important;
     bottom: auto !important;
     margin-left: 0 !important;
+    margin-top: -40px !important;
   }
-  /* Bitcoin symbol: black when SVG is full width */
-  .bitcoin-symbol-svg { fill: #000 !important; }
-  /* Score scales with SVG: same size at 768px, 12% larger minimum at 320px */
-  .score-num { font-size: calc(6.21vw + 16.31px) !important; }
-  .score-lbl { font-size: calc(1.165vw + 3.05px) !important; }
-  /* Marker lines scale with score block */
-  .line-left, .line-right { width: calc(-1.18vw + 53.06px) !important; }
+  .score-num { font-size: 80px !important; transform: none !important; }
+  .score-lbl { font-size: calc(0.85vw + 5.47px) !important; }
+  /* Marker lines and gap scale with score block */
+  .line-left, .line-right { width: calc(-3.50vw + 70.88px) !important; }
+  .score-lines-row { gap: calc(-1.41vw + 40.83px) !important; }
   /* Show mobile sections */
   .mobile-hero-title-section { display: block !important; }
   /* Hide desktop text overlay (title lives in off-white section on mobile) */
   .hero-text-overlay { display: none !important; }
+}
+
+/* ── SCORE LABEL EXTRA SPACING — narrowest viewport only ─── */
+@media (max-width: 420px) {
+  .score-lbl { margin-top: 7px !important; }
 }
 
 /* CTA cell hidden on desktop — shown in metrics bar on mobile */
@@ -179,7 +186,7 @@ html, body {
 
 /* ── HOMEPAGE METRICS BAR RESPONSIVE ────────────── */
 @media (max-width: 768px) {
-  .homepage-metrics-bar { grid-template-columns: calc(50% - 20px) calc(50% + 20px) !important; }
+  .homepage-metrics-bar { grid-template-columns: 1fr 1fr !important; }
 
   /* Row 1: BTC Price | CBBI Score */
   .metrics-bar-btc { padding: 16px 20px !important; border-bottom: 0.8px solid #000; }

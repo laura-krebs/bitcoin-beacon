@@ -28,12 +28,12 @@ export default async function HomePage() {
 
       {/* Mobile-only: divider + "?" info + subtitle BELOW beacon */}
       <div className="mobile-hero-title-section" style={{ display: "none" }}>
-        {/* Divider below SVG — thicker to match section boundaries */}
-        <div style={{ height: "0.8px", background: "rgba(0,0,0,0.2)" }} />
+        {/* Divider below SVG */}
+        <div style={{ height: "0.8px", background: "#000" }} />
         {/* Subtitle — equal padding for vertical centering */}
         <div style={{ padding: "32px 32px 32px", textAlign: "center" }}>
           <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", margin: 0 }}>
-            Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
+            Follow Bitcoin&apos;s market cycle with real time data. The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
           </p>
         </div>
         {/* Bottom divider */}
@@ -67,8 +67,8 @@ export default async function HomePage() {
           </div>
         </div>
         <div className="metrics-bar-cta" style={{ padding: "26px 48px" }}>
-          <Link href="/metrics" className="ilink">What does this mean →</Link>
-          <Link href="/learn" className="ilink">Learn more →</Link>
+          <Link href="/metrics" className="ilink" style={{ textDecoration: "underline" }}>What does this mean</Link>
+          <Link href="/learn" className="ilink" style={{ textDecoration: "underline" }}>Learn more</Link>
         </div>
       </div>
 
