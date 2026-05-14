@@ -82,9 +82,9 @@ html, body {
   .learn-section-grid { grid-template-columns: 1fr !important; }
   .learn-col-num { border-right: none !important; padding: 32px 0 8px !important; }
   .learn-col-body { padding: 8px 0 24px !important; }
-  .learn-col-aside { border-left: none !important; padding: 20px 0 32px !important; }
+  .learn-col-aside { border-left: none !important; padding: 10px 0 32px !important; }
   .learn-col-aside * { border-bottom: none !important; border-top: none !important; }
-  .learn-col-aside::before { content: ""; display: block; width: 30px; height: 0.8px; background: #000; margin-bottom: 18px; }
+  .learn-col-aside::before { content: ""; display: block; width: 30px; height: 0; border-bottom: 0.8px solid #000; margin-bottom: 18px; }
 }
 
 /* ── METRICS RESPONSIVE ──────────────────────────── */
