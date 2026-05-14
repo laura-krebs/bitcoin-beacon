@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
@@ -37,17 +37,44 @@ export default function HomepageHero({ score, state }: { score: number; state: S
   );
   const [layoutReady, setLayoutReady] = useState(false);
 
+  // Desktop: runs synchronously before paint — positions score correctly on first frame.
+  useLayoutEffect(() => {
+    if (!heroRef.current || window.innerWidth < 768) return;
+    const h = heroRef.current.offsetHeight;
+    if (h <= 0) return;
+    setWindowWidth(window.innerWidth);
+    setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
+    setLayout(calcLayout(h, score));
+    setLayoutReady(true);
+  }, [score]);
+
+  // Mobile + resize: ResizeObserver fires on every dimension change, including cached-image
+  // navigations where onLoad never fires. requestAnimationFrame ensures layout is settled.
   useEffect(() => {
-    const update = () => {
-      if (!heroRef.current) return;
-      setWindowWidth(window.innerWidth);
-      setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
-      setLayout(calcLayout(heroRef.current.offsetHeight, score));
-      setLayoutReady(true);
+    const hero = heroRef.current;
+    if (!hero) return;
+    let rafId: ReturnType<typeof requestAnimationFrame>;
+    const recalc = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!heroRef.current) return;
+        const h = heroRef.current.offsetHeight;
+        if (h <= 0) return;
+        setWindowWidth(window.innerWidth);
+        setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
+        setLayout(calcLayout(h, score));
+        setLayoutReady(true);
+      });
     };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
+    const ro = new ResizeObserver(recalc);
+    ro.observe(hero);
+    window.addEventListener("resize", recalc);
+    recalc();
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", recalc);
+      cancelAnimationFrame(rafId);
+    };
   }, [score]);
 
   const isMobile = windowWidth < 768;

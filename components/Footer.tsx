@@ -21,7 +21,7 @@ export default function Footer() {
           padding: "11px 48px",
         }}
       >
-        <span style={T}>Not financial advice. Educational purposes only.</span>
+        <span className="footer-disclaimer" style={T}>Not financial advice. Educational purposes only.</span>
         <span style={{ ...T, textAlign: "center" }}>
           © 2026 Bitcoin Beacon ·{" "}
           <a
