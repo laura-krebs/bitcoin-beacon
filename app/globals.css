@@ -146,6 +146,8 @@ html, body {
     position: relative !important;
     z-index: 10 !important;
   }
+  /* Bitcoin symbol: always black on mobile — CSS !important beats inline styles and SSR */
+  .bitcoin-symbol-svg { fill: #000 !important; }
   /* Hero: auto height determined by the mobile SVG's natural dimensions */
   .hero {
     height: auto !important;

@@ -35,6 +35,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
   const [windowWidth, setWindowWidth] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth : 1440
   );
+  const [layoutReady, setLayoutReady] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -42,6 +43,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       setWindowWidth(window.innerWidth);
       setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
       setLayout(calcLayout(heroRef.current.offsetHeight, score));
+      setLayoutReady(true);
     };
     update();
     window.addEventListener("resize", update);
@@ -73,7 +75,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
       <div
         ref={scoreGroupRef}
         onClick={() => setPopupOpen(v => !v)}
-        style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer" }}
+        style={{ position: "absolute", top: `${lineY - MARKER_GAP - groupH}px`, left: lineLeft, width: lineWidth, zIndex: 12, display: "flex", flexDirection: "column", alignItems: "center", cursor: "pointer", opacity: layoutReady ? 1 : 0, transition: "opacity 0.15s ease" }}
       >
         {/* Flanking lines centered on score number midpoint */}
         <div className="score-lines-row" style={{ display: "flex", alignItems: "center", gap: "30px" }}>
@@ -86,7 +88,7 @@ export default function HomepageHero({ score, state }: { score: number; state: S
 
       {/* Status tag — close to CYCLE SCORE label */}
       <div
-        style={{ position: "absolute", top: `${lineY - MARKER_GAP - 1}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default", transform: "translateX(-2px)" }}
+        style={{ position: "absolute", top: `${lineY - MARKER_GAP - 1}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default", transform: "translateX(-2px)", opacity: layoutReady ? 1 : 0, transition: "opacity 0.15s ease" }}
       >
         <div className="score-lbl" style={{ fontWeight: 700 }}>{state.label}</div>
       </div>
