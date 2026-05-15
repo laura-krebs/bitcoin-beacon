@@ -179,7 +179,7 @@ html, body {
     margin-left: 0 !important;
     margin-top: -40px !important;
   }
-  .score-num { font-size: 78px !important; transform: translateX(3px) !important; }
+  .score-num { font-size: 77px !important; transform: translateX(3px) !important; }
   .score-lbl { font-size: calc(0.85vw + 7.47px) !important; transform: translateX(3px) !important; }
   .score-signal { transform: translateX(3px) !important; }
   /* Marker lines and gap scale with score block */
