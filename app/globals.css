@@ -81,10 +81,10 @@ html, body {
 @media (max-width: 768px) {
   .learn-section-grid { grid-template-columns: 1fr !important; }
   .learn-col-num { border-right: none !important; padding: 32px 0 8px !important; }
-  .learn-col-body { padding: 8px 0 24px !important; }
+  .learn-col-body { padding: 8px 0 0 !important; }
   .learn-col-aside { border-left: none !important; padding: 10px 0 32px !important; }
   .learn-col-aside * { border-bottom: none !important; border-top: none !important; }
-  .learn-col-aside::before { content: ""; display: block; width: 30px; height: 0; border-bottom: 0.8px solid #000; margin-bottom: 18px; }
+  .learn-col-aside::before { content: ""; display: block; width: 30px; height: 0; border-bottom: 0.8px solid #000; margin-bottom: 28px; }
 }
 
 /* ── METRICS RESPONSIVE ──────────────────────────── */
@@ -100,10 +100,12 @@ html, body {
 
   /* Metrics cards: 3 cols → 2 cols, borders span full viewport width */
   .metrics-cards-grid { grid-template-columns: repeat(2, 1fr) !important; padding-left: 0 !important; padding-right: 0 !important; }
-  .metrics-cards-grid > * { border-right: none !important; border-bottom: 0.8px solid #000 !important; }
+  .metrics-cards-grid > * { display: flex !important; flex-direction: column !important; border-right: none !important; border-bottom: 0.8px solid #000 !important; }
+  .metrics-cards-grid > * .metric-source-row { margin-top: auto; }
   .metrics-cards-grid > *:nth-child(odd) { border-right: 0.8px solid #000 !important; padding-left: 32px !important; padding-right: 28px !important; }
   .metrics-cards-grid > *:nth-child(even) { padding-left: 28px !important; padding-right: 32px !important; }
-  .metrics-cards-grid > *:last-child { border-bottom: none !important; border-right: none !important; }
+  /* Metric 09: full-width last card */
+  .metrics-cards-grid > *:last-child { grid-column: 1 / -1 !important; border-bottom: none !important; border-right: none !important; padding-left: 32px !important; padding-right: 32px !important; }
 }
 
 /* ── PAGE HERO RESPONSIVE ────────────────────────── */
@@ -216,6 +218,6 @@ html, body {
 }
 
 @media (max-width: 768px) {
-  .footer-grid { padding: 14px 16px !important; }
-  .footer-disclaimer { letter-spacing: 0.04em !important; }
+  .footer-grid { padding: 14px 16px !important; gap: 5px !important; }
+  .footer-grid > * { letter-spacing: 0.04em !important; }
 }
