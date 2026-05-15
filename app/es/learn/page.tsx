@@ -199,7 +199,7 @@ export default function LearnPageES() {
           {section.num === "01" && (
             <div className="learn-illustration" style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "calc(50vw - 379px)", overflow: "hidden", zIndex: 0, pointerEvents: "none" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/what_is_3.svg" alt="" aria-hidden style={{ position: "absolute", left: "calc(50vw - 867px)", top: "50%", transform: "translateY(calc(-50% + 32px))", width: "488px", maxWidth: "none", height: "auto", zIndex: 0, pointerEvents: "none" }} />
+              <img src="/what_is_3.svg" alt="" aria-hidden style={{ position: "absolute", left: "calc(50vw - 867px)", top: "50%", transform: "translateY(calc(-50% + 82px))", width: "488px", maxWidth: "none", height: "auto", zIndex: 0, pointerEvents: "none" }} />
             </div>
           )}
           <div className="learn-section-grid" style={{ ...C, display: "grid", gridTemplateColumns: "calc(100% / 6) 1fr 260px", position: "relative", zIndex: 1 }}>

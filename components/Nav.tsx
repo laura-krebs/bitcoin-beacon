@@ -29,9 +29,9 @@ export default function Nav() {
   const isHomepage = basePath === "/";
 
   const NAV_LABELS = {
-    en: ["Learn",    "Metrics",  "About"],
-    pt: ["Aprender", "Métricas", "Sobre"],
-    es: ["Aprender", "Métricas", "Acerca de"],
+    en: ["Learn",   "Metrics",  "About"],
+    pt: ["Entenda", "Métricas", "Sobre"],
+    es: ["Entiende", "Métricas", "Sobre"],
   };
   const [labelLearn, labelMetrics, labelAbout] = NAV_LABELS[locale];
   const NAV_LINKS = [

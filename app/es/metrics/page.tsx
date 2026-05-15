@@ -18,13 +18,13 @@ const ES_SCORE_LABELS: Record<string, string> = {
 };
 
 const METRICS = [
-  { num: "01", name: "Pi Cycle Top",          desc: "Rastrea dos medias móviles. Históricamente señala máximos de ciclo cuando se cruzan.",                    url: "https://lookintobitcoin.com/charts/pi-cycle-top-indicator",             source: "LookIntoBitcoin" },
+  { num: "01", name: "Pi Cycle Top",          desc: "Históricamente señala máximos de ciclo cuando dos medias móviles se cruzan.",                    url: "https://lookintobitcoin.com/charts/pi-cycle-top-indicator",             source: "LookIntoBitcoin" },
   { num: "02", name: "RUPL / NUPL",           desc: "Mide el beneficio/pérdida no realizado de todos los tenedores de Bitcoin.",                               url: "https://lookintobitcoin.com/charts/relative-unrealized-profit--loss",    source: "LookIntoBitcoin" },
   { num: "03", name: "Puell Multiple",        desc: "Ingresos diarios de los mineros × promedio anual. Valores altos = presión de venta.",                     url: "https://lookintobitcoin.com/charts/puell-multiple",                      source: "LookIntoBitcoin" },
   { num: "04", name: "Stock-to-Flow",         desc: "Compara la oferta existente con la nueva tasa de emisión.",                                               url: "https://lookintobitcoin.com/charts/stock-to-flow-model",                 source: "LookIntoBitcoin" },
   { num: "05", name: "2-Year MA Multiplier",  desc: "Rastrea el precio en relación a la media móvil de 2 años.",                                               url: "https://lookintobitcoin.com/charts/bitcoin-investor-tool",               source: "LookIntoBitcoin" },
   { num: "06", name: "Trolololo Trend Line",  desc: "Regresión logarítmica a largo plazo. Señala extremos de valoración.",                                     url: "https://www.blockchaincenter.net/bitcoin-rainbow-chart/",                source: "BlockchainCenter" },
-  { num: "07", name: "MVRV Z-Score",          desc: "Compara valor de mercado con valor realizado. Un Z-score alto indica mercado sobrecalentado.",             url: "https://lookintobitcoin.com/charts/mvrv-zscore",                         source: "LookIntoBitcoin" },
+  { num: "07", name: "MVRV Z-Score",          desc: "Valor de mercado X realizado. Z-score alto indica mercado sobrecalentado.",             url: "https://lookintobitcoin.com/charts/mvrv-zscore",                         source: "LookIntoBitcoin" },
   { num: "08", name: "Reserve Risk",          desc: "Mide la confianza de los tenedores a largo plazo en relación al precio.",                                 url: "https://lookintobitcoin.com/charts/reserve-risk",                        source: "LookIntoBitcoin" },
   { num: "09", name: "Woobull Tops",          desc: "Múltiples modelos de valoración de Bitcoin que señalan máximos de ciclo.",                                url: "https://woocharts.com/bitcoin-price-models/",                            source: "Woocharts" },
 ] as const;

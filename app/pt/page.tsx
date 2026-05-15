@@ -41,8 +41,11 @@ export default async function HomePT() {
       <HomepageHero
         score={score}
         state={state}
+        heroTextTop="344px"
+        heroTextMaxWidth="calc(50% - 228px)"
+        heroSubtitleMaxWidth="380px"
         heroTitle={<>Onde estamos<br />no ciclo?</>}
-        heroSubtitle={<>Acompanhe o ciclo de mercado do Bitcoin com dados em tempo real.<br />No Bitcoin Beacon, quanto mais alto o score no farol, mais próximos provavelmente estamos do topo do ciclo. Quanto mais baixo, historicamente mais seguro tem sido acumular.</>}
+        heroSubtitle="Acompanhe o ciclo de mercado do Bitcoin com dados em tempo real. No Bitcoin Beacon, quanto mais alto o score no farol, mais próximos provavelmente estamos do topo do ciclo. Quanto mais baixo, historicamente mais seguro tem sido acumular."
       />
 
       <div className="mobile-hero-title-section" style={{ display: "none" }}>

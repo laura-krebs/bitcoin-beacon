@@ -31,9 +31,12 @@ interface HomepageHeroProps {
   state: ScoreState;
   heroTitle?: React.ReactNode;
   heroSubtitle?: React.ReactNode;
+  heroTextTop?: string;
+  heroTextMaxWidth?: string;
+  heroSubtitleMaxWidth?: string;
 }
 
-export default function HomepageHero({ score, state, heroTitle, heroSubtitle }: HomepageHeroProps) {
+export default function HomepageHero({ score, state, heroTitle, heroSubtitle, heroTextTop = "384px", heroTextMaxWidth = "calc(50% - 198px)", heroSubtitleMaxWidth = "440px" }: HomepageHeroProps) {
   const heroRef       = useRef<HTMLDivElement>(null);
   const scoreGroupRef = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
@@ -96,11 +99,11 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle }: 
     <div className="hero" ref={heroRef}>
       <LighthouseSVG />
 
-      <div className="hero-text-overlay" style={{ position: "absolute", top: "384px", left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: "calc(50% - 198px)" }}>
+      <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: heroTextMaxWidth }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
-        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0, maxWidth: "440px" }}>
+        <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0, maxWidth: heroSubtitleMaxWidth }}>
           {heroSubtitle ?? <>Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.</>}
         </p>
       </div>
