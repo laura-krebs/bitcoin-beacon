@@ -28,10 +28,16 @@ export default function Nav() {
   // Locale homepages: "/", "/pt", "/es"
   const isHomepage = basePath === "/";
 
+  const NAV_LABELS = {
+    en: ["Learn",    "Metrics",  "About"],
+    pt: ["Aprender", "Métricas", "Sobre"],
+    es: ["Aprender", "Métricas", "Acerca de"],
+  };
+  const [labelLearn, labelMetrics, labelAbout] = NAV_LABELS[locale];
   const NAV_LINKS = [
-    { href: `${prefix}/learn`, label: "Learn" },
-    { href: `${prefix}/metrics`, label: "Metrics" },
-    { href: `${prefix}/about`, label: "About" },
+    { href: `${prefix}/learn`,   label: labelLearn },
+    { href: `${prefix}/metrics`, label: labelMetrics },
+    { href: `${prefix}/about`,   label: labelAbout },
   ];
 
   const localePath = (code: string) => {

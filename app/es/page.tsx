@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fetchMarketData } from "@/lib/api";
 import type { ScoreState } from "@/lib/api";
 import HomepageHero from "@/components/HomepageHero";
+import { translateFearGreed } from "@/lib/locale";
 
 export const revalidate = 3600;
 
@@ -27,6 +28,7 @@ export default async function HomeES() {
   const data = await fetchMarketData();
   const { score } = data.cbbi;
   const state = getState(score);
+  const fgLabel = translateFearGreed(data.fearGreed.classification, "es");
 
   return (
     <>
@@ -36,7 +38,12 @@ export default async function HomeES() {
         </div>
       </div>
 
-      <HomepageHero score={score} state={state} />
+      <HomepageHero
+        score={score}
+        state={state}
+        heroTitle={<>¿Dónde estamos<br />en el ciclo?</>}
+        heroSubtitle={<>Sigue el ciclo de mercado de Bitcoin con datos en tiempo real.<br />En Bitcoin Beacon, cuanto más alto el score en el faro, más cerca probablemente estamos del tope del ciclo. Cuanto más bajo, históricamente más seguro ha sido acumular.</>}
+      />
 
       <div className="mobile-hero-title-section" style={{ display: "none" }}>
         <div style={{ height: "0.8px", background: "#000" }} />
@@ -67,7 +74,7 @@ export default async function HomeES() {
         </div>
         <div className="metrics-bar-fg" style={{ padding: "26px 48px" }}>
           <div style={{ fontSize: "26px", fontWeight: 300, color: "#000", letterSpacing: "-0.02em", fontFamily: F }}>
-            {data.fearGreed.value} — {data.fearGreed.classification}
+            {data.fearGreed.value} — {fgLabel}
           </div>
           <div style={{ fontSize: "12px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: 0.55, marginTop: "6px", fontFamily: F }}>
             Miedo &amp; Codicia

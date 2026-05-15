@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import LighthouseSVG from "./LighthouseSVG";
 import type { ScoreState } from "@/lib/api";
 
@@ -26,7 +26,14 @@ function formatScore(score: number): string {
   return score >= 1 && score <= 9 ? `0${score}` : String(score);
 }
 
-export default function HomepageHero({ score, state }: { score: number; state: ScoreState }) {
+interface HomepageHeroProps {
+  score: number;
+  state: ScoreState;
+  heroTitle?: React.ReactNode;
+  heroSubtitle?: React.ReactNode;
+}
+
+export default function HomepageHero({ score, state, heroTitle, heroSubtitle }: HomepageHeroProps) {
   const heroRef       = useRef<HTMLDivElement>(null);
   const scoreGroupRef = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
@@ -91,10 +98,10 @@ export default function HomepageHero({ score, state }: { score: number; state: S
 
       <div className="hero-text-overlay" style={{ position: "absolute", top: "384px", left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: "calc(50% - 198px)" }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
-          Where are we<br />in the cycle?
+          {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
         <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0, maxWidth: "440px" }}>
-          Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.
+          {heroSubtitle ?? <>Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.</>}
         </p>
       </div>
 

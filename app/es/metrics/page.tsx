@@ -1,4 +1,5 @@
 import { fetchMarketData, getScoreState } from "@/lib/api";
+import { translateFearGreed } from "@/lib/locale";
 import BackToTop from "@/components/BackToTop";
 
 export const revalidate = 3600;
@@ -33,6 +34,7 @@ export default async function MetricsPageES() {
   const { score } = data.cbbi;
   const state = getScoreState(score);
   const stateLabel = ES_SCORE_LABELS[state.label] ?? state.label;
+  const fgLabel = translateFearGreed(data.fearGreed.classification, "es");
 
   return (
     <>
@@ -53,7 +55,7 @@ export default async function MetricsPageES() {
             { value: `${score} / 100`, label: "Score Compuesto", sub: null },
             { value: stateLabel,       label: "Señal Actual",    sub: null },
             { value: data.btcPrice > 0 ? new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(data.btcPrice) : "—", label: "Precio BTC", sub: null },
-            { value: String(data.fearGreed.value), label: "Miedo & Codicia", sub: data.fearGreed.classification },
+            { value: String(data.fearGreed.value), label: "Miedo & Codicia", sub: fgLabel },
           ].map((box, i) => (
             <div key={box.label} style={{ padding: "22px 28px", borderRight: i < 3 ? "0.8px solid #000" : undefined, paddingLeft: i === 0 ? 0 : undefined, paddingRight: i === 3 ? 0 : undefined }}>
               <div style={VAL}>{box.value}{box.sub ? ` — ${box.sub}` : ""}</div>
