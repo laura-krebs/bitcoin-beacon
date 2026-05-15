@@ -46,8 +46,8 @@ html, body {
   from { transform: translateX(13px); }
   to   { transform: translateX(-17px); }
 }
-.line-left  { animation: line-breathe-left  2s ease-in-out infinite alternate; }
-.line-right { animation: line-breathe-right 2s ease-in-out infinite alternate; }
+.line-left  { animation: line-breathe-left  2s ease-in-out 3 alternate forwards; }
+.line-right { animation: line-breathe-right 2s ease-in-out 3 alternate forwards; }
 
 /* ── NAV RESPONSIVE ──────────────────────────────── */
 .nav-burger { display: none; }

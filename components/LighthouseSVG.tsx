@@ -1,10 +1,10 @@
 export default function LighthouseSVG() {
   return (
     <picture>
-      <source media="(max-width: 768px)" srcSet="/beacon_new3_mobile.svg" />
+      <source media="(max-width: 768px)" srcSet="/beacon_new5_mobile.svg" />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/beacon_new3.svg"
+        src="/beacon_new5.svg"
         alt=""
         aria-hidden
         className="lighthouse-img"

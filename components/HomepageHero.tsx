@@ -39,6 +39,8 @@ interface HomepageHeroProps {
 export default function HomepageHero({ score, state, heroTitle, heroSubtitle, heroTextTop = "384px", heroTextMaxWidth = "calc(50% - 198px)", heroSubtitleMaxWidth = "440px" }: HomepageHeroProps) {
   const heroRef       = useRef<HTMLDivElement>(null);
   const scoreGroupRef = useRef<HTMLDivElement>(null);
+  const lineLeftRef   = useRef<HTMLDivElement>(null);
+  const lineRightRef  = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
   const [groupH, setGroupH] = useState(148);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -87,6 +89,16 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
     };
   }, [score]);
 
+  // Restart marker line animation on every mount (covers back-navigation).
+  useEffect(() => {
+    [lineLeftRef.current, lineRightRef.current].forEach(el => {
+      if (!el) return;
+      el.style.animation = "none";
+      void el.offsetHeight; // force reflow so browser registers the reset
+      el.style.animation = "";
+    });
+  }, []);
+
   const isMobile = windowWidth < 768;
   const { armLength, scoreY } = layout;
   const lineY    = scoreY - 50;
@@ -116,9 +128,9 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
       >
         {/* Flanking lines centered on score number midpoint */}
         <div className="score-lines-row" style={{ display: "flex", alignItems: "center", gap: "30px" }}>
-          <div className="line-left" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
+          <div ref={lineLeftRef}  className="line-left"  style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
           <div className="score-num" style={{ paddingRight: "4px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
-          <div className="line-right" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
+          <div ref={lineRightRef} className="line-right" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
         </div>
         <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px", transform: "translateX(-2px)" }}>Cycle Score</div>
       </div>
