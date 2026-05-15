@@ -2,18 +2,7 @@
 
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
-
-const NAV_LINKS = [
-  { href: "/learn", label: "Learn" },
-  { href: "/metrics", label: "Metrics" },
-  { href: "/about", label: "About" },
-];
-
-const LANGS = [
-  { code: "EN", label: "EN", available: true },
-  { code: "PT", label: "PT — soon", available: false },
-  { code: "ES", label: "ES — soon", available: false },
-];
+import { usePathname } from "next/navigation";
 
 const LINK_STYLE = {
   fontSize: "12px",
@@ -30,15 +19,35 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const langRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  const locale = pathname.startsWith("/pt") ? "pt" : pathname.startsWith("/es") ? "es" : "en";
+  const prefix = locale === "en" ? "" : `/${locale}`;
+  // Strip locale prefix to get the bare page path (e.g. "/learn")
+  const basePath = pathname.replace(/^\/(pt|es)/, "") || "/";
+
+  const NAV_LINKS = [
+    { href: `${prefix}/learn`, label: "Learn" },
+    { href: `${prefix}/metrics`, label: "Metrics" },
+    { href: `${prefix}/about`, label: "About" },
+  ];
+
+  const localePath = (code: string) => {
+    const p = basePath === "/" ? "" : basePath;
+    if (code === "en") return `/${p}`.replace("//", "/") || "/";
+    return `/${code}${p}` || `/${code}`;
+  };
+
+  const LANGS = [
+    { code: "en", label: "EN" },
+    { code: "pt", label: "PT" },
+    { code: "es", label: "ES" },
+  ];
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
-        setLangOpen(false);
-      }
-      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
-        setMenuOpen(false);
-      }
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false);
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setMenuOpen(false);
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
@@ -47,8 +56,8 @@ export default function Nav() {
   return (
     <nav className="site-nav" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "transparent" }}>
 
-      {/* Logo — always horizontal, never wraps */}
-      <Link href="/" style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "10px", whiteSpace: "nowrap", flexShrink: 0 }}>
+      {/* Logo */}
+      <Link href={prefix || "/"} style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "10px", whiteSpace: "nowrap", flexShrink: 0 }}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 144 145" aria-hidden focusable="false"
           className="bitcoin-symbol-svg"
           style={{ height: "34px", width: "auto", fill: "#e8dfcd", flexShrink: 0, position: "relative", top: "-3px" }}>
@@ -57,12 +66,10 @@ export default function Nav() {
         <span style={{ position: "relative", top: "-2px" }}>Bitcoin Beacon</span>
       </Link>
 
-      {/* Desktop nav links — hidden at mobile breakpoint via CSS */}
+      {/* Desktop nav links */}
       <div className="nav-links" style={{ display: "flex", gap: "28px", alignItems: "center" }}>
         {NAV_LINKS.map(({ href, label }) => (
-          <Link key={href} href={href} className="hover-muted" style={LINK_STYLE}>
-            {label}
-          </Link>
+          <Link key={href} href={href} className="hover-muted" style={LINK_STYLE}>{label}</Link>
         ))}
         <div ref={langRef} style={{ position: "relative", display: "flex", alignItems: "center" }}>
           <button
@@ -70,25 +77,27 @@ export default function Nav() {
             className="hover-muted"
             style={{ ...LINK_STYLE, background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 1 }}
           >
-            EN ▾
+            {locale.toUpperCase()} ▾
           </button>
           {langOpen && (
-            <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.8px solid #000", minWidth: "130px", zIndex: 100 }}>
-              {LANGS.map((lang) => (
-                <div
+            <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.8px solid #000", minWidth: "80px", zIndex: 100 }}>
+              {LANGS.map((lang, i) => (
+                <Link
                   key={lang.code}
-                  className={lang.available ? "hover-muted" : undefined}
-                  style={{ padding: "10px 16px", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", opacity: lang.available ? 1 : 0.35, borderBottom: "0.8px solid #000", cursor: lang.available ? "pointer" : "default", fontFamily: "var(--font-space-grotesk), sans-serif" }}
+                  href={localePath(lang.code)}
+                  onClick={() => setLangOpen(false)}
+                  className={lang.code !== locale ? "hover-muted" : undefined}
+                  style={{ display: "block", padding: "10px 16px", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "#000", fontWeight: lang.code === locale ? 600 : 400, borderBottom: i < LANGS.length - 1 ? "0.8px solid #000" : undefined, textDecoration: "none", fontFamily: "var(--font-space-grotesk), sans-serif" }}
                 >
                   {lang.label}
-                </div>
+                </Link>
               ))}
             </div>
           )}
         </div>
       </div>
 
-      {/* Burger menu — shown at mobile breakpoint via CSS */}
+      {/* Burger menu (mobile) */}
       <div ref={menuRef} className="nav-burger" style={{ position: "relative" }}>
         <button
           onClick={() => setMenuOpen(!menuOpen)}
@@ -104,23 +113,19 @@ export default function Nav() {
         {menuOpen && (
           <div style={{ position: "absolute", top: "calc(100% + 10px)", right: 0, backgroundColor: "#F7931A", border: "0.8px solid #000", minWidth: "160px", zIndex: 100 }}>
             {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setMenuOpen(false)}
-                style={{ display: "block", padding: "10px 16px", ...LINK_STYLE, borderBottom: "0.8px solid #000" }}
-              >
+              <Link key={href} href={href} onClick={() => setMenuOpen(false)} style={{ display: "block", padding: "10px 16px", ...LINK_STYLE, borderBottom: "0.8px solid #000" }}>
                 {label}
               </Link>
             ))}
             {LANGS.map((lang, i) => (
-              <div
+              <Link
                 key={lang.code}
-                className={lang.available ? "hover-muted" : undefined}
-                style={{ padding: "10px 16px", ...LINK_STYLE, opacity: lang.available ? 1 : 0.35, borderBottom: i < LANGS.length - 1 ? "0.8px solid #000" : undefined, cursor: lang.available ? "pointer" : "default" }}
+                href={localePath(lang.code)}
+                onClick={() => setMenuOpen(false)}
+                style={{ display: "block", padding: "10px 16px", ...LINK_STYLE, fontWeight: lang.code === locale ? 600 : 400, borderBottom: i < LANGS.length - 1 ? "0.8px solid #000" : undefined }}
               >
-                Language — {lang.code}
-              </div>
+                Language — {lang.label}
+              </Link>
             ))}
           </div>
         )}
