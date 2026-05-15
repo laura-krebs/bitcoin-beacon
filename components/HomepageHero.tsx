@@ -132,12 +132,12 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
           <div className="score-num" style={{ paddingRight: "4px", transform: "translateX(-2px)" }}>{formatScore(score)}</div>
           <div ref={lineRightRef} className="line-right" style={{ width: "44px", height: "0.8px", background: "#000", flexShrink: 0 }} />
         </div>
-        <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px", transform: isMobile ? "translateX(3.5px)" : "translateX(-2px)" }}>Cycle Score</div>
+        <div className="score-lbl" style={{ textAlign: "center", marginTop: "-4px", transform: isMobile ? "translateX(5px)" : "translateX(-2px)" }}>Cycle Score</div>
       </div>
 
       {/* Status tag — close to CYCLE SCORE label */}
       <div
-        style={{ position: "absolute", top: `${lineY - MARKER_GAP - 1}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default", transform: isMobile ? "translateX(3.5px)" : "translateX(-2px)", opacity: layoutReady ? 1 : 0, transition: "opacity 0.15s ease" }}
+        style={{ position: "absolute", top: `${lineY - MARKER_GAP - 1}px`, left: lineLeft, width: lineWidth, zIndex: 12, textAlign: "center", cursor: "default", transform: isMobile ? "translateX(5px)" : "translateX(-2px)", opacity: layoutReady ? 1 : 0, transition: "opacity 0.15s ease" }}
       >
         <div className="score-lbl" style={{ fontWeight: 700 }}>{state.label}</div>
       </div>
