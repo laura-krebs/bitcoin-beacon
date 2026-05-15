@@ -33,7 +33,7 @@ Around 1.7 billion adults worldwide have no access to banking services. Bitcoin 
   {
     num: "02",
     title: "Volatility, adoption, and the long-term trend",
-    body: `Yes, Bitcoin is volatile. That's not a flaw — it's what early adoption looks like. Short-term, the price moves more aggressively. Long-term, the direction has been consistent: every major price cycle has reached a higher peak than the last. Each cycle resets expectations, shakes out weak hands, and strengthens the network. Long-term holders who understood this have consistently come out ahead.
+    body: `Yes, Bitcoin is volatile. That's not a flaw, it's what early adoption looks like. Short-term, the price moves more aggressively. Long-term, the direction has been consistent: every major price cycle has reached a higher peak than the last. Each cycle resets expectations, shakes out weak hands, and strengthens the network. Long-term holders who understood this have consistently come out ahead.
 
 Why the volatility? Because the world is still waking up to what Bitcoin actually is. As adoption increases — from individuals to institutions to nation-states — liquidity deepens, and volatility gradually compresses. That's already happening, cycle after cycle.`,
     aside: (

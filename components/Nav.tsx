@@ -25,6 +25,8 @@ export default function Nav() {
   const prefix = locale === "en" ? "" : `/${locale}`;
   // Strip locale prefix to get the bare page path (e.g. "/learn")
   const basePath = pathname.replace(/^\/(pt|es)/, "") || "/";
+  // Locale homepages: "/", "/pt", "/es"
+  const isHomepage = basePath === "/";
 
   const NAV_LINKS = [
     { href: `${prefix}/learn`, label: "Learn" },
@@ -54,7 +56,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <nav className="site-nav" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "transparent" }}>
+    <nav className={`site-nav${isHomepage ? "" : " site-nav-paged"}`} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "22px 48px", position: "sticky", top: 0, zIndex: 50, backgroundColor: "transparent" }}>
 
       {/* Logo */}
       <Link href={prefix || "/"} style={{ fontSize: "13px", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#000", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "10px", whiteSpace: "nowrap", flexShrink: 0 }}>

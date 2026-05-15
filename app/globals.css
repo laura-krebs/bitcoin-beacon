@@ -138,6 +138,14 @@ html, body {
   .site-nav { padding-left: 32px !important; padding-right: 32px !important; }
 }
 
+/* ── NAV BACKGROUND — inner pages, mobile only ───── */
+/* Homepage stays transparent (off-white title section shows through the nav).
+   All other pages need an opaque background so page content cannot scroll
+   behind and obscure the burger menu or logo. */
+@media (max-width: 768px) {
+  .site-nav-paged { background-color: #F7931A !important; }
+}
+
 /* ── HOMEPAGE MOBILE HERO ────────────────────────── */
 .mobile-hero-offwhite-title { display: none; }
 .mobile-hero-title-section  { display: none; }

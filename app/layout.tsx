@@ -40,7 +40,11 @@ export const metadata: Metadata = {
     "An educational Bitcoin market cycle tracker. One score, updated daily, with plain-language context.",
   manifest: "/manifest.json",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icons/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: [{ url: "/icons/icon-192.png", type: "image/png" }],
     apple: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],
   },
   appleWebApp: {
