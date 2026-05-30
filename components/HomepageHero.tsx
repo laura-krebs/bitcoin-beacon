@@ -53,7 +53,8 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
   const calcTextMaxWidth = (heroW: number, heroH: number) => {
     const svgW = heroH * (SVG_W / SVG_H);
     const svgLeftEdge = (heroW - svgW) / 2;
-    return `${Math.max(180, svgLeftEdge - 24 - 48)}px`; // 24px clearance + 48px left margin
+    const maxW = Math.max(180, svgLeftEdge - 24 - 48);
+return `${maxW}px`;
   };
 
   // Desktop: runs synchronously before paint — positions score correctly on first frame.
@@ -123,7 +124,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
     <div className="hero" ref={heroRef}>
       <LighthouseSVG />
 
-      <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: effectiveTextMaxWidth }}>
+      <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", width: effectiveTextMaxWidth, maxWidth: effectiveTextMaxWidth }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
