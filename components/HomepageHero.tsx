@@ -48,15 +48,24 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
     typeof window !== "undefined" ? window.innerWidth : 1440
   );
   const [layoutReady, setLayoutReady] = useState(false);
+  const [dynTextMaxWidth, setDynTextMaxWidth] = useState<string | null>(null);
+
+  const calcTextMaxWidth = (heroW: number, heroH: number) => {
+    const svgW = heroH * (SVG_W / SVG_H);
+    const svgLeftEdge = (heroW - svgW) / 2;
+    return `${Math.max(180, svgLeftEdge - 24 - 48)}px`; // 24px clearance + 48px left margin
+  };
 
   // Desktop: runs synchronously before paint — positions score correctly on first frame.
   useLayoutEffect(() => {
     if (!heroRef.current || window.innerWidth < 768) return;
     const h = heroRef.current.offsetHeight;
     if (h <= 0) return;
+    const w = heroRef.current.offsetWidth;
     setWindowWidth(window.innerWidth);
     setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
     setLayout(calcLayout(h, score));
+    setDynTextMaxWidth(calcTextMaxWidth(w, h));
     setLayoutReady(true);
   }, [score]);
 
@@ -72,9 +81,11 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
         if (!heroRef.current) return;
         const h = heroRef.current.offsetHeight;
         if (h <= 0) return;
+        const w = heroRef.current.offsetWidth;
         setWindowWidth(window.innerWidth);
         setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
         setLayout(calcLayout(h, score));
+        setDynTextMaxWidth(calcTextMaxWidth(w, h));
         setLayoutReady(true);
       });
     };
@@ -100,6 +111,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
   }, []);
 
   const isMobile = windowWidth < 768;
+  const effectiveTextMaxWidth = !isMobile && dynTextMaxWidth ? dynTextMaxWidth : heroTextMaxWidth;
   const { armLength, scoreY } = layout;
   const lineY    = scoreY - 50;
   const lineLeft = isMobile
@@ -111,7 +123,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
     <div className="hero" ref={heroRef}>
       <LighthouseSVG />
 
-      <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: heroTextMaxWidth }}>
+      <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", maxWidth: effectiveTextMaxWidth }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
