@@ -42,6 +42,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
   const lineLeftRef   = useRef<HTMLDivElement>(null);
   const lineRightRef  = useRef<HTMLDivElement>(null);
   const svgImgRef     = useRef<HTMLImageElement>(null);
+  const textRef       = useRef<HTMLDivElement>(null);
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
   const [groupH, setGroupH] = useState(148);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -50,6 +51,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
   );
   const [layoutReady, setLayoutReady] = useState(false);
   const [dynTextMaxWidth, setDynTextMaxWidth] = useState<string | null>(null);
+  const [dynTextTop, setDynTextTop] = useState<string | null>(null);
 
   const measureTextMaxWidth = () => {
     if (!svgImgRef.current || !heroRef.current) return null;
@@ -101,6 +103,21 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
     };
   }, [score]);
 
+  // After the text width changes and the DOM reflows, check if the taller wrapped
+  // text block now overflows the hero. If so, shift it upward to stay inside.
+  useLayoutEffect(() => {
+    if (!dynTextMaxWidth || !textRef.current || !heroRef.current || window.innerWidth < 768) return;
+    const textEl   = textRef.current;
+    const heroH    = heroRef.current.offsetHeight;
+    const currentTop  = textEl.offsetTop;
+    const blockHeight = textEl.offsetHeight;
+    if (currentTop + blockHeight > heroH - 48) {
+      setDynTextTop(`${Math.max(80, heroH - 48 - blockHeight)}px`);
+    } else {
+      setDynTextTop(null); // reset to prop value when no overflow
+    }
+  }, [dynTextMaxWidth]);
+
   // Restart marker line animation on every mount (covers back-navigation).
   useEffect(() => {
     [lineLeftRef.current, lineRightRef.current].forEach(el => {
@@ -113,6 +130,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
 
   const isMobile = windowWidth < 768;
   const effectiveTextMaxWidth = !isMobile && dynTextMaxWidth ? dynTextMaxWidth : heroTextMaxWidth;
+  const effectiveTextTop = !isMobile && dynTextTop ? dynTextTop : heroTextTop;
   const { armLength, scoreY } = layout;
   const lineY    = scoreY - 50;
   const lineLeft = isMobile
@@ -124,7 +142,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
     <div className="hero" ref={heroRef}>
       <LighthouseSVG ref={svgImgRef} />
 
-      <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", width: effectiveTextMaxWidth, maxWidth: effectiveTextMaxWidth }}>
+      <div ref={textRef} className="hero-text-overlay" style={{ position: "absolute", top: effectiveTextTop, left: "48px", zIndex: 10, pointerEvents: "none", width: effectiveTextMaxWidth, maxWidth: effectiveTextMaxWidth }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
           {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
