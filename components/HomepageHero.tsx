@@ -41,6 +41,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
   const scoreGroupRef = useRef<HTMLDivElement>(null);
   const lineLeftRef   = useRef<HTMLDivElement>(null);
   const lineRightRef  = useRef<HTMLDivElement>(null);
+  const svgImgRef     = useRef<HTMLImageElement>(null);
   const [layout, setLayout] = useState<Layout>(() => calcLayout(660, score));
   const [groupH, setGroupH] = useState(148);
   const [popupOpen, setPopupOpen] = useState(false);
@@ -50,11 +51,12 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
   const [layoutReady, setLayoutReady] = useState(false);
   const [dynTextMaxWidth, setDynTextMaxWidth] = useState<string | null>(null);
 
-  const calcTextMaxWidth = (heroW: number, heroH: number) => {
-    const svgW = heroH * (SVG_W / SVG_H);
-    const svgLeftEdge = (heroW - svgW) / 2;
-    const maxW = Math.max(180, svgLeftEdge - 24 - 48);
-return `${maxW}px`;
+  const measureTextMaxWidth = () => {
+    if (!svgImgRef.current || !heroRef.current) return null;
+    const svgRect  = svgImgRef.current.getBoundingClientRect();
+    const heroRect = heroRef.current.getBoundingClientRect();
+    const svgVisualLeftEdge = svgRect.left - heroRect.left;
+    return `${Math.max(180, svgVisualLeftEdge - 24)}px`; // 24px clearance from real left edge
   };
 
   // Desktop: runs synchronously before paint — positions score correctly on first frame.
@@ -62,11 +64,10 @@ return `${maxW}px`;
     if (!heroRef.current || window.innerWidth < 768) return;
     const h = heroRef.current.offsetHeight;
     if (h <= 0) return;
-    const w = heroRef.current.offsetWidth;
     setWindowWidth(window.innerWidth);
     setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
     setLayout(calcLayout(h, score));
-    setDynTextMaxWidth(calcTextMaxWidth(w, h));
+    setDynTextMaxWidth(measureTextMaxWidth());
     setLayoutReady(true);
   }, [score]);
 
@@ -82,11 +83,10 @@ return `${maxW}px`;
         if (!heroRef.current) return;
         const h = heroRef.current.offsetHeight;
         if (h <= 0) return;
-        const w = heroRef.current.offsetWidth;
         setWindowWidth(window.innerWidth);
         setGroupH(scoreGroupRef.current?.offsetHeight ?? 148);
         setLayout(calcLayout(h, score));
-        setDynTextMaxWidth(calcTextMaxWidth(w, h));
+        setDynTextMaxWidth(measureTextMaxWidth());
         setLayoutReady(true);
       });
     };
@@ -122,7 +122,7 @@ return `${maxW}px`;
 
   return (
     <div className="hero" ref={heroRef}>
-      <LighthouseSVG />
+      <LighthouseSVG ref={svgImgRef} />
 
       <div className="hero-text-overlay" style={{ position: "absolute", top: heroTextTop, left: "48px", zIndex: 10, pointerEvents: "none", width: effectiveTextMaxWidth, maxWidth: effectiveTextMaxWidth }}>
         <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
