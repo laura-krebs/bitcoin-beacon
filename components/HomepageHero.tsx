@@ -147,7 +147,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
           {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
         <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0, maxWidth: heroSubtitleMaxWidth }}>
-          {heroSubtitle ?? <>Follow Bitcoin&apos;s market cycle with real time data.<br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.</>}
+          {heroSubtitle ?? <>Follow Bitcoin&apos;s market cycle with <span style={{ whiteSpace: "nowrap" }}>real time data.</span><br />The higher the score on the beacon, the closer we likely are to a cycle top. The lower the score, the safer it historically has been to accumulate.</>}
         </p>
       </div>
 
