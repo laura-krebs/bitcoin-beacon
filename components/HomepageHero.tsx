@@ -143,7 +143,7 @@ export default function HomepageHero({ score, state, heroTitle, heroSubtitle, he
       <LighthouseSVG ref={svgImgRef} />
 
       <div ref={textRef} className="hero-text-overlay" style={{ position: "absolute", top: effectiveTextTop, left: "48px", zIndex: 10, pointerEvents: "none", width: effectiveTextMaxWidth, maxWidth: effectiveTextMaxWidth }}>
-        <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000" }}>
+        <div style={{ fontFamily: "var(--font-goudy), serif", fontSize: "52px", fontWeight: 400, letterSpacing: "-0.01em", lineHeight: 1.05, color: "#000", textWrap: "balance" } as React.CSSProperties}>
           {heroTitle ?? <>Where are we<br />in the cycle?</>}
         </div>
         <p style={{ fontFamily: "var(--font-space-grotesk), sans-serif", fontSize: "17px", fontWeight: 400, lineHeight: 1.6, color: "#000", marginTop: "45px", marginBottom: 0, maxWidth: heroSubtitleMaxWidth, textWrap: "balance" } as React.CSSProperties}>
